@@ -1,4 +1,4 @@
-package logica;
+package modelo;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,10 +6,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import modelo.Area;
-import modelo.Empleado;
-import modelo.Manager;
-import modelo.Movimiento;
+
 
 public class Sistema implements Serializable {
     private ArrayList<Area> areas;
@@ -136,6 +133,8 @@ public class Sistema implements Serializable {
         }
         return false;
     }
+    
+    
 
     // logica de managers
 

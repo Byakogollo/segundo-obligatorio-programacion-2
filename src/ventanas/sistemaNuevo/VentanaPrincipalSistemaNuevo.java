@@ -6,7 +6,7 @@ package ventanas.sistemaNuevo;
 
 import ventanas.demo.*;
 import ventanas.reportes.VentanaReporteMovimientos;
-import logica.Sistema;
+import modelo.Sistema;
 import java.util.ArrayList;
 import modelo.Area;
 import modelo.Manager;

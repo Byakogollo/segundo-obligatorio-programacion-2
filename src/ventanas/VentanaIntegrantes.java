@@ -4,6 +4,10 @@
  */
 package ventanas;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.Timer;
+
 /**
  *
  * @author jacqu
@@ -17,6 +21,8 @@ public class VentanaIntegrantes extends javax.swing.JFrame {
      */
     public VentanaIntegrantes() {
         initComponents();
+        setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -28,26 +34,41 @@ public class VentanaIntegrantes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblMarcos = new javax.swing.JLabel();
+        lblEsteban = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VentanaIntegrantes");
+        getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        lblMarcos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblMarcos.setText("Marcos Medina - 365070");
+        getContentPane().add(lblMarcos);
+        lblMarcos.setBounds(50, 110, 240, 20);
 
-        setBounds(0, 0, 416, 339);
+        lblEsteban.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEsteban.setText("Esteban Necuse - 227582");
+        getContentPane().add(lblEsteban);
+        lblEsteban.setBounds(430, 110, 230, 20);
+
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTitulo.setText("Trabajo Desarrollado Por");
+        getContentPane().add(lblTitulo);
+        lblTitulo.setBounds(210, 20, 350, 40);
+        getContentPane().add(lblLogo);
+        lblLogo.setBounds(290, 80, 140, 90);
+        ImageIcon icono = new ImageIcon("./img/logo.png");
+        Image img = icono.getImage();
+        Image newimg = img.getScaledInstance(120,120,java.awt.Image.SCALE_SMOOTH);
+        icono = new ImageIcon(newimg);
+
+        lblLogo.setIcon(icono);
+
+        setBounds(0, 0, 729, 233);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -71,5 +92,9 @@ public class VentanaIntegrantes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblEsteban;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblMarcos;
+    private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 
-import logica.Sistema;
+import modelo.Sistema;
 import modelo.Area;
 import modelo.Empleado;
 import modelo.Manager;

@@ -39,13 +39,13 @@ public class VentanaInicial extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnDemoSistema = new javax.swing.JButton();
+        btnSistemaNuevo = new javax.swing.JButton();
+        btnResumirSistema = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VentanaInicial");
@@ -56,49 +56,49 @@ public class VentanaInicial extends javax.swing.JFrame {
         getContentPane().add(lblTitulo);
         lblTitulo.setBounds(210, 30, 216, 40);
 
-        jButton1.setText("Sistema con datos precargados");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDemoSistema.setText("Demo del Sistema");
+        btnDemoSistema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // Sistema con datos ficticios de la letra
-                new ventanas.sistemaResumido.VentanaPrincipalSistemaResumido().setVisible(true);
-                VentanaInicial.this.dispose();
+                btnDemoSistemaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnDemoSistema);
+        btnDemoSistema.setBounds(420, 110, 170, 40);
 
-        getContentPane().add(jButton1);
-        jButton1.setBounds(420, 110, 170, 40);
-
-        jButton2.setText("Nuevo Sistema");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSistemaNuevo.setText("Nuevo Sistema");
+        btnSistemaNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSistemaNuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(40, 110, 170, 40);
+        getContentPane().add(btnSistemaNuevo);
+        btnSistemaNuevo.setBounds(40, 110, 170, 40);
 
-        jButton3.setText("Sistema Guardado");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnResumirSistema.setText("Resumir Sistema");
+        btnResumirSistema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                javax.swing.JOptionPane.showMessageDialog(
-                        VentanaInicial.this,
-                        "La carga de sistema guardado se implementará más adelante.",
-                        "Info",
-                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                btnResumirSistemaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnResumirSistema);
+        btnResumirSistema.setBounds(230, 110, 170, 40);
 
-        getContentPane().add(jButton3);
-        jButton3.setBounds(230, 110, 170, 40);
-
-        setBounds(0, 0, 646, 231);
+        setBounds(0, 0, 646, 232);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // Nuevo sistema vacío
+    private void btnDemoSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDemoSistemaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDemoSistemaActionPerformed
+
+    private void btnResumirSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResumirSistemaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnResumirSistemaActionPerformed
+
+    private void btnSistemaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSistemaNuevoActionPerformed
         new ventanas.sistemaNuevo.VentanaPrincipalSistemaNuevo().setVisible(true);
-        this.dispose();
-    }
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSistemaNuevoActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -130,9 +130,9 @@ public class VentanaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnDemoSistema;
+    private javax.swing.JButton btnResumirSistema;
+    private javax.swing.JButton btnSistemaNuevo;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

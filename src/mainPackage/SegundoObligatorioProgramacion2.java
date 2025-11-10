@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package mainPackage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
-
+import javax.swing.Timer;
 import ventanas.VentanaInicial;
 import ventanas.VentanaIntegrantes;
 /**
@@ -20,9 +22,25 @@ public class SegundoObligatorioProgramacion2 {
         
          SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+                
+                
+                VentanaIntegrantes vIntegrantes = new VentanaIntegrantes();
+                
+                vIntegrantes.setVisible(true);
+                
+                
+    
+             Timer t = new Timer(4000, e->vIntegrantes.dispose());
+             t.setRepeats(false);
+             t.start();
+                           
+                                                      
                 VentanaInicial ventana = new VentanaInicial();
                 ventana.setVisible(true);
-            }
+                     
+              
+                
+                }
     });
     }
     
