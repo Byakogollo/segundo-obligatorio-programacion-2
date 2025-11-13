@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
+ *ffff
  * @author jacqu
  */
 public class Area implements Serializable {
