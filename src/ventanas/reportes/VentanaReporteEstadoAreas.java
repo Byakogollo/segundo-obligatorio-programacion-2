@@ -266,13 +266,13 @@ public class VentanaReporteEstadoAreas extends JDialog {
             btn.addActionListener(ev -> {
                 Manager mng = emp.getManager();
                 String nomMng = (mng == null) ? "-" : (mng.getNombre() + " (" + mng.getCi() + ")");
-                String ruta = (emp.getRutaCV() == null || emp.getRutaCV().isEmpty()) ? "-" : emp.getRutaCV();
+              //  String ruta = (emp.getRutaCV() == null || emp.getRutaCV().isEmpty()) ? "-" : emp.getRutaCV();
 
                 String detalle =
-                        "Nombre: " + safe(emp.getNombre()) + "   |   CI: " + safe(emp.getCi()) + "\n" +
+                        "Nombre: " + emp.getNombre() + "   |   CI: " + emp.getCi() + "\n" +
                         "Celular: " + emp.getCelular() + "   |   Salario: $" + redondear2(emp.getSalarioMensual()) + "\n" +
-                        "Área: " + safe(area.getNombre()) + "   |   Manager: " + nomMng + "\n" +
-                        "CV: " + ruta;
+                        "Área: " + area.getNombre() + "   |   Manager: " + nomMng + "\n" ;
+                    //    "CV: " + ruta;
 
                 lblDetalle.setText("Detalle: " + emp.getNombre() + " (" + emp.getCi() + ")");
                 JOptionPane.showMessageDialog(
@@ -291,7 +291,5 @@ public class VentanaReporteEstadoAreas extends JDialog {
         pnlEmpleados.repaint();
     }
 
-    private String safe(String s) {
-        return (s == null) ? "-" : s;
-    }
+   
 }

@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import persistencia.GuardarSistema;
+
 /**
  *
  * @author jacqu
@@ -11,24 +13,32 @@ package modelo;
 public class Empleado extends Persona {
     
     private double salarioMensual;
-    private String rutaCV;
+    private GuardarSistema curriculum;
     private Manager manager;
     private Area area;
 
 
-    public Empleado(String nombre, String apellido, int ci, double salarioMensaual, String rutaCV, Manager manager, Area area) {
-        super(nombre, apellido, ci);
+    public Empleado(String nombre, int ci, int celular,double salarioMensaual, String curriculum, Manager manager, Area area) {
+        super(nombre, ci,celular);
         this.salarioMensual = salarioMensaual;
-        this.rutaCV = (rutaCV == null) ? "" : rutaCV;
         this.manager = manager;
         this.area = area;
+        this.curriculum = new GuardarSistema(curriculum, ci);
     }
 
     public double getSalarioMensual() { return salarioMensual; }
+    
     public Manager getManager() { return manager; }
+   
     public Area getArea() { return area; }
+    
     public void setArea(Area area) { this.area = area; }
 
-    public String getRutaCV() { return rutaCV; }
-    public void setRutaCV(String rutaCV) { this.rutaCV = (rutaCV == null) ? "" : rutaCV; }
+    
+   
+    
+    
+    
+    
+    
 }

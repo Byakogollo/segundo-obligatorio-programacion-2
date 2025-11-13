@@ -5,6 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import modelo.Area;
+import modelo.Empleado;
+import modelo.Manager;
+import modelo.Movimiento;
 
 
 
@@ -20,6 +24,27 @@ public class Sistema implements Serializable {
         this.movimientos = new ArrayList<>();
         this.managers = new ArrayList<>();
     }
+    
+       // getters para las ventanas, para cuando necesitemos llamar a los metodos
+
+    public ArrayList<Area> getAreas() {
+        return areas;
+    }
+
+    public ArrayList<Manager> getManagers() {
+        return managers;
+    }
+
+    public ArrayList<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public ArrayList<Movimiento> getMovimientos() {
+        return movimientos;
+    }
+
+
+
 
     // logica de Areas
 
@@ -111,26 +136,24 @@ public class Sistema implements Serializable {
 
     // logica de managers
 
-    public boolean altaManager(String nombre, String ci, int celular, int antiguedad) {
+    public boolean altaManager(String nombre,int ci, int celular, int antiguedad) {
         if (nombre == null || nombre.trim().isEmpty())
-            return false;
-        if (ci == null || ci.trim().isEmpty())
             return false;
         if (antiguedad < 0)
             return false;
-        if (ciExiste(ci.trim()))
+        if (this.ciExiste(ci))
             return false;
 
-        Manager m = new Manager(nombre.trim(), ci.trim(), celular, antiguedad);
-        managers.add(m);
+        Manager m = new Manager(nombre.trim(), ci, celular, antiguedad);
+        this.managers.add(m);
         ordenarManagersPorAntiguedadDesc();
         return true;
     }
 
-    private boolean ciExiste(String ci) {
+    private boolean ciExiste(int ci) {
         int i = 0;
-        while (i < managers.size()) {
-            if (managers.get(i).getCi().equalsIgnoreCase(ci)) {
+        while (i < this.managers.size()) {
+            if (this.managers.get(i).getCi() == ci) {
                 return true;
             }
             i++;
@@ -138,12 +161,10 @@ public class Sistema implements Serializable {
         return false;
     }
 
-    private Manager buscarManagerPorCI(String ci) {
-        if (ci == null)
-            return null;
+    public Manager buscarManagerPorCI(int ci) {
         int i = 0;
         while (i < managers.size()) {
-            if (managers.get(i).getCi().equalsIgnoreCase(ci)) {
+            if (managers.get(i).getCi() == ci) {
                 return managers.get(i);
             }
             i++;
@@ -151,7 +172,7 @@ public class Sistema implements Serializable {
         return null;
     }
 
-    public boolean modificarTelefonoManager(String ci, int nuevoCelular) {
+    public boolean modificarTelefonoManager(int ci, int nuevoCelular) {
         Manager m = buscarManagerPorCI(ci);
         if (m == null)
             return false;
@@ -159,11 +180,11 @@ public class Sistema implements Serializable {
         return true;
     }
 
-    public boolean bajaManager(String ci) {
+    public boolean bajaManager(int ci) {
         int i = 0;
         while (i < managers.size()) {
             Manager m = managers.get(i);
-            if (m.getCi().equalsIgnoreCase(ci) && m.getEmpleadosACargo().isEmpty()) {
+            if (m.getCi() == ci && m.getEmpleadosACargo().isEmpty()) {
                 managers.remove(i);
                 return true;
             }
@@ -200,7 +221,7 @@ public class Sistema implements Serializable {
         return copia;
     }
 
-    private void ordenarManagersPorAntiguedadDesc() {
+    public void ordenarManagersPorAntiguedadDesc() {
         int i = 0;
         while (i < managers.size()) {
             int max = i;
@@ -222,17 +243,16 @@ public class Sistema implements Serializable {
 
     // logica empleados
 
-    public boolean altaEmpleado(String nombre, String ci, int celular, String textoCV,
+    public boolean altaEmpleado(String nombre, int ci, int celular, String textoCV,
             double salarioMensual, Manager manager, Area area) {
         if (nombre == null || nombre.trim().isEmpty())
             return false;
-        if (ci == null || ci.trim().isEmpty())
-            return false;
+        
         if (manager == null || area == null)
             return false;
         if (salarioMensual < 0)
             return false;
-        if (ciExiste(ci.trim()))
+        if (ciExiste(ci))
             return false;
 
         double costoAnual = salarioMensual * 12.0;
@@ -241,9 +261,9 @@ public class Sistema implements Serializable {
         }
 
         // crea carpeta cvs y archivo CVxxxxxxxx.txt
-        String rutaCV = crearCV(ci.trim(), textoCV == null ? "" : textoCV);
+        String rutaCV = crearCV(""+ci, textoCV == null ? "" : textoCV);
 
-        Empleado e = new Empleado(nombre.trim(), ci.trim(),
+        Empleado e = new Empleado(nombre.trim(), ci,
                 celular == 0 ? 0 : celular,
                 salarioMensual,
                 rutaCV,
@@ -378,10 +398,10 @@ public class Sistema implements Serializable {
         altaArea("Marketing",
                 "Acciones planificadas, publicidad en medios masivos, publicidad en redes, gestión de redes", 95000.00);
 
-        altaManager("Ana Martínez", "4.568.369-1", 99123456, 10);
-        altaManager("Ricardo Morales", "3.214.589-3", 94121212, 4);
-        altaManager("Laura Torales", "3.589.257-5", 99654321, 1);
-        altaManager("Juan Pablo Zapata", "4.555.197-7", 99202020, 5);
+        altaManager("Ana Martínez", 45683691, 99123456, 10);
+        altaManager("Ricardo Morales", 32145893, 94121212, 4);
+        altaManager("Laura Torales", 35892575, 99654321, 1);
+        altaManager("Juan Pablo Zapata", 45551977, 99202020, 5);
     }
 
     // persistencia
@@ -396,24 +416,7 @@ public class Sistema implements Serializable {
         return null;
     }
 
-    // chequeos
-
-    private boolean ciExiste(int ci) {
-        int i = 0;
-        while (i < empleados.size()) {
-            if (empleados.get(i).getCi().equals(ci))
-                return true;
-            i++;
-        }
-        int j = 0;
-        while (j < managers.size()) {
-            if (managers.get(j).getCi().equals(ci))
-                return true;
-            j++;
-        }
-        return false;
-    }
-
+  
     private String crearCV(String ci, String texto) {
         String folder = "cvs";
         File dir = new File(folder);
@@ -441,23 +444,6 @@ public class Sistema implements Serializable {
         }
         return ruta;
     }
-
-    // getters para las ventanas, para cuando necesitemos llamar a los metodos
-
-    public ArrayList<Area> getAreas() {
-        return areas;
-    }
-
-    public ArrayList<Manager> getManagers() {
-        return managers;
-    }
-
-    public ArrayList<Empleado> getEmpleados() {
-        return empleados;
-    }
-
-    public ArrayList<Movimiento> getMovimientos() {
-        return movimientos;
-    }
-
 }
+
+ 

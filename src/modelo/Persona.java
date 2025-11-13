@@ -4,20 +4,23 @@ import java.io.Serializable;
 
 public abstract class Persona implements Serializable {
    protected  String nombre;
-   protected  String ci;
+   protected  int ci;
    protected  int celular;
 
-    public Persona(String nombre, String ci, int celular) {
+   
+   //constructor Empleado
+    public Persona(String nombre, int ci, int celular) {
         this.nombre = nombre;
         this.ci = ci;
         this.celular = celular;
     }
+    
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setCi(String ci) {
+    public void setCi(int ci) {
         this.ci = ci;
     }
 
@@ -29,7 +32,7 @@ public abstract class Persona implements Serializable {
         return nombre;
     }
 
-    public String getCi() {
+    public int getCi() {
         return ci;
     }
 

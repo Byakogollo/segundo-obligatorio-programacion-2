@@ -4,13 +4,17 @@
  */
 package ventanas.programas;
 
-import ventanas.areas.VentanaAltaArea;
+import ventanas.personal.VentanaBajaManager;
+import ventanas.personal.VentanaModificarManager;
+import ventanas.personal.VentanaAltaManager;
+import ventanas.areas.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.Area;
 import modelo.Sistema;
-import ventanas.areas.VentanaBajaArea;
-import ventanas.areas.VentanaModificarDescripcion;
+import ventanas.personal.VentanaAdministrarEmpleados;
+import ventanas.personal.VentanaAltaEmpleado;
+
 
 /**
  *
@@ -122,6 +126,11 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
         bmnEmpleados.setText("Empleados");
 
         imnAltaEmpleados.setText("Alta");
+        imnAltaEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnAltaEmpleadosActionPerformed(evt);
+            }
+        });
         bmnEmpleados.add(imnAltaEmpleados);
 
         jMenuBar1.add(bmnEmpleados);
@@ -210,15 +219,38 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_imnBajaAreasActionPerformed
 
     private void imnAltaManagersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnAltaManagersActionPerformed
-        // TODO add your handling code here:
+        VentanaAltaManager alta = new VentanaAltaManager(this, true ,this.modelo);
+         alta.setBounds(0,0,500,700);
+        alta.setLocationRelativeTo(this);
+        alta.setVisible(true);
     }//GEN-LAST:event_imnAltaManagersActionPerformed
 
     private void imnBajaManagersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnBajaManagersActionPerformed
-        // TODO add your handling code here:
+       
+        if(!this.modelo.getManagers().isEmpty()){
+            
+                VentanaBajaManager baja = new VentanaBajaManager(this, true ,this.modelo);
+         baja.setBounds(0,0,800,400);
+        baja.setLocationRelativeTo(this);
+        baja.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay managers registrados","Error",JOptionPane.ERROR_MESSAGE);
+        
+    }
     }//GEN-LAST:event_imnBajaManagersActionPerformed
 
     private void imnModificacionManagersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnModificacionManagersActionPerformed
-        // TODO add your handling code here:
+             if(!this.modelo.getManagers().isEmpty()){
+            
+                VentanaModificarManager modif = new VentanaModificarManager(this, true ,this.modelo);
+        modif.setBounds(0,0,800,800);
+        modif.setLocationRelativeTo(this);
+        modif.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay managers registrados","Error",JOptionPane.ERROR_MESSAGE);
+        
+    
+    }  
     }//GEN-LAST:event_imnModificacionManagersActionPerformed
 
     private void imnReporteInteligenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnReporteInteligenteActionPerformed
@@ -232,6 +264,17 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
     private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnReporteMovimientosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_imnReporteMovimientosActionPerformed
+
+    private void imnAltaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnAltaEmpleadosActionPerformed
+              
+            
+                VentanaAdministrarEmpleados modif = new VentanaAdministrarEmpleados(this, true ,this.modelo);
+        modif.setBounds(0,0,650,650);
+        modif.setLocationRelativeTo(this);
+        modif.setVisible(true);
+        
+            
+    }//GEN-LAST:event_imnAltaEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments

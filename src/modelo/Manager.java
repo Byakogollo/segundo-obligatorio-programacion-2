@@ -16,14 +16,19 @@ public class Manager extends Persona {
     
 
 
-    public Manager(String nombre, String apellido, int ci, int antiguedad) {
-        super(nombre, apellido, ci);
+    public Manager(String nombre, int ci, int celular,int antiguedad) {
+        super(nombre, ci, celular);
         this.antiguedad = antiguedad;
         this.empleadosACargo = new ArrayList<>();
     }
 
-    public int getAntiguedad() { return antiguedad; }
-    public ArrayList<Empleado> getEmpleadosACargo() { return empleadosACargo; }
+    public int getAntiguedad() { 
+        return antiguedad; 
+    }
+    
+    public ArrayList<Empleado> getEmpleadosACargo() { 
+        return empleadosACargo; 
+    }
 
     public void agregarEmpleado(Empleado e) {
         empleadosACargo.add(e);

@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package ventanas.areas;
+package ventanas.personal;
 
+import ventanas.areas.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Area;
@@ -13,12 +14,12 @@ import modelo.Sistema;
  *
  * @author Byakogollo
  */
-public class VentanaBajaArea extends javax.swing.JDialog {
+public class VentanaBajaManager extends javax.swing.JDialog {
     private Sistema modelo;
     /**
      * Creates new form VentanaBajaArea
      */
-    public VentanaBajaArea(java.awt.Frame parent, boolean modal, Sistema modelo) {
+    public VentanaBajaManager(java.awt.Frame parent, boolean modal, Sistema modelo) {
         super(parent, modal);
         this.modelo = modelo;
         initComponents();
@@ -28,16 +29,18 @@ public class VentanaBajaArea extends javax.swing.JDialog {
         private void cargarTabla(){
                        
                
-                DefaultTableModel table = (DefaultTableModel) tblAreas.getModel();
+                DefaultTableModel table = (DefaultTableModel) tblManagers.getModel();
                 table.setRowCount(0);
-                for(int i = 0; i<this.modelo.getAreas().size(); i++){
+                for(int i = 0; i<this.modelo.getManagers().size(); i++){
                                     
-                if(this.modelo.getAreas().get(i).getEmpleados().isEmpty()){
+                if(this.modelo.getManagers().get(i).getEmpleadosACargo().isEmpty()){
                     
                                     
                 table.insertRow(0,new Object[] {
-                    this.modelo.getAreas().get(i).getNombre(),
-                    this.modelo.getAreas().get(i).getPresupuestoAnual(),
+                    this.modelo.getManagers().get(i).getNombre(),
+                    this.modelo.getManagers().get(i).getCi(),
+                    this.modelo.getManagers().get(i).getCelular(),
+                    this.modelo.getManagers().get(i).getAntiguedad(),
                                                             
                 });
                 }
@@ -56,34 +59,34 @@ public class VentanaBajaArea extends javax.swing.JDialog {
 
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblAreas = new javax.swing.JTable();
+        tblManagers = new javax.swing.JTable();
         btnCancelar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        btnBaja = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblTitulo.setText("Baja Area");
+        lblTitulo.setText("Baja Manager");
         getContentPane().add(lblTitulo);
-        lblTitulo.setBounds(300, 30, 158, 48);
+        lblTitulo.setBounds(250, 30, 270, 48);
 
-        tblAreas.setModel(new javax.swing.table.DefaultTableModel(
+        tblManagers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre Area", "Presupuesto"
+                "Nombre", "Cedula", "Celular", "Antiguedad"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -94,10 +97,10 @@ public class VentanaBajaArea extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblAreas);
+        jScrollPane1.setViewportView(tblManagers);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(70, 140, 430, 180);
+        jScrollPane1.setBounds(20, 140, 480, 180);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -108,20 +111,20 @@ public class VentanaBajaArea extends javax.swing.JDialog {
         getContentPane().add(btnCancelar);
         btnCancelar.setBounds(550, 240, 160, 80);
 
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnBaja.setText("Dar de baja");
+        btnBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
+                btnBajaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar);
-        btnEliminar.setBounds(550, 140, 160, 80);
+        getContentPane().add(btnBaja);
+        btnBaja.setBounds(550, 140, 160, 80);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-           JOptionPane alerta = new JOptionPane();
+            JOptionPane alerta = new JOptionPane();
        int seleccion = alerta.showConfirmDialog(this,"Desea salir?", "Cancelar", JOptionPane.YES_NO_CANCEL_OPTION);
        
        if(seleccion == alerta.YES_OPTION){
@@ -129,41 +132,38 @@ public class VentanaBajaArea extends javax.swing.JDialog {
        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-         DefaultTableModel tabla = (DefaultTableModel) this.tblAreas.getModel();
-          int index = this.tblAreas.getSelectedRow();
+    private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
+         DefaultTableModel tabla = (DefaultTableModel) this.tblManagers.getModel();
+          int index = this.tblManagers.getSelectedRow();
            if(index >= 0){
                
-          String nom = (String)this.tblAreas.getValueAt(index, 0);
+          int ci = (Integer)this.tblManagers.getValueAt(index, 1);
           
          
           
           
-          if(JOptionPane.showConfirmDialog(this, "Esta seguro que desea eliminar el area?", "CONFIRMAR BORRAR", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.YES_OPTION){
-            
+          if(JOptionPane.showConfirmDialog(this, "Esta seguro que desea dar de baja al manager?", "Confirmar baja", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.YES_OPTION){
              
-              if(this.modelo.bajaArea(nom)){
-                  JOptionPane.showMessageDialog(null, "Area borrada correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                  
+             
+              if(this.modelo.bajaManager(ci)){
+                  JOptionPane.showMessageDialog(null, "Manager dado de baja correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                   
                     this.cargarTabla();
               }
              
           }
           }else{
-               JOptionPane.showMessageDialog(this, "Seleccione el area a eliminar","ERROR", JOptionPane.ERROR_MESSAGE);
+               JOptionPane.showMessageDialog(this, "Seleccione el manager a dar de baja","Error", JOptionPane.ERROR_MESSAGE);
            }
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_btnBajaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBaja;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTable tblAreas;
+    private javax.swing.JTable tblManagers;
     // End of variables declaration//GEN-END:variables
 }
