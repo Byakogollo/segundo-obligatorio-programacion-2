@@ -49,7 +49,7 @@ public class Sistema implements Serializable {
         return null;
     }
 
-    private void ordenarAreasPorNombre() {
+    public void ordenarAreasPorNombre() {
         int i = 0;
         while (i < areas.size()) {
             int min = i;
@@ -72,32 +72,13 @@ public class Sistema implements Serializable {
     }
 
     public ArrayList<Area> listarAreasOrdenadasPorNombre() {
-        ArrayList<Area> copia = new ArrayList<Area>();
+        ArrayList<Area> copia = new ArrayList<>();
         int i = 0;
-        while (i < areas.size()) {
-            copia.add(areas.get(i));
+        while (i < this.areas.size()) {
+            copia.add(this.areas.get(i)); 
             i++;
         }
-        // selección simple por nombre asc
-        int j = 0;
-        while (j < copia.size()) {
-            int min = j;
-            int k = j + 1;
-            while (k < copia.size()) {
-                String a = copia.get(k).getNombre();
-                String b = copia.get(min).getNombre();
-                if (a.compareToIgnoreCase(b) < 0) {
-                    min = k;
-                }
-                k++;
-            }
-            if (min != j) {
-                Area tmp = copia.get(j);
-                copia.set(j, copia.get(min));
-                copia.set(min, tmp);
-            }
-            j++;
-        }
+            
         return copia;
     }
 
@@ -112,15 +93,7 @@ public class Sistema implements Serializable {
         }
         return res;
     }
-
-    public boolean modificarDescripcionArea(String nombreArea, String nuevaDescripcion) {
-        Area a = buscarAreaPorNombre(nombreArea);
-        if (a == null)
-            return false;
-        a.setDescripcion(nuevaDescripcion == null ? "" : nuevaDescripcion.trim());
-        return true;
-    }
-
+   
     public boolean bajaArea(String nombreArea) {
         int i = 0;
         while (i < areas.size()) {

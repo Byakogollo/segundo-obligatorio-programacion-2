@@ -2,7 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ventanas;
+package ventanas.inicializacion;
+
+import java.awt.event.KeyEvent;
+import modelo.Sistema;
+import ventanas.programas.VentanaPrincipalSistemaNuevo;
 
 /**
  *
@@ -10,26 +14,15 @@ package ventanas;
  */
 public class VentanaInicial extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger
-            .getLogger(VentanaInicial.class.getName());
-
-    /**
-     * Creates new form VentanaPrincipal
-     */
-    public VentanaInicial() {
+  
+    private Sistema modelo;
+   
+    public VentanaInicial(Sistema modelo) {
         initComponents();
         setTitle("ERP - Inicio");
         setLocationRelativeTo(null);
-
-        // F1: abrir ventana de autores
-        getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW)
-                .put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0), "mostrarAutores");
-        getRootPane().getActionMap().put("mostrarAutores", new javax.swing.AbstractAction() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                new ventanas.VentanaIntegrantes().setVisible(true);
-            }
-        });
-
+        
+        this.modelo = modelo;
     }
 
     /**
@@ -49,6 +42,11 @@ public class VentanaInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VentanaInicial");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -95,39 +93,28 @@ public class VentanaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResumirSistemaActionPerformed
 
     private void btnSistemaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSistemaNuevoActionPerformed
-        new ventanas.sistemaNuevo.VentanaPrincipalSistemaNuevo().setVisible(true);
-        this.dispose();        // TODO add your handling code here:
+        VentanaPrincipalSistemaNuevo ventana = new VentanaPrincipalSistemaNuevo(this.modelo);
+        ventana.setLocationRelativeTo(this);
+        ventana.setVisible(true);
+        this.dispose();        
     }//GEN-LAST:event_btnSistemaNuevoActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+           if(evt.getKeyCode() == KeyEvent.VK_F1){
+          
+               VentanaIntegrantes v = new VentanaIntegrantes();
+               v.setLocationRelativeTo(this);
+               v.setVisible(true);
+                                          
+                            }
+        
+    }//GEN-LAST:event_formKeyPressed
 
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-        // (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-         * look and feel.
-         * For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        // </editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VentanaInicial().setVisible(true));
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDemoSistema;

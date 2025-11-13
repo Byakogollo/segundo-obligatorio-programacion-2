@@ -31,6 +31,8 @@ public class Area implements Serializable {
     public double getPresupuestoAnual() { return presupuestoAnual; }
     public ArrayList<Empleado> getEmpleados() { return empleados; }
 
+    
+  
     public void agregarEmpleado(Empleado e) {
         if (e != null && !empleados.contains(e)) {
             empleados.add(e);

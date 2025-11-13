@@ -7,8 +7,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-import ventanas.VentanaInicial;
-import ventanas.VentanaIntegrantes;
+import modelo.Sistema;
+import ventanas.inicializacion.VentanaInicial;
+import ventanas.inicializacion.VentanaIntegrantes;
 /**
  *
  * @author jacqu
@@ -20,9 +21,8 @@ public class SegundoObligatorioProgramacion2 {
      */
     public static void main(String[] args) {
         
-         SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                
+       
+                Sistema modelo = new Sistema();
                 
                 VentanaIntegrantes vIntegrantes = new VentanaIntegrantes();
                 
@@ -30,18 +30,20 @@ public class SegundoObligatorioProgramacion2 {
                 
                 
     
-             Timer t = new Timer(4000, e->vIntegrantes.dispose());
+             Timer t = new Timer(4000, e-> {
+                 vIntegrantes.dispose();
+                 VentanaInicial ventana = new VentanaInicial(modelo);
+                ventana.setVisible(true);
+                     });
              t.setRepeats(false);
              t.start();
                            
                                                       
-                VentanaInicial ventana = new VentanaInicial();
-                ventana.setVisible(true);
+                
                      
               
                 
-                }
-    });
+          
     }
     
 }
