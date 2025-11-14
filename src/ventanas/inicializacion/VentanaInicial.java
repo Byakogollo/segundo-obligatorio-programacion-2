@@ -87,7 +87,9 @@ public class VentanaInicial extends javax.swing.JFrame {
 
     private void btnDemoSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDemoSistemaActionPerformed
          VentanaPrincipalDemoSistema ventana = new VentanaPrincipalDemoSistema(this.modelo);
-        ventana.setLocationRelativeTo(this);
+        ventana.setBounds(0,0,400,300);
+         ventana.setLocationRelativeTo(this);
+        
         ventana.setVisible(true);
         this.dispose();   
     }//GEN-LAST:event_btnDemoSistemaActionPerformed
@@ -98,8 +100,11 @@ public class VentanaInicial extends javax.swing.JFrame {
 
     private void btnSistemaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSistemaNuevoActionPerformed
         VentanaPrincipalSistemaNuevo ventana = new VentanaPrincipalSistemaNuevo(this.modelo);
+        ventana.setBounds(0,0,400,300);
         ventana.setLocationRelativeTo(this);
+        
         ventana.setVisible(true);
+        
         this.dispose();        
     }//GEN-LAST:event_btnSistemaNuevoActionPerformed
 

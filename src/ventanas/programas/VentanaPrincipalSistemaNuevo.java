@@ -4,11 +4,13 @@
  */
 package ventanas.programas;
 
+import java.awt.Image;
 import ventanas.personal.VentanaBajaManager;
 import ventanas.personal.VentanaModificarManager;
 import ventanas.personal.VentanaAltaManager;
 import ventanas.areas.*;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import modelo.Area;
 import modelo.Sistema;
@@ -45,6 +47,7 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblBackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         bmnAreas = new javax.swing.JMenu();
         imnAltaAreas = new javax.swing.JMenuItem();
@@ -63,6 +66,23 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
         imnReporteMovimientos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        lblBackground.setText("background");
+        lblBackground.setMaximumSize(new java.awt.Dimension(0, 0));
+        lblBackground.setMinimumSize(new java.awt.Dimension(0, 0));
+        lblBackground.setPreferredSize(new java.awt.Dimension(0, 0));
+        getContentPane().add(lblBackground);
+        lblBackground.setBounds(0, 0, 400, 280);
+        ImageIcon background = new ImageIcon("./img/background.jpg"); 
+
+        Image img = background.getImage(); 
+
+        Image newImg = img.getScaledInstance(400,300,java.awt.Image.SCALE_SMOOTH);
+
+        background = new ImageIcon(newImg); 
+
+        lblBackground.setIcon(background);
 
         bmnAreas.setText("Areas");
 
@@ -169,17 +189,6 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
         jMenuBar1.add(bmnReportes);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 347, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -323,5 +332,6 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
     private javax.swing.JMenuItem imnReporteInteligente;
     private javax.swing.JMenuItem imnReporteMovimientos;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblBackground;
     // End of variables declaration//GEN-END:variables
 }
