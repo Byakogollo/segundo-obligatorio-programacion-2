@@ -91,6 +91,11 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
         bmnAreas.add(imnModificacionAreas);
 
         imnMovimientoAreas.setText("Realizar Movimiento");
+        imnMovimientoAreas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnMovimientoAreasActionPerformed(evt);
+            }
+        });
         bmnAreas.add(imnMovimientoAreas);
 
         jMenuBar1.add(bmnAreas);
@@ -267,14 +272,34 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
 
     private void imnAltaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnAltaEmpleadosActionPerformed
               
+            if(!this.modelo.getAreas().isEmpty() && !this.modelo.getManagers().isEmpty()){
+                
             
                 VentanaAdministrarEmpleados modif = new VentanaAdministrarEmpleados(this, true ,this.modelo);
         modif.setBounds(0,0,650,650);
         modif.setLocationRelativeTo(this);
         modif.setVisible(true);
-        
+        }else{
+                JOptionPane.showMessageDialog(null, "No se pueden ingresar empleados si no hay managers y areas registradas", "Error",JOptionPane.ERROR_MESSAGE);
+            }
             
     }//GEN-LAST:event_imnAltaEmpleadosActionPerformed
+
+    private void imnMovimientoAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnMovimientoAreasActionPerformed
+           if(!this.modelo.getAreas().isEmpty()){
+            
+        
+        VentanaRealizarMovimiento mov = new VentanaRealizarMovimiento(this, true, this.modelo);
+        mov.setBounds(0,0,600,800);
+        mov.setLocationRelativeTo(this);
+        mov.setVisible(true);
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay areas sin empleados","Error",JOptionPane.ERROR_MESSAGE);
+        
+    }
+       
+    }//GEN-LAST:event_imnMovimientoAreasActionPerformed
 
     /**
      * @param args the command line arguments

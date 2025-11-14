@@ -4,12 +4,15 @@
  */
 package ventanas.personal;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Empleado;
 import modelo.Manager;
 import modelo.Sistema;
+import persistencia.CargarSistemas;
 
 /**
  *
@@ -30,15 +33,28 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
 
      private void MostrarDatos(Empleado seleccion){
                       
-        
-                this.txtCurriculum.setText("");
+      
+            
+        try{
+            
+                CargarSistemas cv = new CargarSistemas();
+            
+                this.txtCurriculum.setText(cv.cargarCurriculum(seleccion));
                 this.txtCedula.setText(""+seleccion.getCi());
                 this.txtNombre.setText(seleccion.getNombre());
                 this.txtTelefono.setText(""+seleccion.getCelular());
                 this.txtSalario.setText(""+seleccion.getSalarioMensual());
                 this.txtManager.setText(seleccion.getManager().getNombre());
                 this.txtArea.setText(seleccion.getArea().getNombre());
-                 
+        }catch(Exception e){
+            this.txtCurriculum.setText("Seleccione un empleado");
+                this.txtCedula.setText("Seleccione un empleado");
+                this.txtNombre.setText("Seleccione un empleado");
+                this.txtTelefono.setText("Seleccione un empleado");
+                this.txtSalario.setText("Seleccione un empleado");
+                this.txtManager.setText("Seleccione un empleado");
+                this.txtArea.setText("Seleccione un empleado");
+        }     
     }
      
    
@@ -208,10 +224,25 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAltaEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaEmpleadoActionPerformed
+       
+           
+        
+            
+        
         VentanaAltaEmpleado alta = new VentanaAltaEmpleado(this,true,this.modelo);
          alta.setBounds(0,0,700,800);
         alta.setLocationRelativeTo(this);
         alta.setVisible(true);
+        
+        alta.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e){
+                 lstEmpleados.setListData( modelo.getEmpleados().toArray(new Empleado[0]));
+            }
+        });
+        
+        
+        
     }//GEN-LAST:event_btnAltaEmpleadoActionPerformed
 
     private void lstEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstEmpleadosMouseClicked

@@ -219,14 +219,14 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
                 (Integer)this.spnCedula.getValue() > 0 && 
                 (Integer) this.spnSalario.getValue() > 0 &&
                                 this.modelo.altaEmpleado(this.txtNombre.getText(), (Integer) this.spnCedula.getValue(), (Integer)this.spnSalario.getValue(), this.txtCurriculum.getText(),
-                                (Double)this.spnSalario.getValue(), (Manager)this.lstManagers.getSelectedValue(), (Area) this.tblAreas.getValueAt(this.tblAreas.getSelectedRow(),0))){
+                                Double.valueOf((Integer)this.spnSalario.getValue()), (Manager)this.lstManagers.getSelectedValue(), this.modelo.buscarAreaPorNombre((String)this.tblAreas.getValueAt(this.tblAreas.getSelectedRow(),0)))){
             
                                      
             
                 JOptionPane.showMessageDialog(null, "Empleado guardado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
-               
-               
-            
+                              
+                this.dispose();
+                
             
         }else{
             JOptionPane.showMessageDialog(null, "Por favor revise los campos \nTodos los campos son obligatorios \nLos empleados no pueden tener la misma cedula que los managers \nEl costo anual no puede superar el presupuesto del area","Error",JOptionPane.ERROR_MESSAGE);

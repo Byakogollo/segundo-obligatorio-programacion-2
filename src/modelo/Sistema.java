@@ -243,15 +243,9 @@ public class Sistema implements Serializable {
 
     // logica empleados
 
-    public boolean altaEmpleado(String nombre, int ci, int celular, String textoCV,
-            double salarioMensual, Manager manager, Area area) {
-        if (nombre == null || nombre.trim().isEmpty())
-            return false;
-        
-        if (manager == null || area == null)
-            return false;
-        if (salarioMensual < 0)
-            return false;
+    public boolean altaEmpleado(String nombre, int ci, int celular, String textoCV, double salarioMensual, Manager manager, Area area) {
+       
+               
         if (ciExiste(ci))
             return false;
 
@@ -260,13 +254,11 @@ public class Sistema implements Serializable {
             return false;
         }
 
-        // crea carpeta cvs y archivo CVxxxxxxxx.txt
-        String rutaCV = crearCV(""+ci, textoCV == null ? "" : textoCV);
-
+        
         Empleado e = new Empleado(nombre.trim(), ci,
                 celular == 0 ? 0 : celular,
                 salarioMensual,
-                rutaCV,
+                textoCV,
                 manager,
                 area);
 
@@ -387,21 +379,21 @@ public class Sistema implements Serializable {
 
     // precarga de datos
 
-    public void cargarDatosPrueba() {
+    public void inicializar() {
 
-        altaArea("Personal", "Reclutamiento de personal, promociones, gestión de cargos", 100000.00);
-        altaArea("RRHH", "Relacionamiento en la empresa, organigrama, gestión de equipos", 80000.00);
-        altaArea("Seguridad",
+        this.altaArea("Personal", "Reclutamiento de personal, promociones, gestión de cargos", 100000.00);
+        this.altaArea("RRHH", "Relacionamiento en la empresa, organigrama, gestión de equipos", 80000.00);
+        this.altaArea("Seguridad",
                 "Seguridad física, vigilancia, seguridad informática, protocolos y políticas de seguridad", 120000.00);
-        altaArea("Comunicaciones",
+        this.altaArea("Comunicaciones",
                 "Comunicaciones internas, reglas y protocolos, comunicaciones con proveedores y clientes", 20000.00);
-        altaArea("Marketing",
+        this.altaArea("Marketing",
                 "Acciones planificadas, publicidad en medios masivos, publicidad en redes, gestión de redes", 95000.00);
 
-        altaManager("Ana Martínez", 45683691, 99123456, 10);
-        altaManager("Ricardo Morales", 32145893, 94121212, 4);
-        altaManager("Laura Torales", 35892575, 99654321, 1);
-        altaManager("Juan Pablo Zapata", 45551977, 99202020, 5);
+        this.altaManager("Ana Martínez", 45683691, 99123456, 10);
+        this.altaManager("Ricardo Morales", 32145893, 94121212, 4);
+        this.altaManager("Laura Torales", 35892575, 99654321, 1);
+        this.altaManager("Juan Pablo Zapata", 45551977, 99202020, 5);
     }
 
     // persistencia
@@ -417,33 +409,7 @@ public class Sistema implements Serializable {
     }
 
   
-    private String crearCV(String ci, String texto) {
-        String folder = "cvs";
-        File dir = new File(folder);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-        String nombreArchivo = "CV" + ci.replace(" ", "").replace("-", "") + ".txt";
-        String ruta = folder + File.separator + nombreArchivo;
-
-        FileWriter fw = null;
-        try {
-            fw = new FileWriter(ruta);
-            fw.write(texto);
-            fw.flush();
-        } catch (IOException ex) {
-            // En caso de error, igual devolvemos la ruta para mostrarla; podés manejar un
-            // mensaje en UI.
-        } finally {
-            if (fw != null) {
-                try {
-                    fw.close();
-                } catch (IOException e) {
-                }
-            }
-        }
-        return ruta;
-    }
+    
 }
 
  

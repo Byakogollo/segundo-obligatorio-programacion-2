@@ -6,6 +6,7 @@ package ventanas.inicializacion;
 
 import java.awt.event.KeyEvent;
 import modelo.Sistema;
+import ventanas.programas.VentanaPrincipalDemoSistema;
 import ventanas.programas.VentanaPrincipalSistemaNuevo;
 
 /**
@@ -85,7 +86,10 @@ public class VentanaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDemoSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDemoSistemaActionPerformed
-        // TODO add your handling code here:
+         VentanaPrincipalDemoSistema ventana = new VentanaPrincipalDemoSistema(this.modelo);
+        ventana.setLocationRelativeTo(this);
+        ventana.setVisible(true);
+        this.dispose();   
     }//GEN-LAST:event_btnDemoSistemaActionPerformed
 
     private void btnResumirSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResumirSistemaActionPerformed

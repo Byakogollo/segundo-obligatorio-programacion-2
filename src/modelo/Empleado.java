@@ -4,7 +4,7 @@
  */
 package modelo;
 
-import persistencia.GuardarSistema;
+import persistencia.GuardarSistemas;
 
 /**
  *
@@ -13,7 +13,7 @@ import persistencia.GuardarSistema;
 public class Empleado extends Persona {
     
     private double salarioMensual;
-    private GuardarSistema curriculum;
+    private GuardarSistemas curriculum;
     private Manager manager;
     private Area area;
 
@@ -23,7 +23,7 @@ public class Empleado extends Persona {
         this.salarioMensual = salarioMensaual;
         this.manager = manager;
         this.area = area;
-        this.curriculum = new GuardarSistema(curriculum, ci);
+        this.curriculum = new GuardarSistemas(curriculum, ci);
     }
 
     public double getSalarioMensual() { return salarioMensual; }

@@ -6,13 +6,14 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import modelo.*;
 
-public class GuardarSistema {
+public class GuardarSistemas {
 
     
     
-   public GuardarSistema(String curriculum, int ci) {
-    String basePath = System.getProperty("user.home") + "/cvs";
-    new File(basePath).mkdirs();
+   public GuardarSistemas(String curriculum, int ci) {
+   
+       String basePath = System.getProperty("user.dir") + "/cvs";
+       new File(basePath).mkdirs();
 
     File cv = new File(basePath + "/CV"+ci+".txt");
 
@@ -28,9 +29,7 @@ public class GuardarSistema {
     
     
     
-    
-    
-    
+       
     
     
     

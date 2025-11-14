@@ -4,21 +4,40 @@
  */
 package ventanas.programas;
 
+import ventanas.personal.VentanaBajaManager;
+import ventanas.personal.VentanaModificarManager;
+import ventanas.personal.VentanaAltaManager;
+import ventanas.areas.*;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import modelo.Area;
+import modelo.Sistema;
+import ventanas.personal.VentanaAdministrarEmpleados;
+import ventanas.personal.VentanaAltaEmpleado;
+
+
 /**
  *
- * @author jacqu
+ * @author Byakogollo
  */
 public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
+    private Sistema modelo;
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipalDemoSistema.class.getName());
-
     /**
-     * Creates new form VentanaDemoSistema
+     * Creates new form VentanaSistemaNuevo
      */
-    public VentanaPrincipalDemoSistema() {
+    public VentanaPrincipalDemoSistema(Sistema modelo) {
+        this.modelo = modelo;
+        this.setTitle("ERP Empresarial");
         initComponents();
+        modelo.inicializar();
     }
 
+ 
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,8 +47,7 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlPrincipal = new javax.swing.JPanel();
-        barraMenu = new javax.swing.JMenuBar();
+        jMenuBar1 = new javax.swing.JMenuBar();
         bmnAreas = new javax.swing.JMenu();
         imnAltaAreas = new javax.swing.JMenuItem();
         imnBajaAreas = new javax.swing.JMenuItem();
@@ -47,19 +65,6 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
         imnReporteMovimientos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("ERP Empresarial");
-        setName("VentanaPrincipal"); // NOI18N
-
-        javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
-        pnlPrincipal.setLayout(pnlPrincipalLayout);
-        pnlPrincipalLayout.setHorizontalGroup(
-            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
-        );
-        pnlPrincipalLayout.setVerticalGroup(
-            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 331, Short.MAX_VALUE)
-        );
 
         bmnAreas.setText("Areas");
 
@@ -88,13 +93,23 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
         bmnAreas.add(imnModificacionAreas);
 
         imnMovimientoAreas.setText("Realizar Movimiento");
+        imnMovimientoAreas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnMovimientoAreasActionPerformed(evt);
+            }
+        });
         bmnAreas.add(imnMovimientoAreas);
 
-        barraMenu.add(bmnAreas);
+        jMenuBar1.add(bmnAreas);
 
         bmnManagers.setText("Managers");
 
         imnAltaManagers.setText("Alta");
+        imnAltaManagers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnAltaManagersActionPerformed(evt);
+            }
+        });
         bmnManagers.add(imnAltaManagers);
 
         imnBajaManagers.setText("Baja");
@@ -106,16 +121,26 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
         bmnManagers.add(imnBajaManagers);
 
         imnModificacionManagers.setText("Modificacion");
+        imnModificacionManagers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnModificacionManagersActionPerformed(evt);
+            }
+        });
         bmnManagers.add(imnModificacionManagers);
 
-        barraMenu.add(bmnManagers);
+        jMenuBar1.add(bmnManagers);
 
         bmnEmpleados.setText("Empleados");
 
         imnAltaEmpleados.setText("Alta");
+        imnAltaEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnAltaEmpleadosActionPerformed(evt);
+            }
+        });
         bmnEmpleados.add(imnAltaEmpleados);
 
-        barraMenu.add(bmnEmpleados);
+        jMenuBar1.add(bmnEmpleados);
 
         bmnReportes.setText("Reportes");
 
@@ -127,7 +152,12 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
         });
         bmnReportes.add(imnReporteInteligente);
 
-        imnReporteEstadoAreas.setText("Reporte de Estado de Areas");
+        imnReporteEstadoAreas.setText("Reporte Estado de Areas");
+        imnReporteEstadoAreas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnReporteEstadoAreasActionPerformed(evt);
+            }
+        });
         bmnReportes.add(imnReporteEstadoAreas);
 
         imnReporteMovimientos.setText("Reporte de Movimientos");
@@ -138,53 +168,140 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
         });
         bmnReportes.add(imnReporteMovimientos);
 
-        barraMenu.add(bmnReportes);
+        jMenuBar1.add(bmnReportes);
 
-        setJMenuBar(barraMenu);
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 466, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 347, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void imnBajaAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnBajaAreasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imnBajaAreasActionPerformed
+    private void imnAltaAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnAltaAreasActionPerformed
+        VentanaAltaArea alta = new VentanaAltaArea(this, true, this.modelo);
+        alta.setBounds(0,0, 500, 600);
+        alta.setLocationRelativeTo(this);
+        alta.setVisible(true);
+    }//GEN-LAST:event_imnAltaAreasActionPerformed
 
     private void imnModificacionAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnModificacionAreasActionPerformed
-        // TODO add your handling code here:
+      
+        
+        if(!this.modelo.getAreas().isEmpty()){
+            
+        
+        VentanaModificarDescripcion modificar = new VentanaModificarDescripcion(this,true,this.modelo);
+        modificar.setBounds(0,0,900,500);
+        modificar.setLocationRelativeTo(this);
+        modificar.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay areas registradas", "Error",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_imnModificacionAreasActionPerformed
 
+    private void imnBajaAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnBajaAreasActionPerformed
+       
+        if(!this.modelo.listarAreasSinEmpleados().isEmpty()){
+            
+        
+        VentanaBajaArea baja = new VentanaBajaArea(this, true, this.modelo);
+        baja.setBounds(0,0,800,400);
+        baja.setLocationRelativeTo(this);
+        baja.setVisible(true);
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay areas sin empleados","Error",JOptionPane.ERROR_MESSAGE);
+        
+    }
+        
+    }//GEN-LAST:event_imnBajaAreasActionPerformed
+
+    private void imnAltaManagersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnAltaManagersActionPerformed
+        VentanaAltaManager alta = new VentanaAltaManager(this, true ,this.modelo);
+         alta.setBounds(0,0,500,700);
+        alta.setLocationRelativeTo(this);
+        alta.setVisible(true);
+    }//GEN-LAST:event_imnAltaManagersActionPerformed
+
     private void imnBajaManagersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnBajaManagersActionPerformed
-        // TODO add your handling code here:
+       
+        if(!this.modelo.getManagers().isEmpty()){
+            
+                VentanaBajaManager baja = new VentanaBajaManager(this, true ,this.modelo);
+         baja.setBounds(0,0,800,400);
+        baja.setLocationRelativeTo(this);
+        baja.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay managers registrados","Error",JOptionPane.ERROR_MESSAGE);
+        
+    }
     }//GEN-LAST:event_imnBajaManagersActionPerformed
+
+    private void imnModificacionManagersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnModificacionManagersActionPerformed
+             if(!this.modelo.getManagers().isEmpty()){
+            
+                VentanaModificarManager modif = new VentanaModificarManager(this, true ,this.modelo);
+        modif.setBounds(0,0,800,800);
+        modif.setLocationRelativeTo(this);
+        modif.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay managers registrados","Error",JOptionPane.ERROR_MESSAGE);
+        
+    
+    }  
+    }//GEN-LAST:event_imnModificacionManagersActionPerformed
 
     private void imnReporteInteligenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnReporteInteligenteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_imnReporteInteligenteActionPerformed
 
+    private void imnReporteEstadoAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnReporteEstadoAreasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imnReporteEstadoAreasActionPerformed
+
     private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnReporteMovimientosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_imnReporteMovimientosActionPerformed
 
-    private void imnAltaAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnAltaAreasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imnAltaAreasActionPerformed
+    private void imnAltaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnAltaEmpleadosActionPerformed
+              
+            if(!this.modelo.getAreas().isEmpty() && !this.modelo.getManagers().isEmpty()){
+                
+            
+                VentanaAdministrarEmpleados modif = new VentanaAdministrarEmpleados(this, true ,this.modelo);
+        modif.setBounds(0,0,650,650);
+        modif.setLocationRelativeTo(this);
+        modif.setVisible(true);
+        }else{
+                JOptionPane.showMessageDialog(null, "No se pueden ingresar empleados si no hay managers y areas registradas", "Error",JOptionPane.ERROR_MESSAGE);
+            }
+            
+    }//GEN-LAST:event_imnAltaEmpleadosActionPerformed
+
+    private void imnMovimientoAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnMovimientoAreasActionPerformed
+           if(!this.modelo.getAreas().isEmpty()){
+            
+        
+        VentanaRealizarMovimiento mov = new VentanaRealizarMovimiento(this, true, this.modelo);
+        mov.setBounds(0,0,600,800);
+        mov.setLocationRelativeTo(this);
+        mov.setVisible(true);
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay areas sin empleados","Error",JOptionPane.ERROR_MESSAGE);
+        
+    }
+       
+    }//GEN-LAST:event_imnMovimientoAreasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,7 +309,6 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar barraMenu;
     private javax.swing.JMenu bmnAreas;
     private javax.swing.JMenu bmnEmpleados;
     private javax.swing.JMenu bmnManagers;
@@ -208,6 +324,6 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
     private javax.swing.JMenuItem imnReporteEstadoAreas;
     private javax.swing.JMenuItem imnReporteInteligente;
     private javax.swing.JMenuItem imnReporteMovimientos;
-    private javax.swing.JPanel pnlPrincipal;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
