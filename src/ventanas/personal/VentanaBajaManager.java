@@ -24,6 +24,7 @@ public class VentanaBajaManager extends javax.swing.JDialog {
         this.modelo = modelo;
         initComponents();
         this.cargarTabla();
+        
     }
     
         private void cargarTabla(){

@@ -7,6 +7,7 @@ package ventanas.programas;
 import java.awt.Image;
 import ventanas.personal.VentanaBajaManager;
 import ventanas.personal.VentanaModificarManager;
+import ventanas.reportes.ventanaReporteArea;
 import ventanas.personal.VentanaAltaManager;
 import ventanas.areas.*;
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ import modelo.Area;
 import modelo.Sistema;
 import ventanas.personal.VentanaAdministrarEmpleados;
 import ventanas.personal.VentanaAltaEmpleado;
+
+
 
 
 /**
@@ -276,8 +279,10 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_imnReporteEstadoAreasActionPerformed
 
     private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnReporteMovimientosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imnReporteMovimientosActionPerformed
+        ventanaReporteArea ventanaReporteArea = new ventanaReporteArea(null, rootPaneCheckingEnabled, modelo);
+        ventanaReporteArea.setVisible(true);
+    }
+
 
     private void imnAltaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnAltaEmpleadosActionPerformed
               
