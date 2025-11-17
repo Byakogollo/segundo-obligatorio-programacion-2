@@ -5,9 +5,14 @@
 package ventanas.inicializacion;
 
 import java.awt.event.KeyEvent;
+import java.io.File;
+import javax.swing.JOptionPane;
 import modelo.Sistema;
+import persistencia.CargarSistemas;
 import ventanas.programas.VentanaPrincipalDemoSistema;
 import ventanas.programas.VentanaPrincipalSistemaNuevo;
+import ventanas.programas.VentanaPrincipalSistemaResumido;
+
 
 /**
  *
@@ -95,7 +100,50 @@ public class VentanaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDemoSistemaActionPerformed
 
     private void btnResumirSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResumirSistemaActionPerformed
-        // TODO add your handling code here:
+     
+        try{
+            
+      
+        
+        String basePath = System.getProperty("user.home") + "/persistencia";
+        File file = new File(basePath+"/Sistema");
+        
+        
+        if(file.exists()){
+                    
+            
+            
+       Sistema modeloCargado = new CargarSistemas().cargarSistema(); 
+       
+       
+       VentanaPrincipalSistemaResumido ventanaResumida = new VentanaPrincipalSistemaResumido(modeloCargado);
+          ventanaResumida.setBounds(0,0,400,300);
+         ventanaResumida.setLocationRelativeTo(this);
+        
+        ventanaResumida.setVisible(true);
+        this.dispose();          
+       
+     }else{
+            
+               JOptionPane.showMessageDialog(null,
+        "Error al cargar el sistema. Asegurese que el sistema haya sido guardado anteriormente",
+        "Error", JOptionPane.ERROR_MESSAGE);     
+            
+            
+}
+}catch(Exception e){
+                
+                System.out.println("Error");
+                
+                }
+        
+             
+
+    
+        
+        
+      
+      
     }//GEN-LAST:event_btnResumirSistemaActionPerformed
 
     private void btnSistemaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSistemaNuevoActionPerformed

@@ -5,10 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import modelo.Area;
-import modelo.Empleado;
-import modelo.Manager;
-import modelo.Movimiento;
 
 
 
@@ -108,7 +104,7 @@ public class Sistema implements Serializable {
     }
 
     public ArrayList<Area> listarAreasSinEmpleados() {
-        ArrayList<Area> res = new ArrayList<Area>();
+        ArrayList<Area> res = new ArrayList<>();
         int i = 0;
         while (i < areas.size()) {
             if (areas.get(i).getEmpleados().isEmpty()) {
@@ -194,7 +190,7 @@ public class Sistema implements Serializable {
     }
 
     public ArrayList<Manager> listarManagersPorAntiguedadDesc() {
-        ArrayList<Manager> copia = new ArrayList<Manager>();
+        ArrayList<Manager> copia = new ArrayList<>();
         int i = 0;
         while (i < managers.size()) {
             copia.add(managers.get(i));
@@ -271,7 +267,7 @@ public class Sistema implements Serializable {
     }
 
     public ArrayList<Empleado> listarEmpleadosPorSalarioAsc() {
-        ArrayList<Empleado> copia = new ArrayList<Empleado>();
+        ArrayList<Empleado> copia = new ArrayList<>();
         int i = 0;
         while (i < empleados.size()) {
             copia.add(empleados.get(i));
@@ -351,7 +347,7 @@ public class Sistema implements Serializable {
     }
 
     public ArrayList<Movimiento> listarMovimientosPorMesAsc() {
-        ArrayList<Movimiento> copia = new ArrayList<Movimiento>();
+        ArrayList<Movimiento> copia = new ArrayList<>();
         int i = 0;
         while (i < movimientos.size()) {
             copia.add(movimientos.get(i));

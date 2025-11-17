@@ -3,11 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package mainPackage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import modelo.Sistema;
+import persistencia.CargarSistemas;
 import ventanas.inicializacion.VentanaInicial;
 import ventanas.inicializacion.VentanaIntegrantes;
 /**
@@ -19,9 +24,12 @@ public class SegundoObligatorioProgramacion2 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         
        
+        
+             
+        
                 Sistema modelo = new Sistema();
                 
                 VentanaIntegrantes vIntegrantes = new VentanaIntegrantes();
@@ -38,12 +46,8 @@ public class SegundoObligatorioProgramacion2 {
              t.setRepeats(false);
              t.start();
                            
-                                                      
-                
-                     
-              
-                
-          
+       
     }
+    
     
 }

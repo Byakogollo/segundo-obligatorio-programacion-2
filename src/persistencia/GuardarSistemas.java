@@ -23,7 +23,7 @@ public class GuardarSistemas {
         out.close();
        
     } catch (IOException e) {
-        System.out.println("Error guardando el sistema: " + e.getMessage());
+        System.out.println("Error guardando el curriculum: " + e.getMessage());
        
     }
     
@@ -38,6 +38,28 @@ public class GuardarSistemas {
     
     
 }
+   
+   public GuardarSistemas(Sistema modelo){
+       
+            String basePath = System.getProperty("user.dir") + "/persistencia";
+       new File(basePath).mkdirs();
+
+    File sistema = new File(basePath + "/persistencia/Sistema");
+
+
+    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(sistema))) {
+        out.writeObject(sistema);
+        out.close();
+       
+    } catch (IOException e) {
+        System.out.println("Error guardando el sistema: " + e.getMessage());
+       
+    }
+    
+       
+       
+       
+   }
    
    
    

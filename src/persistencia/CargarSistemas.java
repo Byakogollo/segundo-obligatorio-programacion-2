@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Scanner;
 import modelo.Empleado;
+import modelo.Sistema;
 
 /**
  *
@@ -17,7 +18,9 @@ import modelo.Empleado;
 public class CargarSistemas {
    private Scanner in;
    
-    
+   
+   
+       
    public String cargarCurriculum(Empleado emp){
        
    String basePath = System.getProperty("user.dir") + "/cvs";
@@ -34,7 +37,30 @@ public class CargarSistemas {
 
     return resultado;
 }
-    
+   
+   
+      public Sistema cargarSistema() throws Exception{
+          
+   String basePath = System.getProperty("user.home") + "/persistencia";
+   
+    try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(basePath+"/Sistema"))) {
+        
+        Object obj = in.readObject();
+        
+        if (obj instanceof Sistema) {
+            return (Sistema) obj;
+            
+        } else {
+            
+           throw new Exception("El objeto leído no es una instancia de Sistema.");
+           
+        }
+    } catch (IOException | ClassNotFoundException e) {
+        System.out.println("Error leyendo el archivo: " + e.getMessage());
+    }
+
+    return null;
+}
     
     
     
