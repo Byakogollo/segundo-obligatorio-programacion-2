@@ -130,9 +130,10 @@ public class Sistema implements Serializable {
         
         for (int i=0; i<this.getAreas().size();i++){
             
-           if(!e.getArea().equals(i))
+           if(!e.getArea().equals(this.getAreas().get(i)))
             resultado.add(this.getAreas().get(i));
         }
+        System.out.println("action");
         return resultado;
     }  
     
@@ -379,34 +380,38 @@ public class Sistema implements Serializable {
 
     // movimientos de empleados entre areas
 
-    public boolean moverEmpleado(int mes, Empleado e, Area destino) {
-        if (e == null || destino == null)
-            return false;
-        if (mes < 1 || mes > 12)
-            return false;
-
-        Area origen = e.getArea();
-        if (origen == null)
-            return false;
-        if (origen == destino)
-            return false;
-
+    public boolean moverEmpleado(int mes, Empleado emp, Area destino)throws ExcepcionesSistema {
+        try{
+            
+        if (!(emp instanceof Empleado))
+            throw new ExcepcionesSistema("Seleccione un empleado");
+        if(!(destino instanceof Area))
+            throw new ExcepcionesSistema("Seleccione un area de destino");
+        
+        Area origen = emp.getArea();
+                
+        
         int mesesRestantes = 13 - mes;
-        double montoNecesario = e.getSalarioMensual() * mesesRestantes;
+        double montoNecesario = emp.getSalarioMensual() * mesesRestantes;
 
-        if (!destino.tienePresupuestoPara(montoNecesario)) {
-            return false;
-        }
+        if (!destino.tienePresupuestoPara(montoNecesario)) 
+            throw new ExcepcionesSistema("El area seleccionada no tiene presupuesto para ese empleado");
+        
+         origen.removerEmpleado(emp);
 
-        origen.removerEmpleado(e);
+        destino.agregarEmpleado(emp);
 
-        destino.agregarEmpleado(e);
+        emp.setArea(destino);
 
-        e.setArea(destino);
-
-        movimientos.add(new Movimiento(mes, origen, destino, e));
+        movimientos.add(new Movimiento(mes, origen, destino, emp));
 
         return true;
+        
+        }catch(ExcepcionesSistema ex){
+            JOptionPane.showMessageDialog(null, "Error: "+ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+        }
+
+       return false;
     }
 
     public ArrayList<Movimiento> listarMovimientosPorMesAsc() {

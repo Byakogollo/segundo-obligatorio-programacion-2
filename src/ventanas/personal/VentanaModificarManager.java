@@ -31,11 +31,9 @@ public class VentanaModificarManager extends javax.swing.JDialog {
      private void MostrarDatos(Manager seleccion){
                       
                 
-               
-                DefaultTableModel table = (DefaultTableModel) tblEmpleados.getModel();
+               DefaultTableModel table = (DefaultTableModel) tblEmpleados.getModel();
                 table.setRowCount(0);
-                
-               
+                               
                 
                 for(int i = 0; i<seleccion.getEmpleadosACargo().size();i++){
                                     
@@ -95,7 +93,7 @@ public class VentanaModificarManager extends javax.swing.JDialog {
         jScrollPane1.setViewportView(lstManagers);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(70, 150, 140, 230);
+        jScrollPane1.setBounds(70, 150, 180, 230);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Modificar Manager");

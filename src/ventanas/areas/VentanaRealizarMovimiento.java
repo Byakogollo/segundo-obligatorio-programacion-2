@@ -7,6 +7,7 @@ package ventanas.areas;
 import javax.swing.JOptionPane;
 import modelo.Area;
 import modelo.Empleado;
+import modelo.ExcepcionesSistema;
 import modelo.Sistema;
 
 /**
@@ -134,34 +135,18 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarMovimientoActionPerformed(java.awt.event.ActionEvent evt) {
-        
+        try{ 
         
         String mesStr = (String) this.cmbMes.getSelectedItem();
         int mes = Integer.parseInt(mesStr);
         
-        
-        Area origen = this.lstAreaOrigen.getSelectedValue();
+                
         Area destino = this.lstAreaDestino.getSelectedValue();
-        Empleado e = this.lstEmpleados.getSelectedValue();
+        Empleado emp = this.lstEmpleados.getSelectedValue();
         
+                     
         
-        if (origen == null || destino == null || e == null) {
-            JOptionPane.showMessageDialog(
-                this,
-                "Por favor asegúrese de haber seleccionado:\n" +
-                " - Un área de origen\n" +
-                " - Un área de destino\n" +
-                " - Un empleado a mover",
-                "Error",
-                JOptionPane.ERROR_MESSAGE
-            );
-            return;
-        }
-
-        
-        boolean movimientoOk = this.modelo.moverEmpleado(mes, e, destino);
-
-        if (movimientoOk) {
+        if (this.modelo.moverEmpleado(mes, emp, destino)) {
             JOptionPane.showMessageDialog(
                 this,
                 "El movimiento fue realizado con éxito.",
@@ -169,16 +154,18 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
                 JOptionPane.INFORMATION_MESSAGE
             );
             
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(
+            
+            
+            }
+        }catch(ExcepcionesSistema e){
+                    JOptionPane.showMessageDialog(
                 this,
-                "No se pudo realizar el movimiento.\n" +
-                "Verifique que el área de destino tenga presupuesto\n" +
-                "para el empleado seleccionado.",
+                "Error"+e.getMessage(),
                 "Error",
                 JOptionPane.ERROR_MESSAGE
-            );}
+            );
+                    }
+        
         }
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -198,7 +185,7 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
     }//GEN-LAST:event_lstAreaOrigenMouseClicked
 
     private void lstEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstEmpleadosMouseClicked
-         if(this.lstEmpleados.getSelectedIndex() > 0 ){
+         if(this.lstEmpleados.getSelectedIndex() >= 0 ){
             Empleado e = (Empleado)this.lstEmpleados.getSelectedValue();
             this.lstAreaDestino.setListData(this.modelo.listarAreasQueNoTenganEmpleado(e).toArray(new Area[0]));
         }
