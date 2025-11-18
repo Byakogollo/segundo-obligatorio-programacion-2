@@ -227,8 +227,7 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
 
     private void btnAltaEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaEmpleadoActionPerformed
        
-           
-        
+                   
             
         
         VentanaAltaEmpleado alta = new VentanaAltaEmpleado(this,true,this.modelo);

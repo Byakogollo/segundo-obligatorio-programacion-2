@@ -8,6 +8,7 @@ package ventanas.personal;
 import ventanas.areas.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.ExcepcionesSistema;
 
 import modelo.Sistema;
 
@@ -49,7 +50,7 @@ public class VentanaAltaManager extends javax.swing.JDialog {
                 
                 
     }
-                 this.txtNombre.setText("");
+                this.txtNombre.setText("");
                 this.spnCedula.setValue(0);
                 this.spnAntiguedad.setValue(0);
                 this.spnCelular.setValue(0);
@@ -174,18 +175,16 @@ public class VentanaAltaManager extends javax.swing.JDialog {
 
     private void btnAgregarManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarManagerActionPerformed
         
-        if(!this.txtNombre.getText().isBlank() && (Integer) this.spnAntiguedad.getValue() > 0 && (Integer)this.spnCedula.getValue() > 0 && (Integer) this.spnCelular.getValue() > 0 &&
-                this.modelo.altaManager(this.txtNombre.getText(), (Integer) this.spnCedula.getValue(), (Integer)this.spnCelular.getValue(),(Integer)this.spnAntiguedad.getValue())){
-            
-                                     
+       try{                  
+            if(this.modelo.altaManager(this.txtNombre.getText(), (Integer) this.spnCedula.getValue(), (Integer)this.spnCelular.getValue(),(Integer)this.spnAntiguedad.getValue())){
+                    
             
                 JOptionPane.showMessageDialog(null, "Manager guardado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
                
                 this.updateWindow();
-            
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Por favor revise los campos \nTodos los campos son obligatorios \nLos managers no pueden tener la misma cedula que los empleados","Error",JOptionPane.ERROR_MESSAGE);
+             }           
+        }catch(ExcepcionesSistema e){
+      JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAgregarManagerActionPerformed
 

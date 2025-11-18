@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 
@@ -44,13 +45,21 @@ public class Sistema implements Serializable {
 
     // logica de Areas
 
-    public boolean altaArea(String nombre, String descripcion, double presupuesto) {
-        if (nombre == null || nombre.isEmpty() || presupuesto <= 0)
-            return false;
-        if (buscarAreaPorNombre(nombre) != null)
-            return false;
-
-        Area nuevaArea = new Area(nombre.trim(), descripcion == null ? "" : descripcion.trim(), presupuesto);
+    public boolean altaArea(String nombre, String descripcion, double presupuesto) throws ExcepcionesSistema{
+        try{       
+        if(nombre.trim().equals(""))
+            throw new ExcepcionesSistema("Ingrese un nombre");
+        if (this.getAreas().indexOf(nombre) != -1)
+            throw new ExcepcionesSistema("El area ya fue ingresada");
+        if (descripcion.trim().equals(""))
+            throw new ExcepcionesSistema("Ingrese una descripcion del area");
+        if(presupuesto <=0)
+            throw new ExcepcionesSistema("El presupuesto del area no puede ser 0");
+ }catch(ExcepcionesSistema e){
+      JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+      return false;
+ }
+        Area nuevaArea = new Area(nombre.trim(),descripcion.trim(), presupuesto);
         areas.add(nuevaArea);
         ordenarAreasPorNombre();
         return true;
@@ -132,13 +141,20 @@ public class Sistema implements Serializable {
 
     // logica de managers
 
-    public boolean altaManager(String nombre,int ci, int celular, int antiguedad) {
-        if (nombre == null || nombre.trim().isEmpty())
-            return false;
-        if (antiguedad < 0)
-            return false;
-        if (this.ciExiste(ci))
-            return false;
+    public boolean altaManager(String nombre,int ci, int celular, int antiguedad) throws ExcepcionesSistema{
+         try{       
+        if(nombre.trim().equals(""))
+            throw new ExcepcionesSistema("Ingrese un nombre");
+        if (antiguedad <= 0)
+            throw new ExcepcionesSistema("La antiguedad no puede ser 0");
+        if (celular == 0)
+            throw new ExcepcionesSistema("El celular no puede ser 0");
+        if(this.ciExiste(ci))
+            throw new ExcepcionesSistema("Esta persona ya fue ingresada al sistema");
+ }catch(ExcepcionesSistema e){
+      JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+      return false;
+ }
 
         Manager m = new Manager(nombre.trim(), ci, celular, antiguedad);
         this.managers.add(m);
@@ -148,8 +164,8 @@ public class Sistema implements Serializable {
 
     private boolean ciExiste(int ci) {
         int i = 0;
-        while (i < this.managers.size()) {
-            if (this.managers.get(i).getCi() == ci) {
+        while (i < this.managers.size() || i <this.empleados.size()) {
+            if (this.managers.get(i).getCi() == ci || this.empleados.get(i).getCi() == ci) {
                 return true;
             }
             i++;
@@ -243,16 +259,21 @@ public class Sistema implements Serializable {
        
                
         if (ciExiste(ci))
-            return false;
+            throw new ExcepcionesSistema("El empleado ya fue ingresado");
 
         double costoAnual = salarioMensual * 12.0;
         if (!area.tienePresupuestoPara(costoAnual)) {
-            return false;
+            throw new ExcepcionesSistema("El area no tiene el presupuesto para ese empleado");
         }
-
+        
+        if(area == null){
+          throw new ExcepcionesSistema("Seleccione un area");  
+        
+        }
+      
         
         Empleado e = new Empleado(nombre.trim(), ci,
-                celular == 0 ? 0 : celular,
+                celular,
                 salarioMensual,
                 textoCV,
                 manager,
@@ -376,7 +397,9 @@ public class Sistema implements Serializable {
     // precarga de datos
 
     public void inicializar() {
-
+        try{
+            
+        
         this.altaArea("Personal", "Reclutamiento de personal, promociones, gestión de cargos", 100000.00);
         this.altaArea("RRHH", "Relacionamiento en la empresa, organigrama, gestión de equipos", 80000.00);
         this.altaArea("Seguridad",
@@ -390,6 +413,12 @@ public class Sistema implements Serializable {
         this.altaManager("Ricardo Morales", 32145893, 94121212, 4);
         this.altaManager("Laura Torales", 35892575, 99654321, 1);
         this.altaManager("Juan Pablo Zapata", 45551977, 99202020, 5);
+        
+        }catch(ExcepcionesSistema e){
+            
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+
+        }
     }
 
     // persistencia

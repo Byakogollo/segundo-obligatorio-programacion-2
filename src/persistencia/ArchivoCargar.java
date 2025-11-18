@@ -48,8 +48,7 @@ public class ArchivoCargar {
    
    
    private boolean hayMasLineas(){
-       
-       
+              
        
        if(this.in.hasNext()){
            linea = in.nextLine();

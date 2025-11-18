@@ -9,6 +9,7 @@ import ventanas.areas.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Area;
+import modelo.ExcepcionesSistema;
 import modelo.Manager;
 
 import modelo.Sistema;
@@ -32,8 +33,12 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
         initComponents();
         
         this.lstManagers.setListData(this.modelo.getManagers().toArray(new Manager[0]));
+   
         
         this.cargarTabla();
+       
+        
+        
     }
     
        private void cargarTabla(){
@@ -51,6 +56,8 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
                 });
                 
                 }
+                
+                
                 
        
     }
@@ -210,24 +217,42 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
 
     private void btnAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoActionPerformed
         
+            try{    
                 
-        if(!this.txtNombre.getText().isBlank() && !this.txtCurriculum.getText().isBlank() && 
-                (Integer)this.spnCedula.getValue() > 0 && 
-                (Integer) this.spnSalario.getValue() > 0 &&
-                                this.modelo.altaEmpleado(this.txtNombre.getText(), (Integer) this.spnCedula.getValue(), (Integer)this.spnSalario.getValue(), this.txtCurriculum.getText(),
-                                Double.valueOf((Integer)this.spnSalario.getValue()), (Manager)this.lstManagers.getSelectedValue(),
-                                this.modelo.buscarAreaPorNombre((String)this.tblAreas.getValueAt(this.tblAreas.getSelectedRow(),0)))){
+        if(this.txtNombre.getText().trim().isBlank()){
+            throw new ExcepcionesSistema("Ingrese un nombre");
+        }else if (this.txtCurriculum.getText().trim().isBlank()){
+            throw new ExcepcionesSistema("Ingrese un curriculum");
+        }else if ((Integer)this.spnCedula.getValue() <= 0 || (Integer) this.spnSalario.getValue() <= 0){
+            throw new ExcepcionesSistema("La cedula y el celular no pueden ser 0");
+        }else if(this.tblAreas.getSelectedRow() < 0){
+            throw new ExcepcionesSistema("Seleccione un area");
+        }else if(this.lstManagers.getSelectedIndex() < 0){
+            throw new ExcepcionesSistema("Seleccione un manager");
+        }            
+
             
-                                     
-            
-                JOptionPane.showMessageDialog(null, "Empleado guardado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            }catch(ExcepcionesSistema e){    
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+}
+
+  try{
+                    if(this.modelo.altaEmpleado(this.txtNombre.getText(), (Integer) this.spnCedula.getValue(), (Integer)this.spnSalario.getValue(), this.txtCurriculum.getText(),
+                       Double.valueOf((Integer)this.spnSalario.getValue()), (Manager)this.lstManagers.getSelectedValue(),
+                       this.modelo.buscarAreaPorNombre((String)this.tblAreas.getValueAt(this.tblAreas.getSelectedRow(),0)))){
+                                   
+                       JOptionPane.showMessageDialog(null, "Empleado guardado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
                               
-                this.dispose();
+                        this.dispose();
                 
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Por favor revise los campos \nTodos los campos son obligatorios \nLos empleados no pueden tener la misma cedula que los managers \nEl costo anual no puede superar el presupuesto del area","Error",JOptionPane.ERROR_MESSAGE);
-        }
+                    }
+                }catch(ExcepcionesSistema e){
+                     
+                    JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+
+                        }
+                
+                
     }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

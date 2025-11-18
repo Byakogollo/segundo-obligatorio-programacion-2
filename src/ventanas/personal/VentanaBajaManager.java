@@ -140,8 +140,7 @@ public class VentanaBajaManager extends javax.swing.JDialog {
                
           int ci = (Integer)this.tblManagers.getValueAt(index, 1);
           
-         
-          
+                
           
           if(JOptionPane.showConfirmDialog(this, "Esta seguro que desea dar de baja al manager?", "Confirmar baja", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.YES_OPTION){
              

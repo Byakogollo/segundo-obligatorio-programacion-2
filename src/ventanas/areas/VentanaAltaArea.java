@@ -7,6 +7,7 @@ package ventanas.areas;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.ExcepcionesSistema;
 
 import modelo.Sistema;
 
@@ -157,18 +158,19 @@ public class VentanaAltaArea extends javax.swing.JDialog {
 
     private void btnAgregarAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAreaActionPerformed
         
-        if( this.modelo.getAreas().indexOf(this.txtDescripcion.getText()) == -1 && !this.txtDescripcion.getText().isBlank() && (Integer) this.spnPresupuesto.getValue() >= 0 && !this.txtDescripcion.getText().isBlank() ){
-            
+        try{
+                                      
             if(this.modelo.altaArea(this.txtNombre.getText(), this.txtDescripcion.getText() , (Integer)this.spnPresupuesto.getValue())){
                 JOptionPane.showMessageDialog(null, "Area guardada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                
                 this.txtNombre.setText("");
                 this.txtDescripcion.setText("");
                 this.spnPresupuesto.setValue(0);
                 this.modelo.ordenarAreasPorNombre();
                 this.cargarTabla();
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Por favor revise los campos \nTodos los campos son obligatorios \nNo se puede ingresar la misma area dos veces","Error",JOptionPane.ERROR_MESSAGE);
+        }catch(ExcepcionesSistema e){
+                    JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAgregarAreaActionPerformed
 
