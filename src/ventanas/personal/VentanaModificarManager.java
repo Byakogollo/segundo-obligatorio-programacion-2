@@ -7,6 +7,7 @@ package ventanas.personal;
 import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.ExcepcionesSistema;
 import modelo.Manager;
 import modelo.Sistema;
 
@@ -210,20 +211,36 @@ public class VentanaModificarManager extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        Manager m = (Manager) this.lstManagers.getSelectedValue();
-        if(!Objects.equals((Integer) this.spnTelefono.getValue(), m.getCelular()) && (Integer) this.spnTelefono.getValue() > 0){
+       
+        try{
+            if(this.lstManagers.getSelectedIndex() < 0)
+                throw new ExcepcionesSistema("Seleccione un manager para modificar");
+            if((Integer)this.spnTelefono.getValue() <=0)
+                throw new ExcepcionesSistema("El numero nuevo no puede ser 0");
             
-            
-            if(JOptionPane.showConfirmDialog(null, "Desea modificar el contacto del manager?", "Advertencia", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.YES_OPTION){
-                this.modelo.modificarTelefonoManager(m.getCi(), (Integer)this.spnTelefono.getValue());
-                JOptionPane.showMessageDialog(null,"El contacto ha sido modificado","Exito", JOptionPane.INFORMATION_MESSAGE);
+            try{
+            Manager m = (Manager) this.lstManagers.getSelectedValue();
+                        
+                
+                if(this.modelo.modificarTelefonoManager(m.getCi(), (Integer)this.spnTelefono.getValue())){
+                  
+                    JOptionPane.showMessageDialog(null, "El manager ha sido modificado con exito","Exito",JOptionPane.INFORMATION_MESSAGE);
+                
                 this.MostrarDatos((Manager)this.lstManagers.getSelectedValue());
-            }
             
             
-        }else{
-            JOptionPane.showMessageDialog(null, "El numero nuevo no puede ser igual al anteriormente guardado", "Error", JOptionPane.ERROR_MESSAGE);
+            
+            } }catch(ExcepcionesSistema e){
+                            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+                }
+            
+            
+                   
+        }catch(ExcepcionesSistema e){
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
         }
+        
+        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void lstManagersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstManagersMouseClicked

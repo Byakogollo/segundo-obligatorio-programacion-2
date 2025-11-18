@@ -92,7 +92,7 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
         txtCurriculum = new javax.swing.JTextArea();
         lblCurriculum1 = new javax.swing.JLabel();
         lblSalario = new javax.swing.JLabel();
-        spnCelular1 = new javax.swing.JSpinner();
+        spnCelular = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -208,9 +208,9 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
         getContentPane().add(lblSalario);
         lblSalario.setBounds(250, 390, 90, 20);
 
-        spnCelular1.setModel(new javax.swing.SpinnerNumberModel());
-        getContentPane().add(spnCelular1);
-        spnCelular1.setBounds(400, 240, 210, 22);
+        spnCelular.setModel(new javax.swing.SpinnerNumberModel());
+        getContentPane().add(spnCelular);
+        spnCelular.setBounds(400, 240, 210, 22);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -223,23 +223,17 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
             throw new ExcepcionesSistema("Ingrese un nombre");
         }else if (this.txtCurriculum.getText().trim().isBlank()){
             throw new ExcepcionesSistema("Ingrese un curriculum");
-        }else if ((Integer)this.spnCedula.getValue() <= 0 || (Integer) this.spnSalario.getValue() <= 0){
-            throw new ExcepcionesSistema("La cedula y el celular no pueden ser 0");
         }else if(this.tblAreas.getSelectedRow() < 0){
             throw new ExcepcionesSistema("Seleccione un area");
         }else if(this.lstManagers.getSelectedIndex() < 0){
             throw new ExcepcionesSistema("Seleccione un manager");
-        }            
-
-            
-            }catch(ExcepcionesSistema e){    
-                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-}
-
-  try{
-                    if(this.modelo.altaEmpleado(this.txtNombre.getText(), (Integer) this.spnCedula.getValue(), (Integer)this.spnSalario.getValue(), this.txtCurriculum.getText(),
-                       Double.valueOf((Integer)this.spnSalario.getValue()), (Manager)this.lstManagers.getSelectedValue(),
-                       this.modelo.buscarAreaPorNombre((String)this.tblAreas.getValueAt(this.tblAreas.getSelectedRow(),0)))){
+        }    
+        
+                try{
+                    if(this.modelo.altaEmpleado(this.txtNombre.getText(), (Integer) this.spnCedula.getValue(), 
+                        (Integer)this.spnCelular.getValue(), this.txtCurriculum.getText(),
+                        Double.valueOf((Integer)this.spnSalario.getValue()), (Manager)this.lstManagers.getSelectedValue(),
+                        this.modelo.buscarAreaPorNombre((String)this.tblAreas.getValueAt(this.tblAreas.getSelectedRow(),0)))){
                                    
                        JOptionPane.showMessageDialog(null, "Empleado guardado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
                               
@@ -251,6 +245,12 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 
                         }
+            
+            }catch(ExcepcionesSistema e){    
+                JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+}
+
+ 
                 
                 
     }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
@@ -289,7 +289,7 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JList<Manager> lstManagers;
     private javax.swing.JSpinner spnCedula;
-    private javax.swing.JSpinner spnCelular1;
+    private javax.swing.JSpinner spnCelular;
     private javax.swing.JSpinner spnSalario;
     private javax.swing.JTable tblAreas;
     private javax.swing.JTextArea txtCurriculum;

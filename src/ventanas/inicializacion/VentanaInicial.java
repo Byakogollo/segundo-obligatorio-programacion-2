@@ -9,7 +9,7 @@ import java.io.File;
 import javax.swing.JOptionPane;
 import modelo.Sistema;
 import persistencia.ArchivoCargar;
-import persistencia.ArchivoGuardar;
+
 import ventanas.programas.VentanaPrincipalDemoSistema;
 import ventanas.programas.VentanaPrincipalSistemaNuevo;
 import ventanas.programas.VentanaPrincipalSistemaResumido;
@@ -28,7 +28,6 @@ public class VentanaInicial extends javax.swing.JFrame {
         initComponents();
         setTitle("ERP - Inicio");
         setLocationRelativeTo(null);
-        
         this.modelo = modelo;
     }
 
@@ -162,7 +161,9 @@ public class VentanaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSistemaNuevoActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-           if(evt.getKeyCode() == KeyEvent.VK_F1){
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+        if(evt.getKeyCode() == KeyEvent.VK_F1){
           
                VentanaIntegrantes v = new VentanaIntegrantes();
                v.setLocationRelativeTo(this);

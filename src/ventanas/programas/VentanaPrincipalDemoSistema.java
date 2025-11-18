@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import modelo.Sistema;
+import persistencia.ArchivoGuardar;
 import ventanas.personal.VentanaAdministrarEmpleados;
 
 
@@ -67,6 +68,11 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
         imnReporteMovimientos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         lblBackground.setText("background");
         lblBackground.setMaximumSize(new java.awt.Dimension(0, 0));
@@ -319,6 +325,10 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
     }
        
     }//GEN-LAST:event_imnMovimientoAreasActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+         boolean guardarSistema = new ArchivoGuardar().guardarSistema(this.modelo);
+    }//GEN-LAST:event_formFocusGained
 
     /**
      * @param args the command line arguments

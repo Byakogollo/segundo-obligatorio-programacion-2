@@ -103,9 +103,9 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
         jScrollPane1.setBounds(30, 160, 180, 390);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblTitulo.setText("Alta Empleado");
+        lblTitulo.setText("Administracion de Empleados");
         getContentPane().add(lblTitulo);
-        lblTitulo.setBounds(200, 20, 270, 80);
+        lblTitulo.setBounds(80, 20, 530, 80);
 
         lblCurriculum.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCurriculum.setText("Curriculum");

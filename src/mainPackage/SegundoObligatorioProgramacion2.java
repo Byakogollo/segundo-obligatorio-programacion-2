@@ -27,8 +27,7 @@ public class SegundoObligatorioProgramacion2 {
     public static void main(String[] args) throws FileNotFoundException {
         
        
-        
-             
+                     
         
                 Sistema modelo = new Sistema();
                 

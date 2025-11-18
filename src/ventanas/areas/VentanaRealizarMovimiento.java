@@ -22,17 +22,10 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
         super(parent, modal);
         this.modelo = modelo;
         initComponents();
-        cargarDatos();
+        this.lstAreaOrigen.setListData(this.modelo.getAreas().toArray(new Area[0]));
     }
     
-    private void cargarDatos(){
-        
-        this.lstAreaOrigen.setListData(this.modelo.getAreas().toArray(new Area[0]));
-        this.lstAreaDestino.setListData(this.modelo.getAreas().toArray(new Area[0]));
-        this.lstEmpleados.setListData(this.modelo.getEmpleados().toArray(new Empleado[0]));
-        
-        
-    }
+  
     
     
     
@@ -84,6 +77,11 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
         getContentPane().add(lblEmpleado);
         lblEmpleado.setBounds(170, 340, 190, 20);
 
+        lstEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstEmpleadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstEmpleados);
 
         getContentPane().add(jScrollPane1);
@@ -94,6 +92,11 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
         getContentPane().add(lblArea);
         lblArea.setBounds(170, 200, 190, 20);
 
+        lstAreaOrigen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstAreaOrigenMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(lstAreaOrigen);
 
         getContentPane().add(jScrollPane2);
@@ -186,6 +189,20 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
            this.dispose();
        }
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void lstAreaOrigenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstAreaOrigenMouseClicked
+        Area a = (Area)this.lstAreaOrigen.getSelectedValue();        
+        this.lstEmpleados.setListData(this.modelo.getEmpleadosPorArea(a).toArray(new Empleado[0]));
+        
+      
+    }//GEN-LAST:event_lstAreaOrigenMouseClicked
+
+    private void lstEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstEmpleadosMouseClicked
+         if(this.lstEmpleados.getSelectedIndex() > 0 ){
+            Empleado e = (Empleado)this.lstEmpleados.getSelectedValue();
+            this.lstAreaDestino.setListData(this.modelo.listarAreasQueNoTenganEmpleado(e).toArray(new Area[0]));
+        }
+    }//GEN-LAST:event_lstEmpleadosMouseClicked
 
  
 

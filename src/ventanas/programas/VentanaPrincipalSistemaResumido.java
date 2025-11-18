@@ -215,8 +215,7 @@ public class VentanaPrincipalSistemaResumido extends javax.swing.JFrame {
       
         
         if(!this.modelo.getAreas().isEmpty()){
-            
-        
+                    
         VentanaModificarDescripcion modificar = new VentanaModificarDescripcion(this,true,this.modelo);
         modificar.setBounds(0,0,900,500);
         modificar.setLocationRelativeTo(this);

@@ -124,6 +124,18 @@ public class Sistema implements Serializable {
         return res;
     }
    
+    //REVISAR
+    public ArrayList<Area> listarAreasQueNoTenganEmpleado(Empleado e){
+        ArrayList<Area> resultado = new ArrayList<>();
+        
+        for (int i=0; i<this.getAreas().size();i++){
+            
+           if(!e.getArea().equals(i))
+            resultado.add(this.getAreas().get(i));
+        }
+        return resultado;
+    }  
+    
     public boolean bajaArea(String nombreArea) {
         int i = 0;
         while (i < areas.size()) {
@@ -149,8 +161,10 @@ public class Sistema implements Serializable {
             throw new ExcepcionesSistema("La antiguedad no puede ser 0");
         if (celular == 0)
             throw new ExcepcionesSistema("El celular no puede ser 0");
-        if(this.ciExiste(ci))
+        if(this.ciManagerExiste(ci) || this.ciEmpleadoExiste(ci))
             throw new ExcepcionesSistema("Esta persona ya fue ingresada al sistema");
+        if(ci == 0)
+            throw new ExcepcionesSistema("Ingrese una cedula");
  }catch(ExcepcionesSistema e){
       JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
       return false;
@@ -162,15 +176,26 @@ public class Sistema implements Serializable {
         return true;
     }
 
-    private boolean ciExiste(int ci) {
+    private boolean ciManagerExiste(int ci) {
         int i = 0;
-        while (i < this.managers.size() || i <this.empleados.size()) {
-            if (this.managers.get(i).getCi() == ci || this.empleados.get(i).getCi() == ci) {
+        while (i < this.managers.size()) {
+            if (this.managers.get(i).getCi() == ci) {
                 return true;
             }
             i++;
         }
         return false;
+    }
+    
+    
+    private boolean ciEmpleadoExiste(int ci) {
+       boolean existe = false;
+        for(int i = 0; i < this.getEmpleados().size() && !existe && !this.getEmpleados().isEmpty(); i++){
+            if(this.getEmpleados().get(i).getCi() == ci)
+                existe = true;
+        }
+        
+        return existe;
     }
 
     public Manager buscarManagerPorCI(int ci) {
@@ -184,10 +209,18 @@ public class Sistema implements Serializable {
         return null;
     }
 
-    public boolean modificarTelefonoManager(int ci, int nuevoCelular) {
+    public boolean modificarTelefonoManager(int ci, int nuevoCelular) throws ExcepcionesSistema{
         Manager m = buscarManagerPorCI(ci);
-        if (m == null)
+        
+        try{
+            if(nuevoCelular == m.getCelular())
+            throw new ExcepcionesSistema("El numero nuevo no puede ser igual al anterior");
+            
+        }catch(ExcepcionesSistema e){
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
             return false;
+        }        
+        
         m.setCelular(nuevoCelular);
         return true;
     }
@@ -257,21 +290,19 @@ public class Sistema implements Serializable {
 
     public boolean altaEmpleado(String nombre, int ci, int celular, String textoCV, double salarioMensual, Manager manager, Area area) throws ExcepcionesSistema {
        
-               
-        if (ciExiste(ci))
+        if(ci <= 0)
+            throw new ExcepcionesSistema("La cedula no puede ser 0");
+        if(celular <= 0)
+            throw new ExcepcionesSistema("El celular no puede ser 0");
+        if(salarioMensual <= Double.parseDouble("0"))
+            throw new ExcepcionesSistema("El salario no puede ser 0");
+        if (ciEmpleadoExiste(ci)||ciManagerExiste(ci))
             throw new ExcepcionesSistema("El empleado ya fue ingresado");
-
         double costoAnual = salarioMensual * 12.0;
         if (!area.tienePresupuestoPara(costoAnual)) {
             throw new ExcepcionesSistema("El area no tiene el presupuesto para ese empleado");
         }
-        
-        if(area == null){
-          throw new ExcepcionesSistema("Seleccione un area");  
-        
-        }
-      
-        
+                
         Empleado e = new Empleado(nombre.trim(), ci,
                 celular,
                 salarioMensual,
@@ -333,6 +364,17 @@ public class Sistema implements Serializable {
             }
             i++;
         }
+    }
+    
+    public ArrayList<Empleado> getEmpleadosPorArea(Area a){
+        ArrayList<Empleado> resultado = new ArrayList<>();
+        for(int i = 0; i<this.getEmpleados().size(); i++){
+            
+            if(this.getEmpleados().get(i).getArea().getNombre().equals(a.getNombre()))
+            resultado.add(this.getEmpleados().get(i));
+            
+        }
+        return resultado;
     }
 
     // movimientos de empleados entre areas

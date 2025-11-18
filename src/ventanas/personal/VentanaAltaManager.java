@@ -177,8 +177,7 @@ public class VentanaAltaManager extends javax.swing.JDialog {
         
        try{                  
             if(this.modelo.altaManager(this.txtNombre.getText(), (Integer) this.spnCedula.getValue(), (Integer)this.spnCelular.getValue(),(Integer)this.spnAntiguedad.getValue())){
-                    
-            
+                                
                 JOptionPane.showMessageDialog(null, "Manager guardado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
                
                 this.updateWindow();
