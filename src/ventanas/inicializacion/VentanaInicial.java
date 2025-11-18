@@ -8,7 +8,8 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.swing.JOptionPane;
 import modelo.Sistema;
-import persistencia.CargarSistemas;
+import persistencia.ArchivoCargar;
+import persistencia.ArchivoGuardar;
 import ventanas.programas.VentanaPrincipalDemoSistema;
 import ventanas.programas.VentanaPrincipalSistemaNuevo;
 import ventanas.programas.VentanaPrincipalSistemaResumido;
@@ -105,15 +106,22 @@ public class VentanaInicial extends javax.swing.JFrame {
             
       
         
-        String basePath = System.getProperty("user.home") + "/persistencia";
+    String basePath = System.getProperty("user.dir") + "/persistencia";
         File file = new File(basePath+"/Sistema");
+            System.out.println(basePath);
         
-        
-        if(file.exists()){
-                    
+        if(!file.exists()){                   
             
+              JOptionPane.showMessageDialog(null,
+        "Error al cargar el sistema. Asegurese que el sistema haya sido guardado anteriormente",
+        "Error", JOptionPane.ERROR_MESSAGE);     
             
-       Sistema modeloCargado = new CargarSistemas().cargarSistema(); 
+              
+       
+     }else{
+            
+             
+              Sistema modeloCargado = new ArchivoCargar().cargarSistema(); 
        
        
        VentanaPrincipalSistemaResumido ventanaResumida = new VentanaPrincipalSistemaResumido(modeloCargado);
@@ -121,19 +129,11 @@ public class VentanaInicial extends javax.swing.JFrame {
          ventanaResumida.setLocationRelativeTo(this);
         
         ventanaResumida.setVisible(true);
-        this.dispose();          
-       
-     }else{
-            
-               JOptionPane.showMessageDialog(null,
-        "Error al cargar el sistema. Asegurese que el sistema haya sido guardado anteriormente",
-        "Error", JOptionPane.ERROR_MESSAGE);     
-            
-            
+        this.dispose(); 
 }
 }catch(Exception e){
                 
-                System.out.println("Error");
+                System.out.println("Error"+e);
                 
                 }
         
@@ -148,12 +148,17 @@ public class VentanaInicial extends javax.swing.JFrame {
 
     private void btnSistemaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSistemaNuevoActionPerformed
         VentanaPrincipalSistemaNuevo ventana = new VentanaPrincipalSistemaNuevo(this.modelo);
-        ventana.setBounds(0,0,400,300);
-        ventana.setLocationRelativeTo(this);
         
-        ventana.setVisible(true);
+        
+        
+                
+                ventana.setBounds(0,0,400,300);
+                ventana.setLocationRelativeTo(this);
+        
+                ventana.setVisible(true);
         
         this.dispose();        
+        
     }//GEN-LAST:event_btnSistemaNuevoActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed

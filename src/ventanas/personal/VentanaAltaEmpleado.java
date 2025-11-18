@@ -30,7 +30,9 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
        this.modelo = modelo;
        
         initComponents();
+        
         this.lstManagers.setListData(this.modelo.getManagers().toArray(new Manager[0]));
+        
         this.cargarTabla();
     }
     
@@ -40,21 +42,16 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
                
                 DefaultTableModel table = (DefaultTableModel) tblAreas.getModel();
                 table.setRowCount(0);
-                
-               
-                
+                                
                 for(int i = 0; i<this.modelo.getAreas().size();i++){
-                                    
-                
+                                
                 table.insertRow(0,new Object[] {
                    this.modelo.getAreas().get(i).getNombre(),
                    this.modelo.getAreas().get(i).getPresupuestoAnual(),
-                  
-                                                            
                 });
                 
-               
-    }
+                }
+                
        
     }
 
@@ -213,13 +210,13 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
 
     private void btnAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoActionPerformed
         
-        
-        
+                
         if(!this.txtNombre.getText().isBlank() && !this.txtCurriculum.getText().isBlank() && 
                 (Integer)this.spnCedula.getValue() > 0 && 
                 (Integer) this.spnSalario.getValue() > 0 &&
                                 this.modelo.altaEmpleado(this.txtNombre.getText(), (Integer) this.spnCedula.getValue(), (Integer)this.spnSalario.getValue(), this.txtCurriculum.getText(),
-                                Double.valueOf((Integer)this.spnSalario.getValue()), (Manager)this.lstManagers.getSelectedValue(), this.modelo.buscarAreaPorNombre((String)this.tblAreas.getValueAt(this.tblAreas.getSelectedRow(),0)))){
+                                Double.valueOf((Integer)this.spnSalario.getValue()), (Manager)this.lstManagers.getSelectedValue(),
+                                this.modelo.buscarAreaPorNombre((String)this.tblAreas.getValueAt(this.tblAreas.getSelectedRow(),0)))){
             
                                      
             
@@ -243,7 +240,7 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void lstManagersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstManagersMouseClicked
- 
+            
     }//GEN-LAST:event_lstManagersMouseClicked
 
     /**

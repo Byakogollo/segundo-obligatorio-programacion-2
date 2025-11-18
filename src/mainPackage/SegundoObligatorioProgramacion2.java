@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import modelo.Sistema;
-import persistencia.CargarSistemas;
+import persistencia.ArchivoCargar;
 import ventanas.inicializacion.VentanaInicial;
 import ventanas.inicializacion.VentanaIntegrantes;
 /**

@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Empleado;
 import modelo.Manager;
 import modelo.Sistema;
-import persistencia.CargarSistemas;
+import persistencia.ArchivoCargar;
 
 /**
  *
@@ -27,7 +27,7 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
         super(parent, modal);
         this.modelo = modelo;
         initComponents();
-        this.lstEmpleados.setListData( this.modelo.getEmpleados().toArray(new Empleado[0]));
+        this.lstEmpleados.setListData(this.modelo.getEmpleados().toArray(new Empleado[0]));
         
     }
 
@@ -37,17 +37,19 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
             
         try{
             
-                CargarSistemas cv = new CargarSistemas();
+                String cv = new ArchivoCargar().cargarCurriculum(seleccion);
             
-                this.txtCurriculum.setText(cv.cargarCurriculum(seleccion));
+                this.txtCurriculum.setText(cv);
                 this.txtCedula.setText(""+seleccion.getCi());
                 this.txtNombre.setText(seleccion.getNombre());
                 this.txtTelefono.setText(""+seleccion.getCelular());
                 this.txtSalario.setText(""+seleccion.getSalarioMensual());
                 this.txtManager.setText(seleccion.getManager().getNombre());
                 this.txtArea.setText(seleccion.getArea().getNombre());
+                
         }catch(Exception e){
-            this.txtCurriculum.setText("Seleccione un empleado");
+            
+                this.txtCurriculum.setText("Seleccione un empleado");
                 this.txtCedula.setText("Seleccione un empleado");
                 this.txtNombre.setText("Seleccione un empleado");
                 this.txtTelefono.setText("Seleccione un empleado");

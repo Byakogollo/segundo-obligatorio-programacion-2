@@ -10,13 +10,14 @@ import ventanas.personal.VentanaModificarManager;
 import ventanas.reportes.ventanaReporteArea;
 import ventanas.personal.VentanaAltaManager;
 import ventanas.areas.*;
-import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import modelo.Area;
+
 import modelo.Sistema;
+import persistencia.ArchivoGuardar;
 import ventanas.personal.VentanaAdministrarEmpleados;
-import ventanas.personal.VentanaAltaEmpleado;
+
 
 
 
@@ -69,6 +70,11 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
         imnReporteMovimientos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         lblBackground.setText("background");
@@ -278,7 +284,7 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_imnReporteEstadoAreasActionPerformed
 
-    private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnReporteMovimientosActionPerformed
+    private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {                                                      
         ventanaReporteArea ventanaReporteArea = new ventanaReporteArea(null, rootPaneCheckingEnabled, modelo);
         ventanaReporteArea.setVisible(true);
     }
@@ -314,6 +320,10 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
     }
        
     }//GEN-LAST:event_imnMovimientoAreasActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        boolean guardarSistema = new ArchivoGuardar().guardarSistema(this.modelo);
+    }//GEN-LAST:event_formFocusGained
 
     /**
      * @param args the command line arguments

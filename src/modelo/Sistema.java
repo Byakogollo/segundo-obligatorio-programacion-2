@@ -239,7 +239,7 @@ public class Sistema implements Serializable {
 
     // logica empleados
 
-    public boolean altaEmpleado(String nombre, int ci, int celular, String textoCV, double salarioMensual, Manager manager, Area area) {
+    public boolean altaEmpleado(String nombre, int ci, int celular, String textoCV, double salarioMensual, Manager manager, Area area) throws ExcepcionesSistema {
        
                
         if (ciExiste(ci))

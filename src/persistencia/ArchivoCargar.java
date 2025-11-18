@@ -7,6 +7,7 @@ package persistencia;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import modelo.Empleado;
 import modelo.Sistema;
@@ -15,8 +16,9 @@ import modelo.Sistema;
  *
  * @author Byakogollo
  */
-public class CargarSistemas {
+public class ArchivoCargar {
    private Scanner in;
+   private String linea;
    
    
    
@@ -24,31 +26,55 @@ public class CargarSistemas {
    public String cargarCurriculum(Empleado emp){
        
    String basePath = System.getProperty("user.dir") + "/cvs";
-    String resultado = "";
     
+   String resultado = "";
+    
+      try{          
       
-       this.in = new Scanner(basePath+"/CV"+emp.getCi());
+       this.in = new Scanner(Paths.get(basePath+"/CV"+emp.getCi()+".txt"));
        
-       while(in.hasNext()){
-           resultado += in.nextLine();
+       while(this.hayMasLineas()){
+           resultado += this.linea;
        }
         
-    
+    }catch(IOException e){
+        
+          return e.toString();
+                
+                }
 
     return resultado;
 }
    
    
+   private boolean hayMasLineas(){
+       
+       
+       
+       if(this.in.hasNext()){
+           linea = in.nextLine();
+           return true;
+       }
+       
+       return false;
+       
+   }
+   
+   
+   
+   
+   
+   
       public Sistema cargarSistema() throws Exception{
           
-   String basePath = System.getProperty("user.home") + "/persistencia";
+    String basePath = System.getProperty("user.dir") + "/persistencia";
    
     try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(basePath+"/Sistema"))) {
         
         Object obj = in.readObject();
         
-        if (obj instanceof Sistema) {
-            return (Sistema) obj;
+        if (obj instanceof Sistema sistema) {
+            return sistema;
             
         } else {
             
@@ -63,5 +89,10 @@ public class CargarSistemas {
 }
     
     
+      
+      
+      
+      
+      
     
 }
