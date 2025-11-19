@@ -7,7 +7,7 @@ package ventanas.programas;
 import java.awt.Image;
 import ventanas.personal.VentanaBajaManager;
 import ventanas.personal.VentanaModificarManager;
-import ventanas.reportes.ventanaReporteArea;
+import ventanas.reportes.ventanaReporteMovimiento;
 import ventanas.personal.VentanaAltaManager;
 import ventanas.areas.*;
 
@@ -285,7 +285,7 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_imnReporteEstadoAreasActionPerformed
 
     private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-        ventanaReporteArea ventanaReporteArea = new ventanaReporteArea(null, rootPaneCheckingEnabled, modelo);
+        ventanaReporteMovimiento ventanaReporteArea = new ventanaReporteMovimiento(null, rootPaneCheckingEnabled, modelo);
         ventanaReporteArea.setVisible(true);
     }
 

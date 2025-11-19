@@ -468,18 +468,7 @@ public class Sistema implements Serializable {
         }
     }
 
-    // persistencia
-
-    public static void guardar(Sistema s) {
-        // TODO: implementar en persistencia.PersistenciaSistema
-        // Por ahora dejamos la firma para no romper llamadas desde UI.
-    }
-
-    public static Sistema cargar() {
-        // TODO: implementar en persistencia.PersistenciaSistema
-        return null;
-    }
-
+   
   
     
 }
