@@ -278,9 +278,11 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
     }// GEN-LAST:event_imnReporteInteligenteActionPerformed
 
     private void imnReporteEstadoAreasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnReporteEstadoAreasActionPerformed
+        System.out.println("Click en Reporte Estado de Areas");
         ReporteArea vent = new ReporteArea(this, true, this.modelo);
-        vent.setVisible(true);
+        vent.setBounds(0, 0, 800, 600);
         vent.setLocationRelativeTo(this);
+        vent.setVisible(true);
     }// GEN-LAST:event_imnReporteEstadoAreasActionPerformed
 
     private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnReporteMovimientosActionPerformed
