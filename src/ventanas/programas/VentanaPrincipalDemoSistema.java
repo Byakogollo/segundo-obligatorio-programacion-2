@@ -280,6 +280,7 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
     private void imnReporteEstadoAreasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnReporteEstadoAreasActionPerformed
         ReporteArea vent = new ReporteArea(this, true, this.modelo);
         vent.setVisible(true);
+        vent.setLocationRelativeTo(this);
     }// GEN-LAST:event_imnReporteEstadoAreasActionPerformed
 
     private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnReporteMovimientosActionPerformed

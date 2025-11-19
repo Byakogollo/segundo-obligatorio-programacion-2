@@ -136,6 +136,8 @@ public class ReporteArea extends javax.swing.JDialog {
         return Math.round(v * 100.0) / 100.0;
     }
 
+     // CHAT GPT : poblarGrillaEmpleados 
+
     private void poblarGrillaEmpleados(Area area) {
         // obtenemos empleados del área usando el método del sistema
         ArrayList<Empleado> emps = this.modelo.getEmpleadosPorArea(area);
@@ -175,6 +177,7 @@ public class ReporteArea extends javax.swing.JDialog {
         }
 
         // definimos las columnas de la grilla
+       
         int columnas = (emps.size() > 6) ? 3 : 2;
 
         this.pnlEmpleados.removeAll();
