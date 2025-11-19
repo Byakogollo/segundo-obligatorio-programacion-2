@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package ventanas.personal;
+package ventanas.reportes;
 
+import ventanas.personal.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Objects;
@@ -18,34 +19,39 @@ import persistencia.ArchivoCargar;
  *
  * @author Byakogollo
  */
-public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
+public class VentanaInfoEmpleado extends javax.swing.JDialog {
     private Sistema modelo;
+    
     /**
      * Creates new form VentanaModificarManager
      */
-    public VentanaAdministrarEmpleados(java.awt.Frame parent, boolean modal, Sistema modelo) {
+    public VentanaInfoEmpleado(java.awt.Frame parent, boolean modal, Sistema modelo, Empleado emp) {
         super(parent, modal);
         this.modelo = modelo;
+        
         initComponents();
-       
-        lstEmpleados.setListData(modelo.getEmpleados().toArray(new Empleado[0]));
+        
+                
+        MostrarDatos(emp);
+        
+        
     }
 
-     private void MostrarDatos(Empleado seleccion){
+     private void MostrarDatos(Empleado empleado){
                       
       
             
         try{
             
-                String cv = new ArchivoCargar().cargarCurriculum(seleccion);
+                String cv = new ArchivoCargar().cargarCurriculum(empleado);
             
                 this.txtCurriculum.setText(cv);
-                this.txtCedula.setText(""+seleccion.getCi());
-                this.txtNombre.setText(seleccion.getNombre());
-                this.txtTelefono.setText(""+seleccion.getCelular());
-                this.txtSalario.setText(""+seleccion.getSalarioMensual());
-                this.txtManager.setText(seleccion.getManager().getNombre());
-                this.txtArea.setText(seleccion.getArea().getNombre());
+                this.txtCedula.setText(""+empleado.getCi());
+                this.txtNombre.setText(empleado.getNombre());
+                this.txtTelefono.setText(""+empleado.getCelular());
+                this.txtSalario.setText(""+empleado.getSalarioMensual());
+                this.txtManager.setText(empleado.getManager().getNombre());
+                this.txtArea.setText(empleado.getArea().getNombre());
                 
         }catch(Exception e){
             
@@ -68,19 +74,14 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstEmpleados = new javax.swing.JList<>();
         lblTitulo = new javax.swing.JLabel();
         lblCurriculum = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         lblCedula = new javax.swing.JLabel();
         lblTelefono = new javax.swing.JLabel();
-        btnCancelar = new javax.swing.JButton();
-        btnAltaEmpleado = new javax.swing.JButton();
         txtCurriculum = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         lblSalario = new javax.swing.JLabel();
         lblManager = new javax.swing.JLabel();
         txtSalario = new javax.swing.JTextField();
@@ -88,67 +89,40 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
         lblArea = new javax.swing.JLabel();
         txtArea = new javax.swing.JTextField();
         txtCedula = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        lstEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lstEmpleadosMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(lstEmpleados);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 160, 180, 390);
-
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblTitulo.setText("Administracion de Empleados");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTitulo.setText("Detalles del Empleado");
         getContentPane().add(lblTitulo);
-        lblTitulo.setBounds(80, 20, 530, 80);
+        lblTitulo.setBounds(40, 20, 270, 80);
 
         lblCurriculum.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCurriculum.setText("Curriculum");
         getContentPane().add(lblCurriculum);
-        lblCurriculum.setBounds(250, 260, 67, 20);
+        lblCurriculum.setBounds(50, 210, 67, 20);
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre.setText("Nombre");
         getContentPane().add(lblNombre);
-        lblNombre.setBounds(250, 170, 50, 20);
+        lblNombre.setBounds(50, 120, 50, 20);
 
         lblCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCedula.setText("Cedula");
         getContentPane().add(lblCedula);
-        lblCedula.setBounds(250, 200, 42, 20);
+        lblCedula.setBounds(50, 150, 42, 20);
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTelefono.setText("Telefono");
         getContentPane().add(lblTelefono);
-        lblTelefono.setBounds(250, 230, 52, 20);
-
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(460, 490, 150, 60);
-
-        btnAltaEmpleado.setText("Agregar Empleado");
-        btnAltaEmpleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAltaEmpleadoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAltaEmpleado);
-        btnAltaEmpleado.setBounds(240, 490, 150, 60);
+        lblTelefono.setBounds(50, 180, 52, 20);
 
         txtCurriculum.setEditable(false);
         txtCurriculum.setText("Seleccione un empleado");
         getContentPane().add(txtCurriculum);
-        txtCurriculum.setBounds(440, 260, 150, 70);
+        txtCurriculum.setBounds(150, 210, 150, 70);
 
         txtNombre.setEditable(false);
         txtNombre.setText("Seleccione un empleado");
@@ -158,27 +132,22 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
             }
         });
         getContentPane().add(txtNombre);
-        txtNombre.setBounds(440, 170, 150, 22);
+        txtNombre.setBounds(150, 120, 150, 22);
 
         txtTelefono.setEditable(false);
         txtTelefono.setText("Seleccione un empleado");
         getContentPane().add(txtTelefono);
-        txtTelefono.setBounds(440, 230, 150, 22);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Empleados");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(80, 130, 80, 30);
+        txtTelefono.setBounds(150, 180, 150, 22);
 
         lblSalario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblSalario.setText("Salario");
         getContentPane().add(lblSalario);
-        lblSalario.setBounds(250, 340, 50, 20);
+        lblSalario.setBounds(50, 290, 50, 20);
 
         lblManager.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblManager.setText("Manager");
         getContentPane().add(lblManager);
-        lblManager.setBounds(250, 370, 60, 20);
+        lblManager.setBounds(50, 320, 60, 20);
 
         txtSalario.setEditable(false);
         txtSalario.setText("Seleccione un empleado");
@@ -188,71 +157,39 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
             }
         });
         getContentPane().add(txtSalario);
-        txtSalario.setBounds(440, 340, 150, 22);
+        txtSalario.setBounds(150, 290, 150, 22);
 
         txtManager.setEditable(false);
         txtManager.setText("Seleccione un empleado");
         getContentPane().add(txtManager);
-        txtManager.setBounds(440, 370, 150, 22);
+        txtManager.setBounds(150, 320, 150, 22);
 
         lblArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblArea.setText("Area");
         getContentPane().add(lblArea);
-        lblArea.setBounds(250, 400, 28, 20);
+        lblArea.setBounds(50, 350, 28, 20);
 
         txtArea.setEditable(false);
         txtArea.setText("Seleccione un empleado");
         getContentPane().add(txtArea);
-        txtArea.setBounds(440, 400, 150, 22);
+        txtArea.setBounds(150, 350, 150, 22);
 
         txtCedula.setEditable(false);
         txtCedula.setText("Seleccione un empleado");
         getContentPane().add(txtCedula);
-        txtCedula.setBounds(440, 200, 150, 22);
+        txtCedula.setBounds(150, 150, 150, 22);
+
+        jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(120, 400, 100, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-                                              
-            JOptionPane alerta = new JOptionPane();
-       int seleccion = alerta.showConfirmDialog(this,"Desea salir?", "Cancelar", JOptionPane.YES_NO_CANCEL_OPTION);
-       
-       if(seleccion == alerta.YES_OPTION){
-           this.dispose();
-       }
-                                               
-
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnAltaEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaEmpleadoActionPerformed
-       
-                   
-            
-        
-        VentanaAltaEmpleado alta = new VentanaAltaEmpleado(this,true,this.modelo);
-         alta.setBounds(0,0,700,800);
-        alta.setLocationRelativeTo(this);
-        alta.setVisible(true);
-        
-        alta.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e){
-                 lstEmpleados.setListData(modelo.getEmpleados().toArray(new Empleado[0]));
-            }
-        });
-        
-        
-        
-    }//GEN-LAST:event_btnAltaEmpleadoActionPerformed
-
-    private void lstEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstEmpleadosMouseClicked
-       if(evt.getClickCount() >= 1){
-           
-        Empleado e = (Empleado) this.lstEmpleados.getSelectedValue();
-        this.MostrarDatos(e);
-        }
-    }//GEN-LAST:event_lstEmpleadosMouseClicked
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
@@ -262,16 +199,17 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSalarioActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                    this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAltaEmpleado;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblArea;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCurriculum;
@@ -280,7 +218,6 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
     private javax.swing.JLabel lblSalario;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JList<Empleado> lstEmpleados;
     private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCurriculum;

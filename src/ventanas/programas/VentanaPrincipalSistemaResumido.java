@@ -18,6 +18,7 @@ import modelo.Sistema;
 import persistencia.ArchivoGuardar;
 import ventanas.personal.VentanaAdministrarEmpleados;
 import ventanas.personal.VentanaAltaEmpleado;
+import ventanas.reportes.VentanaReporteAreas;
 
 
 
@@ -282,7 +283,10 @@ public class VentanaPrincipalSistemaResumido extends javax.swing.JFrame {
     }//GEN-LAST:event_imnReporteInteligenteActionPerformed
 
     private void imnReporteEstadoAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnReporteEstadoAreasActionPerformed
-        // TODO add your handling code here:
+        VentanaReporteAreas v = new VentanaReporteAreas(this,true,this.modelo);
+        v.setBounds(0, 0, 656, 580);
+        v.setLocationRelativeTo(this);
+        v.setVisible(true);
     }//GEN-LAST:event_imnReporteEstadoAreasActionPerformed
 
     private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {                                                      

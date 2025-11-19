@@ -1,5 +1,6 @@
 package modelo;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -367,6 +368,13 @@ public class Sistema implements Serializable {
         }
     }
     
+    public void ordenarEmpleadosPorNombre(){
+        
+        
+        
+        
+    }
+    
     public ArrayList<Empleado> getEmpleadosPorArea(Area a){
         ArrayList<Empleado> resultado = new ArrayList<>();
         for(int i = 0; i<this.getEmpleados().size(); i++){
@@ -466,6 +474,22 @@ public class Sistema implements Serializable {
             JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 
         }
+    }
+
+    public int calcularColor(Empleado emp) {
+        
+     double v = emp.getSalarioMensual();
+            int resultado = (int)Math.floor(v); 
+            
+            if(resultado > 255)
+            resultado=255;
+            else if(resultado < 0)
+            resultado = 1;
+            
+            
+            
+              return resultado;
+        
     }
 
    

@@ -7,7 +7,7 @@ package ventanas.programas;
 import java.awt.Image;
 import ventanas.personal.VentanaBajaManager;
 import ventanas.personal.VentanaModificarManager;
-import ventanas.reportes.ReporteArea;
+import ventanas.reportes.VentanaReporteAreas;
 import ventanas.personal.VentanaAltaManager;
 import ventanas.areas.*;
 
@@ -279,7 +279,7 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
 
     private void imnReporteEstadoAreasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnReporteEstadoAreasActionPerformed
         System.out.println("Click en Reporte Estado de Areas");
-        ReporteArea vent = new ReporteArea(this, true, this.modelo);
+        VentanaReporteAreas vent = new VentanaReporteAreas(this, true, this.modelo);
         vent.setBounds(0, 0, 800, 600);
         vent.setLocationRelativeTo(this);
         vent.setVisible(true);

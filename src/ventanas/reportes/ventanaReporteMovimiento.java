@@ -4,6 +4,7 @@
  */
 package ventanas.reportes;
 
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Area;
@@ -31,12 +32,12 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
 
     private void cargarTabla() {
 
-        javax.swing.table.DefaultTableModel tabla = (javax.swing.table.DefaultTableModel) this.jTable2.getModel();
+        DefaultTableModel tabla = (DefaultTableModel) this.tblMovimientos.getModel();
 
         // Limpiar la tabla
         tabla.setRowCount(0);
 
-        java.util.ArrayList<Movimiento> lista = this.modelo.listarMovimientosPorMesAsc();
+        ArrayList<Movimiento> lista = this.modelo.listarMovimientosPorMesAsc();
 
         int i = 0;
         while (i < lista.size()) {
@@ -47,15 +48,15 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
             Area destino = mov.getDestino();
             Empleado emp = mov.getEmpleado();
 
-            String nomOri = (origen == null) ? "-" : origen.getNombre();
-            String nomDes = (destino == null) ? "-" : destino.getNombre();
-            String nomEmp = (emp == null) ? "-" : (emp.getNombre() + " (" + emp.getCi() + ")");
+            String nomOrigen = origen.getNombre();
+            String nomDestino = destino.getNombre();
+            String nomEmpleado = (emp.getNombre() + " (" + emp.getCi() + ")");
 
             tabla.addRow(new Object[] {
                     mes,
-                    nomOri,
-                    nomDes,
-                    nomEmp
+                    nomOrigen,
+                    nomDestino,
+                    nomEmpleado
             });
 
             i++;
@@ -77,7 +78,7 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
         cerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblMovimientos = new javax.swing.JTable();
 
         jMenu1.setText("jMenu1");
 
@@ -95,7 +96,7 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
 
         jLabel1.setText("Reporte Movimientos por Area");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblMovimientos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -106,24 +107,21 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
                 "Mes", "Area Origen", "Area Destino", "Empleado"
             }
         ));
-        jScrollPane1.setViewportView(jTable2);
+        jScrollPane1.setViewportView(tblMovimientos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(190, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(189, 189, 189)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -132,9 +130,9 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(cerrar)
-                .addGap(39, 39, 39))
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -154,6 +152,6 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tblMovimientos;
     // End of variables declaration//GEN-END:variables
 }
