@@ -5,6 +5,9 @@
 package ventanas.reportes;
 
 import java.util.ArrayList;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Area;
@@ -27,9 +30,30 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
         initComponents();
         this.modelo = modelo;
         this.cargarTabla();
-        this.setLocationRelativeTo(null);
+        
+        this.cargarCombos();
+        
+        
+        
     }
 
+    
+    
+    
+    private void cargarCombos(){
+        
+        DefaultComboBoxModel<Empleado> modeloEmpleados = new DefaultComboBoxModel(this.modelo.getEmpleados().toArray(new Empleado[0]));
+        
+        this.cmbFiltrarEmpleados.setModel(modeloEmpleados);
+        
+        DefaultComboBoxModel<Area> modeloArea = new DefaultComboBoxModel(this.modelo.getAreas().toArray(new Area[0]));
+        this.cmbFiltrarAreas.setModel(modeloArea);
+       
+        
+        
+        
+    }
+    
     private void cargarTabla() {
 
         DefaultTableModel tabla = (DefaultTableModel) this.tblMovimientos.getModel();
@@ -75,10 +99,18 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
 
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        cerrar = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMovimientos = new javax.swing.JTable();
+        btnExportar = new javax.swing.JButton();
+        lblFiltrarEmpleados = new javax.swing.JLabel();
+        lblFiltrarMeses = new javax.swing.JLabel();
+        lblFiltrarAreas = new javax.swing.JLabel();
+        cmbFiltrarAreas = new javax.swing.JComboBox<>();
+        cmbFiltrarEmpleados = new javax.swing.JComboBox<>();
+        cmbFiltrarMeses = new javax.swing.JComboBox<>();
+        btnAplicarFiltros = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -86,15 +118,21 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        getContentPane().setLayout(null);
 
-        cerrar.setText("Cerrar");
-        cerrar.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cerrarActionPerformed(evt);
+                btnCerrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCerrar);
+        btnCerrar.setBounds(670, 390, 140, 40);
 
-        jLabel1.setText("Reporte Movimientos por Area");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabel1.setText("Reporte Movimientos de Areas");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(140, 20, 540, 38);
 
         tblMovimientos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,49 +147,110 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblMovimientos);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(cerrar)
-                .addGap(45, 45, 45))
-        );
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(40, 90, 430, 340);
+
+        btnExportar.setText("Exportar Reporte");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExportar);
+        btnExportar.setBounds(510, 390, 140, 40);
+
+        lblFiltrarEmpleados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFiltrarEmpleados.setText("Filtrar Empleados");
+        getContentPane().add(lblFiltrarEmpleados);
+        lblFiltrarEmpleados.setBounds(500, 120, 120, 40);
+
+        lblFiltrarMeses.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFiltrarMeses.setText("Filtrar Meses");
+        getContentPane().add(lblFiltrarMeses);
+        lblFiltrarMeses.setBounds(500, 170, 120, 40);
+
+        lblFiltrarAreas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFiltrarAreas.setText("Filtrar Areas");
+        getContentPane().add(lblFiltrarAreas);
+        lblFiltrarAreas.setBounds(500, 220, 120, 40);
+
+        getContentPane().add(cmbFiltrarAreas);
+        cmbFiltrarAreas.setBounds(630, 230, 180, 22);
+
+        cmbFiltrarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFiltrarEmpleadosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmbFiltrarEmpleados);
+        cmbFiltrarEmpleados.setBounds(630, 130, 180, 22);
+
+        cmbFiltrarMeses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cmbFiltrarMeses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFiltrarMesesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmbFiltrarMeses);
+        cmbFiltrarMeses.setBounds(630, 180, 180, 22);
+
+        btnAplicarFiltros.setText("Aplicar Filtros");
+        btnAplicarFiltros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAplicarFiltrosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAplicarFiltros);
+        btnAplicarFiltros.setBounds(600, 280, 130, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cerrarActionPerformed
-        this.dispose();
-    }// GEN-LAST:event_cerrarActionPerformed
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExportarActionPerformed
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void cmbFiltrarMesesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFiltrarMesesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbFiltrarMesesActionPerformed
+
+    private void cmbFiltrarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFiltrarEmpleadosActionPerformed
+       
+    }//GEN-LAST:event_cmbFiltrarEmpleadosActionPerformed
+
+    private void btnAplicarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarFiltrosActionPerformed
+        Area filtroArea = (Area) this.cmbFiltrarAreas.getSelectedItem();
+        Empleado filtroEmpleado = (Empleado) this.cmbFiltrarEmpleados.getSelectedItem();
+        int filtroMes = (int) this.cmbFiltrarMeses.getSelectedItem();
+        
+        
+        
+        
+    }//GEN-LAST:event_btnAplicarFiltrosActionPerformed
+
+   
     /**
      * @param args the command line arguments
      */
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cerrar;
+    private javax.swing.JButton btnAplicarFiltros;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JComboBox<Area> cmbFiltrarAreas;
+    private javax.swing.JComboBox<Empleado> cmbFiltrarEmpleados;
+    private javax.swing.JComboBox<String> cmbFiltrarMeses;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblFiltrarAreas;
+    private javax.swing.JLabel lblFiltrarEmpleados;
+    private javax.swing.JLabel lblFiltrarMeses;
     private javax.swing.JTable tblMovimientos;
     // End of variables declaration//GEN-END:variables
 }

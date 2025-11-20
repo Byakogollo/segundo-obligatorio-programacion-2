@@ -2,8 +2,11 @@ package persistencia;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.*;
 
 public class ArchivoGuardar {
@@ -50,6 +53,38 @@ public class ArchivoGuardar {
     
             }
     }
+   
+   public boolean exportarMovimientos(ArrayList<Movimiento> movimientos, String nomArchivo, String path){
+       
+       try (FileWriter writer = new FileWriter(nomArchivo)){
+           
+           
+           writer.append("Mes,Area Origen,Area Destino,Nombre Empleado\n");
+           
+           for(int i = 0; i<movimientos.size();i++){
+                    Movimiento mov = movimientos.get(i);
+                    
+               writer.append(""+mov.getMes()
+                       +mov.getOrigen()
+                       +mov.getDestino()
+                       +mov.getEmpleado().getNombre()
+                       +"\n"
+               );
+               
+                              
+           }
+           
+           JOptionPane.showMessageDialog(null, "Reporte exportado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+           return true;
+       }catch(IOException e){
+           e.printStackTrace();
+           return false;
+       }
+       
+       
+      
+   }
+   
    
    
    

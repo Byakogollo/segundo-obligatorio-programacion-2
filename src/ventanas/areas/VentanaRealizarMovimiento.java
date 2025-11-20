@@ -61,22 +61,22 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Realizar Movimiento");
         getContentPane().add(lblTitulo);
-        lblTitulo.setBounds(90, 30, 360, 90);
+        lblTitulo.setBounds(70, 30, 360, 90);
 
         lblMes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblMes.setText("Seleccione el mes");
         getContentPane().add(lblMes);
-        lblMes.setBounds(80, 150, 110, 16);
+        lblMes.setBounds(60, 150, 110, 16);
 
         cmbMes.setMaximumRowCount(12);
         cmbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         getContentPane().add(cmbMes);
-        cmbMes.setBounds(330, 150, 110, 22);
+        cmbMes.setBounds(310, 150, 110, 22);
 
         lblEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEmpleado.setText("Seleccione empleado a mover");
         getContentPane().add(lblEmpleado);
-        lblEmpleado.setBounds(170, 340, 190, 20);
+        lblEmpleado.setBounds(150, 340, 190, 20);
 
         lstEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -86,12 +86,12 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
         jScrollPane1.setViewportView(lstEmpleados);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(70, 370, 380, 100);
+        jScrollPane1.setBounds(50, 370, 380, 100);
 
         lblArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblArea.setText("Seleccione el area de origen");
         getContentPane().add(lblArea);
-        lblArea.setBounds(170, 200, 190, 20);
+        lblArea.setBounds(150, 200, 190, 20);
 
         lstAreaOrigen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -101,17 +101,17 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
         jScrollPane2.setViewportView(lstAreaOrigen);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(70, 230, 380, 100);
+        jScrollPane2.setBounds(50, 230, 380, 100);
 
         lblDestino.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblDestino.setText("Seleccione el area de destino");
         getContentPane().add(lblDestino);
-        lblDestino.setBounds(170, 490, 190, 20);
+        lblDestino.setBounds(150, 490, 190, 20);
 
         jScrollPane3.setViewportView(lstAreaDestino);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(70, 520, 380, 100);
+        jScrollPane3.setBounds(50, 520, 380, 100);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +120,7 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
             }
         });
         getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(280, 650, 180, 70);
+        btnCancelar.setBounds(260, 650, 180, 70);
 
         btnConfirmarMovimiento.setText("Confirmar Movimiento");
         btnConfirmarMovimiento.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +129,7 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
             }
         });
         getContentPane().add(btnConfirmarMovimiento);
-        btnConfirmarMovimiento.setBounds(60, 650, 180, 70);
+        btnConfirmarMovimiento.setBounds(40, 650, 180, 70);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -154,7 +154,8 @@ public class VentanaRealizarMovimiento extends javax.swing.JDialog {
                 JOptionPane.INFORMATION_MESSAGE
             );
             
-            
+            this.lstAreaDestino.setListData(new Area[0]);
+            this.lstEmpleados.setListData(new Empleado[0]);
             
             }
         }catch(ExcepcionesSistema e){

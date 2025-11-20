@@ -291,7 +291,10 @@ public class VentanaPrincipalSistemaResumido extends javax.swing.JFrame {
 
     private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {                                                      
         ventanaReporteMovimiento ventanaReporteArea = new ventanaReporteMovimiento(null, rootPaneCheckingEnabled, modelo);
+        ventanaReporteArea.setBounds(0,0,900,500);
+        ventanaReporteArea.setLocationRelativeTo(this);
         ventanaReporteArea.setVisible(true);
+        
     }
 
 
@@ -315,7 +318,7 @@ public class VentanaPrincipalSistemaResumido extends javax.swing.JFrame {
             
         
         VentanaRealizarMovimiento mov = new VentanaRealizarMovimiento(this, true, this.modelo);
-        mov.setBounds(0,0,600,800);
+        mov.setBounds(0,0,511,774);
         mov.setLocationRelativeTo(this);
         mov.setVisible(true);
         

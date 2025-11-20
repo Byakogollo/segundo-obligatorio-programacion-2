@@ -22,11 +22,5 @@ public class Movimiento implements Serializable {
     public Area getDestino() { return destino; }
     public Empleado getEmpleado() { return empleado; }
 
-    @Override
-    public String toString() {
-        String nomEmp = (empleado != null) ? empleado.getNombre() : "-";
-        String nomOri = (origen != null) ? origen.getNombre() : "-";
-        String nomDes = (destino != null) ? destino.getNombre() : "-";
-        return "Mes " + mes + " | " + nomEmp + " : " + nomOri + " -> " + nomDes;
-    }
+   
 }

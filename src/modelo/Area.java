@@ -78,7 +78,7 @@ public class Area implements Serializable {
 
     @Override
     public String toString() {
-        return nombre + " (Presupuesto: " + presupuestoAnual + " USD, Empleados: " + empleados.size() + ")";
+        return nombre ;
     }
 
 
