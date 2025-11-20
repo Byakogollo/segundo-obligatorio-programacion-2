@@ -279,7 +279,7 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
     }// GEN-LAST:event_imnReporteEstadoAreasActionPerformed
 
     private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {
-            System.out.println("llego hasta aca");
+           
             VentanaRealizarMovimiento mov = new VentanaRealizarMovimiento(this, true, this.modelo);
             mov.setBounds(0, 0, 600, 800);
             mov.setLocationRelativeTo(this);
