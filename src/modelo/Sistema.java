@@ -319,6 +319,15 @@ public class Sistema implements Serializable {
         ordenarEmpleadosPorSalarioAsc();
         return true;
     }
+    
+    public Empleado buscarEmpleadoPorCI(int ci){
+        
+        for(Empleado elem : this.getEmpleados()){
+            if(elem.ci == ci)
+                return elem;
+        }
+        return null;
+    }
 
     public ArrayList<Empleado> listarEmpleadosPorSalarioAsc() {
         ArrayList<Empleado> copia = new ArrayList<>();
@@ -368,12 +377,7 @@ public class Sistema implements Serializable {
         }
     }
     
-    public void ordenarEmpleadosPorNombre(){
-        
-        
-        
-        
-    }
+
     
     public ArrayList<Empleado> getEmpleadosPorArea(Area a){
         ArrayList<Empleado> resultado = new ArrayList<>();
@@ -492,6 +496,39 @@ public class Sistema implements Serializable {
         
     }
 
+    
+    //Reportes
+    
+    public ArrayList<Movimiento> filtrarMovimientos(Area origen, Area destino, Empleado emp, int mes){
+        
+        ArrayList<Movimiento> listaMovimientos = this.getMovimientos();
+              ArrayList<Movimiento> resultado = new ArrayList<>();
+       try{
+           
+                       
+              
+        for(int i=0;i<listaMovimientos.size();i++){
+            
+            if(origen == listaMovimientos.get(i).getOrigen() ||
+                    destino == listaMovimientos.get(i).getDestino() ||
+                        emp == listaMovimientos.get(i).getEmpleado() ||
+                            mes == listaMovimientos.get(i).getMes()
+                    ){
+                
+                resultado.add(listaMovimientos.get(i));
+                
+            }
+                        
+        }
+         
+       }catch(java.lang.ClassCastException ex){
+           System.out.println(ex.getCause());
+       }
+       
+        return resultado;
+        
+    }
+    
    
   
     
