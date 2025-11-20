@@ -124,28 +124,27 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
             if (empleadoSeleccionado != null &&
                     !"Todos".equals(empleadoSeleccionado.toString().split(" ")[0])) {
                 if (!mov.getEmpleado().getNombre().equals(empleadoSeleccionado.toString().split(" ")[0])) {
-                    continue; // no pasa el filtro, salto al siguiente movimiento
+                    continue; 
                 }
             }
 
             if (areaOrigenSeleccionada != null &&
                     !"Todas".equals(areaOrigenSeleccionada.toString())) {
                 if (!mov.getOrigen().getNombre().equals(areaOrigenSeleccionada.toString())) {
-                    continue; // no pasa el filtro, salto al siguiente movimiento
+                    continue; 
                 }
             }
 
             if (areaDestinoSeleccionada != null &&
                     !"Todas".equals(areaDestinoSeleccionada.toString())) {
                 if (!mov.getDestino().getNombre().equals(areaDestinoSeleccionada.toString())) {
-                    continue; // no pasa el filtro, salto al siguiente movimiento
-                }
+                    continue; 
             }
 
             if (mesSeleccionado != null &&
                     !"Todos".equals(mesSeleccionado.toString())) {
                 if (mov.getMes() != Integer.parseInt(mesSeleccionado.toString())) {
-                    continue; // no pasa el filtro, salto al siguiente movimiento
+                    continue; 
                 }
             }
 
