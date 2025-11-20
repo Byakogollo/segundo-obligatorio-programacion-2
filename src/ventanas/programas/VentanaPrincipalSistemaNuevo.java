@@ -116,7 +116,7 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
         imnMovimientoAreas.setText("Realizar Movimiento");
         imnMovimientoAreas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imnMovimientoAreasActionPerformed(evt);
+                imnReporteMovimientosActionPerformed(evt);
             }
         });
         bmnAreas.add(imnMovimientoAreas);
@@ -184,7 +184,7 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
         imnReporteMovimientos.setText("Reporte de Movimientos");
         imnReporteMovimientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imnReporteMovimientosActionPerformed(evt);
+                imnMovimientoAreasActionPerformed(evt);
             }
         });
         bmnReportes.add(imnReporteMovimientos);
@@ -279,9 +279,11 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
     }// GEN-LAST:event_imnReporteEstadoAreasActionPerformed
 
     private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {
-        ventanaReporteMovimiento ventanaReporteArea = new ventanaReporteMovimiento(null, rootPaneCheckingEnabled,
-                modelo);
-        ventanaReporteArea.setVisible(true);
+            System.out.println("llego hasta aca");
+            VentanaRealizarMovimiento mov = new VentanaRealizarMovimiento(this, true, this.modelo);
+            mov.setBounds(0, 0, 600, 800);
+            mov.setLocationRelativeTo(this);
+            mov.setVisible(true);
     }
 
     private void imnAltaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnAltaEmpleadosActionPerformed
@@ -302,8 +304,8 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
 
     private void imnMovimientoAreasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnMovimientoAreasActionPerformed
         if (!this.modelo.getAreas().isEmpty()) {
-
-            VentanaRealizarMovimiento mov = new VentanaRealizarMovimiento(this, true, this.modelo);
+            System.out.println("llego hasta aca");
+            ventanaReporteMovimiento mov = new ventanaReporteMovimiento(this, true, this.modelo);
             mov.setBounds(0, 0, 600, 800);
             mov.setLocationRelativeTo(this);
             mov.setVisible(true);
