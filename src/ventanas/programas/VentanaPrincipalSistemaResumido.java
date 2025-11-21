@@ -294,7 +294,7 @@ public class VentanaPrincipalSistemaResumido extends javax.swing.JFrame {
         v.setVisible(true);
     }//GEN-LAST:event_imnReporteEstadoAreasActionPerformed
 
-    private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+    private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt)  {                                                      
         ventanaReporteMovimiento ventanaReporteArea = new ventanaReporteMovimiento(null, rootPaneCheckingEnabled, modelo);
         ventanaReporteArea.setBounds(0,0,900,500);
         ventanaReporteArea.setLocationRelativeTo(this);

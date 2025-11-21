@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import modelo.Sistema;
 import persistencia.ArchivoGuardar;
 import ventanas.personal.VentanaAdministrarEmpleados;
+import ventanas.reportes.VentanaReporteInteligente;
+import ventanas.reportes.ventanaReporteMovimiento;
 
 /**
  *
@@ -274,19 +276,24 @@ public class VentanaPrincipalDemoSistema extends javax.swing.JFrame {
     }// GEN-LAST:event_imnModificacionManagersActionPerformed
 
     private void imnReporteInteligenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnReporteInteligenteActionPerformed
-        // TODO add your handling code here:
+        VentanaReporteInteligente v = new VentanaReporteInteligente(this,true,this.modelo);
+        v.setBounds(0,0,657,800);
+        v.setLocationRelativeTo(this);
+        v.setVisible(true);
     }// GEN-LAST:event_imnReporteInteligenteActionPerformed
 
     private void imnReporteEstadoAreasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnReporteEstadoAreasActionPerformed
-        System.out.println("Click en Reporte Estado de Areas");
-        VentanaReporteAreas vent = new VentanaReporteAreas(this, true, this.modelo);
-        vent.setBounds(0, 0, 800, 600);
-        vent.setLocationRelativeTo(this);
-        vent.setVisible(true);
+        VentanaReporteAreas v = new VentanaReporteAreas(this,true,this.modelo);
+        v.setBounds(0, 0, 656, 580);
+        v.setLocationRelativeTo(this);
+        v.setVisible(true);
     }// GEN-LAST:event_imnReporteEstadoAreasActionPerformed
 
     private void imnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnReporteMovimientosActionPerformed
-        // TODO add your handling code here:
+        ventanaReporteMovimiento ventanaReporteArea = new ventanaReporteMovimiento(null, rootPaneCheckingEnabled, modelo);
+        ventanaReporteArea.setBounds(0,0,900,500);
+        ventanaReporteArea.setLocationRelativeTo(this);
+        ventanaReporteArea.setVisible(true);
     }// GEN-LAST:event_imnReporteMovimientosActionPerformed
 
     private void imnAltaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnAltaEmpleadosActionPerformed

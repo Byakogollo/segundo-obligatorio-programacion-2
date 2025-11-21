@@ -368,9 +368,22 @@ public class Sistema implements Serializable {
         }
     }
     
-    public void ordenarEmpleadosPorNombre(){
+    
+    public Empleado buscarEmpleadoPorCI(String ci){
         
+        ci=ci.replaceAll("[^0-9]", "");
         
+        for(Empleado elem : this.getEmpleados()){
+            
+            if(elem.getCi() == Integer.parseInt(ci)){
+                
+                return elem;
+            }
+            
+            
+        }
+        
+            return null;
         
         
     }

@@ -4,16 +4,19 @@
  */
 package ventanas.reportes;
 
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Area;
 import modelo.Empleado;
 import modelo.Movimiento;
 import modelo.Sistema;
+import persistencia.ArchivoGuardar;
 
 /**
  *
@@ -119,7 +122,7 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
 
         tabla.setRowCount(0);
 
-        System.out.println(empleadoSeleccionado.toString().split(" ")[0]);
+     
         for (Movimiento mov : this.modelo.getMovimientos()) {
             if (empleadoSeleccionado != null &&
                     !"Todos".equals(empleadoSeleccionado.toString().split(" ")[0])) {
@@ -325,7 +328,44 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbFiltrarAreasDestinoActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnExportarActionPerformed
-        // TODO add your handling code here:
+        
+        ArchivoGuardar exportarCSV = new ArchivoGuardar();
+        
+        DefaultTableModel tabla = (DefaultTableModel) this.tblMovimientos.getModel();
+        
+        ArrayList<Movimiento> listaExportada = new ArrayList<>();
+        
+        
+        for(int i = 0; i<tabla.getRowCount(); i++){
+                                        
+                Movimiento mov = new Movimiento((Integer)tabla.getValueAt(i, 0), 
+                        this.modelo.buscarAreaPorNombre((String)tabla.getValueAt(i, 1)), 
+                        this.modelo.buscarAreaPorNombre((String)tabla.getValueAt(i, 2)),
+                        this.modelo.buscarEmpleadoPorCI((String)tabla.getValueAt(i, 3)));
+                                
+                listaExportada.add(mov);
+            
+        }
+
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setSelectedFile(new File("movimientos.csv"));
+        
+        int result = fileChooser.showSaveDialog(null);
+
+         if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+
+            
+            String path = selectedFile.getAbsolutePath();
+            
+            
+
+           
+             exportarCSV.exportarMovimientos(listaExportada, path);
+        }
+    
+        
     }// GEN-LAST:event_btnExportarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCerrarActionPerformed

@@ -32,7 +32,7 @@ public Gemini(){
     Dotenv dotenv = Dotenv.load();
     
     this.apiKey = dotenv.get("GEMINI_API_KEY");
-    System.out.println(this.apiKey);
+   
   
     
               

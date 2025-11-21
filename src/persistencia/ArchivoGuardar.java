@@ -54,9 +54,9 @@ public class ArchivoGuardar {
             }
     }
    
-   public boolean exportarMovimientos(ArrayList<Movimiento> movimientos, String nomArchivo, String path){
+   public boolean exportarMovimientos(ArrayList<Movimiento> movimientos, String path){
        
-       try (FileWriter writer = new FileWriter(nomArchivo)){
+       try (FileWriter writer = new FileWriter(path)){
            
            
            writer.append("Mes,Area Origen,Area Destino,Nombre Empleado\n");
@@ -64,9 +64,9 @@ public class ArchivoGuardar {
            for(int i = 0; i<movimientos.size();i++){
                     Movimiento mov = movimientos.get(i);
                     
-               writer.append(""+mov.getMes()
-                       +mov.getOrigen()
-                       +mov.getDestino()
+               writer.append(""+mov.getMes()+","
+                       +mov.getOrigen()+","
+                       +mov.getDestino()+","
                        +mov.getEmpleado().getNombre()
                        +"\n"
                );
