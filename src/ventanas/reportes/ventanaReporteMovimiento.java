@@ -139,6 +139,7 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
                     !"Todas".equals(areaDestinoSeleccionada.toString())) {
                 if (!mov.getDestino().getNombre().equals(areaDestinoSeleccionada.toString())) {
                     continue; 
+                }
             }
 
             if (mesSeleccionado != null &&
@@ -154,7 +155,7 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
                     mov.getDestino().getNombre(),
                     mov.getEmpleado().getNombre() + " (" + mov.getEmpleado().getCi() + ")"
             });
-        }
+        
 
     }
     }

@@ -6,15 +6,17 @@ package ventanas.reportes;
 
 import java.io.IOException;
 import java.net.ProtocolException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import ventanas.areas.*;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 import modelo.Area;
 import modelo.Empleado;
 import modelo.ExcepcionesSistema;
 import modelo.Gemini;
 import modelo.Sistema;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -59,8 +61,9 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         lstAreaDestino = new javax.swing.JList<>();
         btnCancelar = new javax.swing.JButton();
-        txtGemini = new javax.swing.JTextField();
         btnGenerarReporte = new javax.swing.JButton();
+        pnlTextArea = new javax.swing.JScrollPane();
+        txtGemini = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -129,11 +132,6 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         getContentPane().add(btnCancelar);
         btnCancelar.setBounds(110, 650, 180, 70);
 
-        txtGemini.setText("Hola, quieres que genere un reporte?");
-        txtGemini.setEnabled(false);
-        getContentPane().add(txtGemini);
-        txtGemini.setBounds(400, 230, 210, 390);
-
         btnGenerarReporte.setText("Generar Reporte");
         btnGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,43 +141,29 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         getContentPane().add(btnGenerarReporte);
         btnGenerarReporte.setBounds(370, 650, 180, 70);
 
+        txtGemini.setText("Hola, quieres que genere un reporte?");
+        txtGemini.setEnabled(false);
+        pnlTextArea.setViewportView(txtGemini);
+        ((AbstractDocument) this.txtGemini.getDocument()).setDocumentFilter(new DocumentFilter(){
+            private int maxChars=35;
+
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)
+            throws BadLocationException {
+                if ((fb.getDocument().getLength() + string.length()) <= maxChars) {
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+        });
+
+        getContentPane().add(pnlTextArea);
+        pnlTextArea.setBounds(400, 230, 210, 390);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConfirmarMovimientoActionPerformed(java.awt.event.ActionEvent evt) {
-        try{ 
-        
-        String mesStr = (String) this.cmbMes.getSelectedItem();
-        int mes = Integer.parseInt(mesStr);
-        
-                
-        Area destino = this.lstAreaDestino.getSelectedValue();
-        Empleado emp = this.lstEmpleados.getSelectedValue();
-        
-                     
-        
-        if (this.modelo.moverEmpleado(mes, emp, destino)) {
-            JOptionPane.showMessageDialog(
-                this,
-                "El movimiento fue realizado con éxito.",
-                "Éxito",
-                JOptionPane.INFORMATION_MESSAGE
-            );
-            
-            this.lstAreaDestino.setListData(new Area[0]);
-            this.lstEmpleados.setListData(new Empleado[0]);
-            
-            }
-        }catch(ExcepcionesSistema e){
-                    JOptionPane.showMessageDialog(
-                this,
-                "Error"+e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE
-            );
-                    }
-        
-        }
+
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
          JOptionPane alerta = new JOptionPane();
@@ -208,14 +192,17 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         Gemini gemini = new Gemini();
         
             try {
-                System.out.println("llamada");
                 
+                               
+                               
                 this.txtGemini.setText(gemini.pedirReporte());
                 
                 
             } catch (ProtocolException ex) {
                 System.out.println(ex.getMessage());
             } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }catch(ParseException ex){
                 System.out.println(ex.getMessage());
             }
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
@@ -237,6 +224,7 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
     private javax.swing.JList<Area> lstAreaDestino;
     private javax.swing.JList<Area> lstAreaOrigen;
     private javax.swing.JList<Empleado> lstEmpleados;
+    private javax.swing.JScrollPane pnlTextArea;
     private javax.swing.JTextField txtGemini;
     // End of variables declaration//GEN-END:variables
 }
