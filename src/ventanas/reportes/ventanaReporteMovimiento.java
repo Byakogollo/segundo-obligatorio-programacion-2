@@ -158,6 +158,7 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
             
         }
     }
+    }
 
     private void resetearFiltrosYTabla() {
    
