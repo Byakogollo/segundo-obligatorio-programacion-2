@@ -159,6 +159,18 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
 
     }
     }
+    
+    private void resetearFiltrosYTabla() {
+   
+    cmbFiltrarEmpleados.setSelectedIndex(0);
+    cmbFiltrarAreaOrigen.setSelectedIndex(0);
+    cmbFiltrarAreasDestino.setSelectedIndex(0);
+    cmbFiltrarMeses.setSelectedIndex(0);
+
+    
+    actualizarTablaConFiltros();
+}
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,7 +180,7 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
@@ -184,7 +196,7 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
         cmbFiltrarAreasDestino = new javax.swing.JComboBox<>();
         cmbFiltrarEmpleados = new javax.swing.JComboBox<>();
         cmbFiltrarMeses = new javax.swing.JComboBox<>();
-        btnAplicarFiltros = new javax.swing.JButton();
+        btnLimpiarFiltros = new javax.swing.JButton();
         lblFiltrarAreas1 = new javax.swing.JLabel();
         cmbFiltrarAreaOrigen = new javax.swing.JComboBox<>();
 
@@ -211,15 +223,16 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
         jLabel1.setBounds(140, 20, 540, 38);
 
         tblMovimientos.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null }
-                },
-                new String[] {
-                        "Mes", "Area Origen", "Area Destino", "Empleado"
-                }));
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Mes", "Area Origen", "Area Destino", "Empleado"
+            }
+        ));
         jScrollPane1.setViewportView(tblMovimientos);
 
         getContentPane().add(jScrollPane1);
@@ -249,8 +262,13 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
         getContentPane().add(lblFiltrarAreas2);
         lblFiltrarAreas2.setBounds(500, 270, 120, 40);
 
+        cmbFiltrarAreasDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFiltrarAreasDestinoActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmbFiltrarAreasDestino);
-        cmbFiltrarAreasDestino.setBounds(630, 280, 180, 26);
+        cmbFiltrarAreasDestino.setBounds(630, 280, 180, 22);
 
         cmbFiltrarEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,50 +276,53 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
             }
         });
         getContentPane().add(cmbFiltrarEmpleados);
-        cmbFiltrarEmpleados.setBounds(630, 130, 180, 26);
+        cmbFiltrarEmpleados.setBounds(630, 130, 180, 22);
 
-        cmbFiltrarMeses.setModel(new javax.swing.DefaultComboBoxModel<>(
-                new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cmbFiltrarMeses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cmbFiltrarMeses.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbFiltrarMesesActionPerformed(evt);
             }
         });
         getContentPane().add(cmbFiltrarMeses);
-        cmbFiltrarMeses.setBounds(630, 180, 180, 26);
+        cmbFiltrarMeses.setBounds(630, 180, 180, 22);
 
-        btnAplicarFiltros.setText("Aplicar Filtros");
-        btnAplicarFiltros.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiarFiltros.setText("Limpiar Filtros");
+        btnLimpiarFiltros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAplicarFiltrosActionPerformed(evt);
+                btnLimpiarFiltrosActionPerformed(evt);
             }
         });
-
-        cmbFiltrarAreaOrigen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbFiltrarAreaOrigenActionPerformed(evt);
-            }
-        });
-
-        cmbFiltrarAreasDestino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbFiltrarAreasDestinoActionPerformed(evt);
-            }
-        });
-
-        getContentPane().add(btnAplicarFiltros);
-        btnAplicarFiltros.setBounds(600, 330, 130, 30);
+        getContentPane().add(btnLimpiarFiltros);
+        btnLimpiarFiltros.setBounds(600, 330, 130, 30);
 
         lblFiltrarAreas1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblFiltrarAreas1.setText("Area Origen");
         getContentPane().add(lblFiltrarAreas1);
         lblFiltrarAreas1.setBounds(500, 220, 120, 40);
 
+        cmbFiltrarAreaOrigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFiltrarAreaOrigenActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmbFiltrarAreaOrigen);
-        cmbFiltrarAreaOrigen.setBounds(630, 230, 180, 26);
+        cmbFiltrarAreaOrigen.setBounds(630, 230, 180, 22);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLimpiarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarFiltrosActionPerformed
+        this.resetearFiltrosYTabla();
+    }//GEN-LAST:event_btnLimpiarFiltrosActionPerformed
+
+    private void cmbFiltrarAreaOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFiltrarAreaOrigenActionPerformed
+        actualizarTablaConFiltros();
+    }//GEN-LAST:event_cmbFiltrarAreaOrigenActionPerformed
+
+    private void cmbFiltrarAreasDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFiltrarAreasDestinoActionPerformed
+         actualizarTablaConFiltros();
+    }//GEN-LAST:event_cmbFiltrarAreasDestinoActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnExportarActionPerformed
         // TODO add your handling code here:
@@ -319,32 +340,16 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
         actualizarTablaConFiltros();
     }// GEN-LAST:event_cmbFiltrarEmpleadosActionPerformed
 
-    private void cmbFiltrarAreaOrigenActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cmbFiltrarAreaOrigenActionPerformed
-        actualizarTablaConFiltros();
-    }// GEN-LAST:event_cmbFiltrarAreaOrigenActionPerformed
-
-    private void cmbFiltrarAreasDestinoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cmbFiltrarAreasDestinoActionPerformed
-        actualizarTablaConFiltros();
-    }// GEN-LAST:event_cmbFiltrarAreasDestinoActionPerformed
-
-    private void btnAplicarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAplicarFiltrosActionPerformed
-        Area filtroAreaOrigen = (Area) this.cmbFiltrarAreaOrigen.getSelectedItem();
-        Area filtroAreaDestino = (Area) this.cmbFiltrarAreasDestino.getSelectedItem();
-        Empleado filtroEmpleado = (Empleado) this.cmbFiltrarEmpleados.getSelectedItem();
-        int filtroMes = (int) this.cmbFiltrarMeses.getSelectedItem();
-
-        actualizarTablaConFiltros();
-
-    }// GEN-LAST:event_btnAplicarFiltrosActionPerformed
+  
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAplicarFiltros;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnLimpiarFiltros;
     private javax.swing.JComboBox<Object> cmbFiltrarAreaOrigen;
     private javax.swing.JComboBox<Object> cmbFiltrarAreasDestino;
     private javax.swing.JComboBox<Object> cmbFiltrarEmpleados;
