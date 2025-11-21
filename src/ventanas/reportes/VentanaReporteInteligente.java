@@ -4,11 +4,16 @@
  */
 package ventanas.reportes;
 
+import java.io.IOException;
+import java.net.ProtocolException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ventanas.areas.*;
 import javax.swing.JOptionPane;
 import modelo.Area;
 import modelo.Empleado;
 import modelo.ExcepcionesSistema;
+import modelo.Gemini;
 import modelo.Sistema;
 
 /**
@@ -54,30 +59,31 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         lstAreaDestino = new javax.swing.JList<>();
         btnCancelar = new javax.swing.JButton();
-        btnConfirmarMovimiento = new javax.swing.JButton();
+        txtGemini = new javax.swing.JTextField();
+        btnGenerarReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblTitulo.setText("Realizar Movimiento");
+        lblTitulo.setText("Reporte Inteligente");
         getContentPane().add(lblTitulo);
-        lblTitulo.setBounds(70, 30, 360, 90);
+        lblTitulo.setBounds(160, 30, 340, 90);
 
         lblMes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblMes.setText("Seleccione el mes");
         getContentPane().add(lblMes);
-        lblMes.setBounds(60, 150, 110, 16);
+        lblMes.setBounds(160, 150, 110, 20);
 
         cmbMes.setMaximumRowCount(12);
         cmbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         getContentPane().add(cmbMes);
-        cmbMes.setBounds(310, 150, 110, 22);
+        cmbMes.setBounds(370, 150, 110, 20);
 
         lblEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblEmpleado.setText("Seleccione empleado a mover");
+        lblEmpleado.setText("Seleccione empleado");
         getContentPane().add(lblEmpleado);
-        lblEmpleado.setBounds(150, 340, 190, 20);
+        lblEmpleado.setBounds(120, 340, 140, 20);
 
         lstEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -87,12 +93,12 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         jScrollPane1.setViewportView(lstEmpleados);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(50, 370, 380, 100);
+        jScrollPane1.setBounds(30, 370, 330, 100);
 
         lblArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblArea.setText("Seleccione el area de origen");
         getContentPane().add(lblArea);
-        lblArea.setBounds(150, 200, 190, 20);
+        lblArea.setBounds(100, 200, 190, 20);
 
         lstAreaOrigen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -102,17 +108,17 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         jScrollPane2.setViewportView(lstAreaOrigen);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(50, 230, 380, 100);
+        jScrollPane2.setBounds(30, 230, 330, 100);
 
         lblDestino.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblDestino.setText("Seleccione el area de destino");
         getContentPane().add(lblDestino);
-        lblDestino.setBounds(150, 490, 190, 20);
+        lblDestino.setBounds(100, 490, 190, 20);
 
         jScrollPane3.setViewportView(lstAreaDestino);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(50, 520, 380, 100);
+        jScrollPane3.setBounds(30, 520, 330, 100);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -121,16 +127,21 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
             }
         });
         getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(260, 650, 180, 70);
+        btnCancelar.setBounds(110, 650, 180, 70);
 
-        btnConfirmarMovimiento.setText("Confirmar Movimiento");
-        btnConfirmarMovimiento.addActionListener(new java.awt.event.ActionListener() {
+        txtGemini.setText("Hola, quieres que genere un reporte?");
+        txtGemini.setEnabled(false);
+        getContentPane().add(txtGemini);
+        txtGemini.setBounds(400, 230, 210, 390);
+
+        btnGenerarReporte.setText("Generar Reporte");
+        btnGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarMovimientoActionPerformed(evt);
+                btnGenerarReporteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnConfirmarMovimiento);
-        btnConfirmarMovimiento.setBounds(40, 650, 180, 70);
+        getContentPane().add(btnGenerarReporte);
+        btnGenerarReporte.setBounds(370, 650, 180, 70);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -193,11 +204,27 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_lstEmpleadosMouseClicked
 
+    private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
+        Gemini gemini = new Gemini();
+        
+            try {
+                System.out.println("llamada");
+                
+                this.txtGemini.setText(gemini.pedirReporte());
+                
+                
+            } catch (ProtocolException ex) {
+                System.out.println(ex.getMessage());
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+    }//GEN-LAST:event_btnGenerarReporteActionPerformed
+
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnConfirmarMovimiento;
+    private javax.swing.JButton btnGenerarReporte;
     private javax.swing.JComboBox<String> cmbMes;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -210,5 +237,6 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
     private javax.swing.JList<Area> lstAreaDestino;
     private javax.swing.JList<Area> lstAreaOrigen;
     private javax.swing.JList<Empleado> lstEmpleados;
+    private javax.swing.JTextField txtGemini;
     // End of variables declaration//GEN-END:variables
 }

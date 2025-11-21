@@ -10,17 +10,17 @@ import ventanas.personal.VentanaModificarManager;
 import ventanas.reportes.ventanaReporteMovimiento;
 import ventanas.personal.VentanaAltaManager;
 import ventanas.areas.*;
-import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import modelo.Area;
+
 import modelo.Sistema;
 import persistencia.ArchivoGuardar;
 import ventanas.personal.VentanaAdministrarEmpleados;
-import ventanas.personal.VentanaAltaEmpleado;
+
 import ventanas.reportes.VentanaReporteAreas;
 
-
+import ventanas.reportes.VentanaReporteInteligente;
 
 
 /**
@@ -279,7 +279,12 @@ public class VentanaPrincipalSistemaResumido extends javax.swing.JFrame {
     }//GEN-LAST:event_imnModificacionManagersActionPerformed
 
     private void imnReporteInteligenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnReporteInteligenteActionPerformed
-        // TODO add your handling code here:
+       
+        VentanaReporteInteligente v = new VentanaReporteInteligente(this,true,this.modelo);
+        v.setBounds(0,0,657,800);
+        v.setLocationRelativeTo(this);
+        v.setVisible(true);
+        
     }//GEN-LAST:event_imnReporteInteligenteActionPerformed
 
     private void imnReporteEstadoAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnReporteEstadoAreasActionPerformed

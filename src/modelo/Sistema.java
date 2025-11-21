@@ -449,6 +449,23 @@ public class Sistema implements Serializable {
         return copia;
     }
 
+       public int calcularColor(Empleado emp) {
+        
+     double v = emp.getSalarioMensual();
+            int resultado = (int)Math.floor(v); 
+            
+            if(resultado > 255)
+            resultado=255;
+            else if(resultado < 0)
+            resultado = 1;
+            
+            
+            
+              return resultado;
+        
+    }
+    
+    
     // precarga de datos
 
     public void inicializar() {
@@ -476,24 +493,10 @@ public class Sistema implements Serializable {
         }
     }
 
-    public int calcularColor(Empleado emp) {
-        
-     double v = emp.getSalarioMensual();
-            int resultado = (int)Math.floor(v); 
-            
-            if(resultado > 255)
-            resultado=255;
-            else if(resultado < 0)
-            resultado = 1;
-            
-            
-            
-              return resultado;
-        
-    }
+ 
 
-   
-  
+
+    
     
 }
 

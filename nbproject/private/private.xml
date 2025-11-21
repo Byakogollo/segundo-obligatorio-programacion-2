@@ -3,22 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/modelo/ExcepcionesSistema.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/inicializacion/VentanaInicial.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/programas/VentanaPrincipalDemoSistema.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/programas/VentanaPrincipalSistemaNuevo.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/personal/VentanaAltaEmpleado.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/modelo/Persona.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/areas/VentanaRealizarMovimiento.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/mainPackage/SegundoObligatorioProgramacion2.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/persistencia/ArchivoCargar.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/personal/VentanaAdministrarEmpleados.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/reportes/ventanaReporteMovimiento.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/reportes/VentanaReporteAreas.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/areas/VentanaAltaArea.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/personal/VentanaModificarManager.java</file>
-            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/programas/VentanaPrincipalSistemaResumido.java</file>
+            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/modelo/Movimiento.java</file>
             <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/modelo/Sistema.java</file>
+            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/modelo/Gemini.java</file>
+            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/.env</file>
+            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/programas/VentanaPrincipalSistemaResumido.java</file>
+            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/persistencia/ArchivoGuardar.java</file>
+            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/modelo/Area.java</file>
+            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/modelo/Empleado.java</file>
+            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/reportes/VentanaReporteInteligente.java</file>
+            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/build.xml</file>
+            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/areas/VentanaRealizarMovimiento.java</file>
+            <file>file:/C:/Users/Byakogollo/Documents/NetBeansProjects/Obligatorio2_P2/src/ventanas/reportes/ventanaReporteMovimiento.java</file>
         </group>
     </open-files>
 </project-private>
