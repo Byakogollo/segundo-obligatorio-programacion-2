@@ -35,21 +35,17 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
 
     }
 
-
-
     private void cargarCombos() {
 
-        
         DefaultComboBoxModel<Object> modeloEmpleados = new DefaultComboBoxModel<>();
-        
+
         modeloEmpleados.addElement("Todos");
-        
+
         for (Empleado e : this.modelo.getEmpleados()) {
             modeloEmpleados.addElement(e);
         }
         this.cmbFiltrarEmpleados.setModel(modeloEmpleados);
 
-        
         DefaultComboBoxModel<Object> modeloAreaOrigen = new DefaultComboBoxModel<>();
         modeloAreaOrigen.addElement("Todas");
         for (Area a : this.modelo.getAreas()) {
@@ -57,7 +53,6 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
         }
         this.cmbFiltrarAreaOrigen.setModel(modeloAreaOrigen);
 
-        
         DefaultComboBoxModel<Object> modeloAreaDestino = new DefaultComboBoxModel<>();
         modeloAreaDestino.addElement("Todas");
         for (Area a : this.modelo.getAreas()) {
@@ -65,9 +60,8 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
         }
         this.cmbFiltrarAreasDestino.setModel(modeloAreaDestino);
 
-        
         DefaultComboBoxModel<String> modeloMeses = new DefaultComboBoxModel<>();
-        modeloMeses.addElement("Todos"); 
+        modeloMeses.addElement("Todos");
         for (int i = 1; i <= 12; i++) {
             modeloMeses.addElement(String.valueOf(i));
         }
@@ -78,7 +72,6 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
 
         DefaultTableModel tabla = (DefaultTableModel) this.tblMovimientos.getModel();
 
-        
         tabla.setRowCount(0);
 
         ArrayList<Movimiento> lista = this.modelo.listarMovimientosPorMesAsc();
@@ -108,7 +101,6 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
     }
 
     private void actualizarTablaConFiltros() {
-        
 
         Object areaOrigenSeleccionada = this.cmbFiltrarAreaOrigen.getSelectedItem();
         Object areaDestinoSeleccionada = this.cmbFiltrarAreasDestino.getSelectedItem();
@@ -119,44 +111,65 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
 
         tabla.setRowCount(0);
 
+
+
         System.out.println(empleadoSeleccionado.toString().split(" ")[0]);
+        System.out.println(areaOrigenSeleccionada.toString());
+        System.out.println(areaDestinoSeleccionada.toString());
+        System.out.println(mesSeleccionado.toString());
+
+        
+
         for (Movimiento mov : this.modelo.getMovimientos()) {
             if (empleadoSeleccionado != null &&
                     !"Todos".equals(empleadoSeleccionado.toString().split(" ")[0])) {
                 if (!mov.getEmpleado().getNombre().equals(empleadoSeleccionado.toString().split(" ")[0])) {
-                    continue; 
+                    continue;
                 }
             }
 
             if (areaOrigenSeleccionada != null &&
                     !"Todas".equals(areaOrigenSeleccionada.toString())) {
                 if (!mov.getOrigen().getNombre().equals(areaOrigenSeleccionada.toString())) {
-                    continue; 
+                    continue;
                 }
             }
 
             if (areaDestinoSeleccionada != null &&
                     !"Todas".equals(areaDestinoSeleccionada.toString())) {
                 if (!mov.getDestino().getNombre().equals(areaDestinoSeleccionada.toString())) {
-                    continue; 
-            }
-
-            if (mesSeleccionado != null &&
-                    !"Todos".equals(mesSeleccionado.toString())) {
-                if (mov.getMes() != Integer.parseInt(mesSeleccionado.toString())) {
-                    continue; 
+                    continue;
                 }
             }
 
-            tabla.addRow(new Object[] {
-                    mov.getMes(),
-                    mov.getOrigen().getNombre(),
-                    mov.getDestino().getNombre(),
-                    mov.getEmpleado().getNombre() + " (" + mov.getEmpleado().getCi() + ")"
-            });
-        }
+                if (mesSeleccionado != null &&
+                        !"Todos".equals(mesSeleccionado.toString())) {
+                    if (mov.getMes() != Integer.parseInt(mesSeleccionado.toString())) {
+                        continue;
+                    }
+                }
 
+                tabla.addRow(new Object[] {
+                        mov.getMes(),
+                        mov.getOrigen().getNombre(),
+                        mov.getDestino().getNombre(),
+                        mov.getEmpleado().getNombre() + " (" + mov.getEmpleado().getCi() + ")"
+                });
+            
+        }
     }
+
+    private void resetearFiltrosYTabla() {
+   
+    cmbFiltrarEmpleados.setSelectedIndex(0);
+    cmbFiltrarAreaOrigen.setSelectedIndex(0);
+    cmbFiltrarAreasDestino.setSelectedIndex(0);
+    cmbFiltrarMeses.setSelectedIndex(0);
+
+    
+    actualizarTablaConFiltros();
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -268,7 +281,7 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
         getContentPane().add(cmbFiltrarMeses);
         cmbFiltrarMeses.setBounds(630, 180, 180, 26);
 
-        btnAplicarFiltros.setText("Aplicar Filtros");
+        btnAplicarFiltros.setText("Resetear Filtros");
         btnAplicarFiltros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAplicarFiltrosActionPerformed(evt);
@@ -326,13 +339,7 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
     }// GEN-LAST:event_cmbFiltrarAreasDestinoActionPerformed
 
     private void btnAplicarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAplicarFiltrosActionPerformed
-        Area filtroAreaOrigen = (Area) this.cmbFiltrarAreaOrigen.getSelectedItem();
-        Area filtroAreaDestino = (Area) this.cmbFiltrarAreasDestino.getSelectedItem();
-        Empleado filtroEmpleado = (Empleado) this.cmbFiltrarEmpleados.getSelectedItem();
-        int filtroMes = (int) this.cmbFiltrarMeses.getSelectedItem();
-
-        actualizarTablaConFiltros();
-
+        resetearFiltrosYTabla();
     }// GEN-LAST:event_btnAplicarFiltrosActionPerformed
 
     /**
