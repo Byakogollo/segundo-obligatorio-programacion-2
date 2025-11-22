@@ -55,7 +55,7 @@ public Gemini(){
          this.url = new URL("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key="+this.apiKey);           
         HttpURLConnection conn = (HttpURLConnection) this.url.openConnection();
         
-          conn.setRequestMethod("POST");
+        conn.setRequestMethod("POST");
                
         
         conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");

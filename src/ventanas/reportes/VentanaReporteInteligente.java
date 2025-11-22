@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -232,44 +233,64 @@ private void toggleGatito(){
         this.revalidate();
         this.repaint();
         
+        this.btnGenerarReporte.setEnabled(false);
       
-        
-        
-        
-        
-        Gemini gemini = new Gemini();
-        
-        
         
             
        
-            try {                  
+            new Thread(() -> {
+            try {
+                Gemini gemini = new Gemini();
                 
-                
-                this.txtGemini.setText( gemini.pedirReporte(
-                        (String)origen.getNombre(),
-                        (double)origen.getPresupuestoAnual(),
-                        (String)emp.getNombre(),
-                        (double)emp.getSalarioMensual(),
+                String respuesta = gemini.pedirReporte(
+                        origen.getNombre(),
+                        origen.getPresupuestoAnual(),
+                        emp.getNombre(),
+                        emp.getSalarioMensual(),
                         mes,
-                        (String)destino.getNombre(),
-                        (double)destino.getPresupuestoAnual()     
-                       ));
-            
+                        destino.getNombre(),
+                        destino.getPresupuestoAnual()
+                );
+
                 
-            
+                SwingUtilities.invokeLater(() -> {
+                    txtGemini.setText(respuesta);
+                    lblGatito.setVisible(false);
+                    btnGenerarReporte.setEnabled(true);
+                    System.out.println("actualizo hilo"); // debug
+                });
+
+            } catch (ExcepcionesSistema ex) {
                 
-            } catch (ProtocolException ex) {
-                System.out.println(ex.getMessage());
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }catch(ParseException ex){
-                System.out.println(ex.getMessage());
-            }catch (ExcepcionesSistema ex) {
-                Logger.getLogger(VentanaReporteInteligente.class.getName()).log(Level.SEVERE, null, ex);
+                SwingUtilities.invokeLater(() -> {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Error: " + ex.getMessage(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                    lblGatito.setVisible(false);
+                    btnGenerarReporte.setEnabled(true);
+                    System.out.println("catch 2");
+                });
+                
+            } catch (Exception ex) {
+                
+                SwingUtilities.invokeLater(() -> {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Error al llamar a Gemini: " + ex.getMessage(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                    lblGatito.setVisible(false);
+                    btnGenerarReporte.setEnabled(true);
+                    System.out.println("catch 3");
+                });
+                
             }
             
-            
+        }).start();
             
             
             
