@@ -226,33 +226,29 @@
     <Container class="javax.swing.JScrollPane" name="pnlTextArea">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="400" y="230" width="210" height="50"/>
+          <AbsoluteConstraints x="390" y="230" width="240" height="30"/>
         </Constraint>
       </Constraints>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="txtGemini">
+        <Component class="javax.swing.JTextArea" name="txtGemini">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Hola, quieres que genere un reporte?"/>
-            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="1"/>
+            <Property name="text" type="java.lang.String" value="Hola, quieres que te genere un reporte?"/>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="((AbstractDocument) this.txtGemini.getDocument()).setDocumentFilter(new DocumentFilter(){&#xa;    private int maxChars=35;&#xa;&#xa;@Override&#xa;            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)&#xa;                    throws BadLocationException {&#xa;                if ((fb.getDocument().getLength() + string.length()) &lt;= maxChars) {&#xa;                    super.insertString(fb, offset, string, attr);&#xa;                }&#xa;            }&#xa;&#xa;        });"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="lblGatito">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="gifGato"/>
-      </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon icono = new ImageIcon(&quot;./img/logo.png&quot;);&#xa;Image img = icono.getImage();&#xa;Image newimg = img.getScaledInstance(120,120,java.awt.Image.SCALE_SMOOTH);&#xa;icono = new ImageIcon(newimg);&#xa;&#xa;lblGatito.setIcon(icono);"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon icono = new ImageIcon(&quot;./img/gatito.gif&quot;);&#xa;&#xa;&#xa;lblGatito.setIcon(icono);&#xa;&#xa;&#xa;lblGatito.setHorizontalAlignment(SwingConstants.CENTER);&#xa;lblGatito.setVerticalAlignment(SwingConstants.CENTER);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="420" y="330" width="180" height="180"/>
+          <AbsoluteConstraints x="400" y="270" width="200" height="350"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -110,7 +110,7 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
         lblCurriculum.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCurriculum.setText("Curriculum");
         getContentPane().add(lblCurriculum);
-        lblCurriculum.setBounds(250, 260, 67, 20);
+        lblCurriculum.setBounds(250, 260, 68, 20);
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre.setText("Nombre");
@@ -120,12 +120,12 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
         lblCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCedula.setText("Cedula");
         getContentPane().add(lblCedula);
-        lblCedula.setBounds(250, 200, 42, 20);
+        lblCedula.setBounds(250, 200, 43, 20);
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTelefono.setText("Telefono");
         getContentPane().add(lblTelefono);
-        lblTelefono.setBounds(250, 230, 52, 20);
+        lblTelefono.setBounds(250, 230, 55, 20);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +147,11 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
 
         txtCurriculum.setEditable(false);
         txtCurriculum.setText("Seleccione un empleado");
+        txtCurriculum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCurriculumActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtCurriculum);
         txtCurriculum.setBounds(440, 260, 150, 70);
 
@@ -198,7 +203,7 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
         lblArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblArea.setText("Area");
         getContentPane().add(lblArea);
-        lblArea.setBounds(250, 400, 28, 20);
+        lblArea.setBounds(250, 400, 29, 20);
 
         txtArea.setEditable(false);
         txtArea.setText("Seleccione un empleado");
@@ -261,6 +266,10 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
     private void txtSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSalarioActionPerformed
+
+    private void txtCurriculumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCurriculumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCurriculumActionPerformed
 
     /**
      * @param args the command line arguments

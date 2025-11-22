@@ -29,7 +29,31 @@ public class VentanaInicial extends javax.swing.JFrame {
         setTitle("ERP - Inicio");
         setLocationRelativeTo(null);
         this.modelo = modelo;
+        
+        
+         
+    this.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_F1) {
+                llamarIntegrantes();
+            }
+        }
+    });
+        
+        
+        
     }
+    
+    
+    private void llamarIntegrantes(){
+        
+                VentanaIntegrantes v = new VentanaIntegrantes();
+               v.setLocationRelativeTo(this);
+               v.setVisible(true);
+            
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,7 +82,7 @@ public class VentanaInicial extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Inicializacion");
         getContentPane().add(lblTitulo);
-        lblTitulo.setBounds(210, 30, 216, 40);
+        lblTitulo.setBounds(210, 30, 220, 40);
 
         btnDemoSistema.setText("Demo del Sistema");
         btnDemoSistema.addActionListener(new java.awt.event.ActionListener() {
@@ -161,16 +185,14 @@ public class VentanaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSistemaNuevoActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        this.setFocusable(true);
+        // TODO add your handling code here:     this.setFocusable(true);
+        
         this.requestFocusInWindow();
         if(evt.getKeyCode() == KeyEvent.VK_F1){
           
-               VentanaIntegrantes v = new VentanaIntegrantes();
-               v.setLocationRelativeTo(this);
-               v.setVisible(true);
+            
                                           
                             }
-        
     }//GEN-LAST:event_formKeyPressed
 
 

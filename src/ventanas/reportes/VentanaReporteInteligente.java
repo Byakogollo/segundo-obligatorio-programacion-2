@@ -40,6 +40,10 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         super(parent, modal);
         this.modelo = modelo;
         initComponents();
+        
+        
+         
+         
         this.lblGatito.setVisible(false);
         this.lstAreaOrigen.setListData(this.modelo.getAreas().toArray(new Area[0]));
     }
@@ -73,7 +77,7 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
         btnGenerarReporte = new javax.swing.JButton();
         pnlTextArea = new javax.swing.JScrollPane();
-        txtGemini = new javax.swing.JTextField();
+        txtGemini = new javax.swing.JTextArea();
         lblGatito = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -152,45 +156,27 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         getContentPane().add(btnGenerarReporte);
         btnGenerarReporte.setBounds(370, 650, 180, 70);
 
-        txtGemini.setText("Hola, quieres que genere un reporte?");
-        txtGemini.setEnabled(false);
+        txtGemini.setEditable(false);
+        txtGemini.setColumns(20);
+        txtGemini.setRows(1);
+        txtGemini.setText("Hola, quieres que te genere un reporte?");
         pnlTextArea.setViewportView(txtGemini);
-        ((AbstractDocument) this.txtGemini.getDocument()).setDocumentFilter(new DocumentFilter(){
-            private int maxChars=35;
-
-            @Override
-            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)
-            throws BadLocationException {
-                if ((fb.getDocument().getLength() + string.length()) <= maxChars) {
-                    super.insertString(fb, offset, string, attr);
-                }
-            }
-
-        });
 
         getContentPane().add(pnlTextArea);
-        pnlTextArea.setBounds(400, 230, 210, 50);
-
-        lblGatito.setText("gifGato");
+        pnlTextArea.setBounds(390, 230, 240, 30);
         getContentPane().add(lblGatito);
-        lblGatito.setBounds(420, 330, 180, 180);
-        ImageIcon icono = new ImageIcon("./img/logo.png");
-        Image img = icono.getImage();
-        Image newimg = img.getScaledInstance(120,120,java.awt.Image.SCALE_SMOOTH);
-        icono = new ImageIcon(newimg);
+        lblGatito.setBounds(400, 270, 200, 350);
+        ImageIcon icono = new ImageIcon("./img/gatito.gif");
 
         lblGatito.setIcon(icono);
+
+        lblGatito.setHorizontalAlignment(SwingConstants.CENTER);
+        lblGatito.setVerticalAlignment(SwingConstants.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void toggleGatito(){
-    
-    this.lblGatito.setVisible(true);
-    
-    
-    
-}
+
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
          JOptionPane alerta = new JOptionPane();
@@ -230,6 +216,7 @@ private void toggleGatito(){
         int mes = Integer.parseInt((String)this.cmbMes.getSelectedItem());   
         
         this.lblGatito.setVisible(true);
+        
         this.revalidate();
         this.repaint();
         
@@ -255,8 +242,15 @@ private void toggleGatito(){
                 
                 SwingUtilities.invokeLater(() -> {
                     txtGemini.setText(respuesta);
+                    
+                    
                     lblGatito.setVisible(false);
                     btnGenerarReporte.setEnabled(true);
+                    this.txtGemini.setLineWrap(true);
+                    this.txtGemini.setWrapStyleWord(true);
+                    this.pnlTextArea.setSize(new Dimension(212,300));
+                    
+                    
                     System.out.println("actualizo hilo"); // debug
                 });
 
@@ -323,6 +317,6 @@ private void toggleGatito(){
     private javax.swing.JList<Area> lstAreaOrigen;
     private javax.swing.JList<Empleado> lstEmpleados;
     private javax.swing.JScrollPane pnlTextArea;
-    private javax.swing.JTextField txtGemini;
+    private javax.swing.JTextArea txtGemini;
     // End of variables declaration//GEN-END:variables
 }
