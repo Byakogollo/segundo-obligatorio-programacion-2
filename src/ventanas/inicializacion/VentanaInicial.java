@@ -14,46 +14,42 @@ import ventanas.programas.VentanaPrincipalDemoSistema;
 import ventanas.programas.VentanaPrincipalSistemaNuevo;
 import ventanas.programas.VentanaPrincipalSistemaResumido;
 
-
 /**
  *
  * @author jacqu
  */
 public class VentanaInicial extends javax.swing.JFrame {
 
-  
     private Sistema modelo;
-   
+
     public VentanaInicial(Sistema modelo) {
         initComponents();
         setTitle("ERP - Inicio");
         setLocationRelativeTo(null);
         this.modelo = modelo;
-        
-        
-         
-    this.addKeyListener(new java.awt.event.KeyAdapter() {
-        @Override
-        public void keyPressed(java.awt.event.KeyEvent evt) {
-            if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_F1) {
-                llamarIntegrantes();
+
+        java.awt.event.KeyAdapter listenerF1 = new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_F1) {
+                    llamarIntegrantes();
+                }
             }
-        }
-    });
-        
-        
-        
+        };
+
+      
+        btnDemoSistema.addKeyListener(listenerF1);
+        btnSistemaNuevo.addKeyListener(listenerF1);
+        btnResumirSistema.addKeyListener(listenerF1);
     }
-    
-    
-    private void llamarIntegrantes(){
-        
-                VentanaIntegrantes v = new VentanaIntegrantes();
-               v.setLocationRelativeTo(this);
-               v.setVisible(true);
-            
+
+    private void llamarIntegrantes() {
+
+        VentanaIntegrantes v = new VentanaIntegrantes();
+        v.setLocationRelativeTo(this);
+        v.setVisible(true);
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,7 +58,8 @@ public class VentanaInicial extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
@@ -70,7 +67,7 @@ public class VentanaInicial extends javax.swing.JFrame {
         btnSistemaNuevo = new javax.swing.JButton();
         btnResumirSistema = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("VentanaInicial");
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -114,92 +111,72 @@ public class VentanaInicial extends javax.swing.JFrame {
         setBounds(0, 0, 646, 232);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDemoSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDemoSistemaActionPerformed
-         VentanaPrincipalDemoSistema ventana = new VentanaPrincipalDemoSistema(this.modelo);
-        ventana.setBounds(0,0,400,300);
-         ventana.setLocationRelativeTo(this);
-        
+    private void btnDemoSistemaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDemoSistemaActionPerformed
+        VentanaPrincipalDemoSistema ventana = new VentanaPrincipalDemoSistema(this.modelo);
+        ventana.setBounds(0, 0, 400, 300);
+        ventana.setLocationRelativeTo(this);
+
         ventana.setVisible(true);
-        this.dispose();   
-    }//GEN-LAST:event_btnDemoSistemaActionPerformed
+        this.dispose();
+    }// GEN-LAST:event_btnDemoSistemaActionPerformed
 
-    private void btnResumirSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResumirSistemaActionPerformed
-     
-        try{
-            
-      
-        
-    String basePath = System.getProperty("user.dir") + "/persistencia";
-        File file = new File(basePath+"/Sistema");
+    private void btnResumirSistemaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnResumirSistemaActionPerformed
+
+        try {
+
+            String basePath = System.getProperty("user.dir") + "/persistencia";
+            File file = new File(basePath + "/Sistema");
             System.out.println(basePath);
-        
-        if(!file.exists()){                   
-            
-              JOptionPane.showMessageDialog(null,
-        "Error al cargar el sistema. Asegurese que el sistema haya sido guardado anteriormente",
-        "Error", JOptionPane.ERROR_MESSAGE);     
-            
-              
-       
-     }else{
-            
-             
-              Sistema modeloCargado = new ArchivoCargar().cargarSistema(); 
-       
-       
-       VentanaPrincipalSistemaResumido ventanaResumida = new VentanaPrincipalSistemaResumido(modeloCargado);
-          ventanaResumida.setBounds(0,0,400,300);
-         ventanaResumida.setLocationRelativeTo(this);
-        
-        ventanaResumida.setVisible(true);
-        this.dispose(); 
-}
-}catch(Exception e){
-                
-                System.out.println("Error"+e);
-                
-                }
-        
-             
 
-    
-        
-        
-      
-      
-    }//GEN-LAST:event_btnResumirSistemaActionPerformed
+            if (!file.exists()) {
 
-    private void btnSistemaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSistemaNuevoActionPerformed
+                JOptionPane.showMessageDialog(null,
+                        "Error al cargar el sistema. Asegurese que el sistema haya sido guardado anteriormente",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+
+            } else {
+
+                Sistema modeloCargado = new ArchivoCargar().cargarSistema();
+
+                VentanaPrincipalSistemaResumido ventanaResumida = new VentanaPrincipalSistemaResumido(modeloCargado);
+                ventanaResumida.setBounds(0, 0, 400, 300);
+                ventanaResumida.setLocationRelativeTo(this);
+
+                ventanaResumida.setVisible(true);
+                this.dispose();
+            }
+        } catch (Exception e) {
+
+            System.out.println("Error" + e);
+
+        }
+
+    }// GEN-LAST:event_btnResumirSistemaActionPerformed
+
+    private void btnSistemaNuevoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSistemaNuevoActionPerformed
         VentanaPrincipalSistemaNuevo ventana = new VentanaPrincipalSistemaNuevo(this.modelo);
-        
-        
-        
-                
-                ventana.setBounds(0,0,400,300);
-                ventana.setLocationRelativeTo(this);
-        
-                ventana.setVisible(true);
-        
-        this.dispose();        
-        
-    }//GEN-LAST:event_btnSistemaNuevoActionPerformed
 
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        // TODO add your handling code here:     this.setFocusable(true);
-        
+        ventana.setBounds(0, 0, 400, 300);
+        ventana.setLocationRelativeTo(this);
+
+        ventana.setVisible(true);
+
+        this.dispose();
+
+    }// GEN-LAST:event_btnSistemaNuevoActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here: this.setFocusable(true);
+
         this.requestFocusInWindow();
-        if(evt.getKeyCode() == KeyEvent.VK_F1){
-          
-            
-                                          
-                            }
-    }//GEN-LAST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_F1) {
 
+        }
+    }// GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDemoSistema;

@@ -39,7 +39,7 @@ public class VentanaIntegrantes extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("VentanaIntegrantes");
 
         lblMarcos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
