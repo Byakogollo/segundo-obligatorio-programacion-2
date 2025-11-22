@@ -83,5 +83,32 @@ public class ArchivoCargar {
 
         return null;
     }
+    
+    public String getApiKey(){
+        
+        String basePath = System.getProperty("user.dir")+ "/persistencia";
+
+        String resultado = "";
+
+        try {
+
+            this.in = new Scanner(Paths.get(basePath + "/erp_api_key.txt"));
+
+            while (this.hayMasLineas()) {
+                resultado += this.linea;
+            }
+
+        } catch (IOException e) {
+
+            return e.toString();
+
+        }
+
+        return resultado;
+        
+        
+    }
+    
+    
 
 }

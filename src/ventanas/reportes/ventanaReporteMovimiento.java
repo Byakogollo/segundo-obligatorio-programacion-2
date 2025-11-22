@@ -113,53 +113,65 @@ public class ventanaReporteMovimiento extends javax.swing.JDialog {
     private void actualizarTablaConFiltros() {
         
 
-        Object areaOrigenSeleccionada = this.cmbFiltrarAreaOrigen.getSelectedItem();
-        Object areaDestinoSeleccionada = this.cmbFiltrarAreasDestino.getSelectedItem();
-        Object empleadoSeleccionado = this.cmbFiltrarEmpleados.getSelectedItem();
-        Object mesSeleccionado = this.cmbFiltrarMeses.getSelectedItem();
+            Object areaOrigenSeleccionada = this.cmbFiltrarAreaOrigen.getSelectedItem();
+    Object areaDestinoSeleccionada = this.cmbFiltrarAreasDestino.getSelectedItem();
+    Object empleadoSeleccionado = this.cmbFiltrarEmpleados.getSelectedItem();
+    Object mesSeleccionado = this.cmbFiltrarMeses.getSelectedItem();
 
-        javax.swing.table.DefaultTableModel tabla = (javax.swing.table.DefaultTableModel) tblMovimientos.getModel();
+    DefaultTableModel tabla = (DefaultTableModel) tblMovimientos.getModel();
+    tabla.setRowCount(0);
 
-        tabla.setRowCount(0);
+    for (Movimiento mov : this.modelo.getMovimientos()) {
 
-     
-        for (Movimiento mov : this.modelo.getMovimientos()) {
-            if (empleadoSeleccionado != null &&
-                    !"Todos".equals(empleadoSeleccionado.toString().split(" ")[0])) {
-                if (!mov.getEmpleado().getNombre().equals(empleadoSeleccionado.toString().split(" ")[0])) {
-                    continue; 
-                }
+        boolean coincide = true;
+
+        
+        if (empleadoSeleccionado != null &&
+            !"Todos".equals(empleadoSeleccionado.toString().split(" ")[0])) {
+
+            String nombreSeleccionado = empleadoSeleccionado.toString().split(" ")[0];
+            if (!mov.getEmpleado().getNombre().equals(nombreSeleccionado)) {
+                coincide = false;
             }
+        }
 
-            if (areaOrigenSeleccionada != null &&
-                    !"Todas".equals(areaOrigenSeleccionada.toString())) {
-                if (!mov.getOrigen().getNombre().equals(areaOrigenSeleccionada.toString())) {
-                    continue; 
-                }
+        
+        if (areaOrigenSeleccionada != null &&
+            !"Todas".equals(areaOrigenSeleccionada.toString())) {
+
+            if (!mov.getOrigen().getNombre().equals(areaOrigenSeleccionada.toString())) {
+                coincide = false;
             }
+        }
 
-            if (areaDestinoSeleccionada != null &&
-                    !"Todas".equals(areaDestinoSeleccionada.toString())) {
-                if (!mov.getDestino().getNombre().equals(areaDestinoSeleccionada.toString())) {
-                    continue; 
-                }
+        
+        if (areaDestinoSeleccionada != null &&
+            !"Todas".equals(areaDestinoSeleccionada.toString())) {
+
+            if (!mov.getDestino().getNombre().equals(areaDestinoSeleccionada.toString())) {
+                coincide = false;
             }
+        }
 
-            if (mesSeleccionado != null &&
-                    !"Todos".equals(mesSeleccionado.toString())) {
-                if (mov.getMes() != Integer.parseInt(mesSeleccionado.toString())) {
-                    continue; 
-                }
+       
+        if (mesSeleccionado != null &&
+            !"Todos".equals(mesSeleccionado.toString())) {
+
+            int mesFiltro = Integer.parseInt(mesSeleccionado.toString());
+            if (mov.getMes() != mesFiltro) {
+                coincide = false;
             }
+        }
 
-            tabla.addRow(new Object[] {
+        
+        if (coincide) {
+            tabla.addRow(new Object[]{
                     mov.getMes(),
                     mov.getOrigen().getNombre(),
                     mov.getDestino().getNombre(),
                     mov.getEmpleado().getNombre() + " (" + mov.getEmpleado().getCi() + ")"
             });
-        
-
+        }
     }
     }
     

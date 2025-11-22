@@ -4,9 +4,17 @@
  */
 package ventanas.reportes;
 
+import java.awt.Dimension;
+import java.awt.Image;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.ProtocolException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.SwingWorker;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -31,6 +39,7 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         super(parent, modal);
         this.modelo = modelo;
         initComponents();
+        this.lblGatito.setVisible(false);
         this.lstAreaOrigen.setListData(this.modelo.getAreas().toArray(new Area[0]));
     }
     
@@ -64,6 +73,7 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         btnGenerarReporte = new javax.swing.JButton();
         pnlTextArea = new javax.swing.JScrollPane();
         txtGemini = new javax.swing.JTextField();
+        lblGatito = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -158,12 +168,28 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
         });
 
         getContentPane().add(pnlTextArea);
-        pnlTextArea.setBounds(400, 230, 210, 390);
+        pnlTextArea.setBounds(400, 230, 210, 50);
+
+        lblGatito.setText("gifGato");
+        getContentPane().add(lblGatito);
+        lblGatito.setBounds(420, 330, 180, 180);
+        ImageIcon icono = new ImageIcon("./img/logo.png");
+        Image img = icono.getImage();
+        Image newimg = img.getScaledInstance(120,120,java.awt.Image.SCALE_SMOOTH);
+        icono = new ImageIcon(newimg);
+
+        lblGatito.setIcon(icono);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+private void toggleGatito(){
+    
+    this.lblGatito.setVisible(true);
+    
+    
+    
+}
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
          JOptionPane alerta = new JOptionPane();
@@ -189,14 +215,49 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
     }//GEN-LAST:event_lstEmpleadosMouseClicked
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
+               
+        
+        
+        try{
+                 
+        Area origen = (Area) this.lstAreaOrigen.getSelectedValue();
+        if(origen == null) throw new ExcepcionesSistema("Seleccione un area de origen para el reporte inteligente");
+        Empleado emp = (Empleado) this.lstEmpleados.getSelectedValue();
+        if(emp == null) throw new ExcepcionesSistema("Seleccione un empleado para el reporte inteligente");
+        Area destino = (Area) this.lstAreaDestino.getSelectedValue();
+        if(destino == null) throw new ExcepcionesSistema("Seleccione un area de destino para el reporte inteligente");
+        int mes = Integer.parseInt((String)this.cmbMes.getSelectedItem());   
+        
+        this.lblGatito.setVisible(true);
+        this.revalidate();
+        this.repaint();
+        
+      
+        
+        
+        
+        
         Gemini gemini = new Gemini();
         
-            try {
+        
+        
+            
+       
+            try {                  
                 
-                               
-                               
-                this.txtGemini.setText(gemini.pedirReporte());
                 
+                this.txtGemini.setText( gemini.pedirReporte(
+                        (String)origen.getNombre(),
+                        (double)origen.getPresupuestoAnual(),
+                        (String)emp.getNombre(),
+                        (double)emp.getSalarioMensual(),
+                        mes,
+                        (String)destino.getNombre(),
+                        (double)destino.getPresupuestoAnual()     
+                       ));
+            
+                
+            
                 
             } catch (ProtocolException ex) {
                 System.out.println(ex.getMessage());
@@ -204,7 +265,22 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
                 System.out.println(ex.getMessage());
             }catch(ParseException ex){
                 System.out.println(ex.getMessage());
+            }catch (ExcepcionesSistema ex) {
+                Logger.getLogger(VentanaReporteInteligente.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            
+            
+            
+            
+        }catch(ExcepcionesSistema ex){
+            JOptionPane.showMessageDialog(null, "Error: "+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+         //debug
+         System.out.println("cierro gato");
+        
+        
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
  
@@ -219,6 +295,7 @@ public class VentanaReporteInteligente extends javax.swing.JDialog {
     private javax.swing.JLabel lblArea;
     private javax.swing.JLabel lblDestino;
     private javax.swing.JLabel lblEmpleado;
+    private javax.swing.JLabel lblGatito;
     private javax.swing.JLabel lblMes;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JList<Area> lstAreaDestino;
