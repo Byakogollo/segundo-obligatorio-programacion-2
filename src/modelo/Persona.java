@@ -1,3 +1,6 @@
+
+//TRABAJO REALIZADO POR ESTEBAN NECUSE 227582 Y MARCOS MEDINA 365070
+
 package modelo;
 
 import java.io.Serializable;

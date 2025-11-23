@@ -1,4 +1,5 @@
 /*
+TRABAJO REALIZADO POR ESTEBAN NECUSE 227582 Y MARCOS MEDINA 365070
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -8,6 +9,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -25,7 +27,7 @@ import persistencia.ArchivoCargar;
  *
  * @author Byakogollo
  */
-public class Gemini {
+public class Gemini implements Serializable{
     private String apiKey;
     private URL url;
     

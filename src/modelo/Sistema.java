@@ -1,3 +1,4 @@
+//TRABAJO REALIZADO POR ESTEBAN NECUSE 227582 Y MARCOS MEDINA 365070
 package modelo;
 
 import java.awt.Color;
@@ -15,12 +16,18 @@ public class Sistema implements Serializable {
     private ArrayList<Empleado> empleados;
     private ArrayList<Movimiento> movimientos;
     private ArrayList<Manager> managers;
+    private Gemini gemini;
 
     public Sistema() {
         this.areas = new ArrayList<>();
         this.empleados = new ArrayList<>();
         this.movimientos = new ArrayList<>();
         this.managers = new ArrayList<>();
+        this.gemini = new Gemini();
+    }
+
+    public Gemini getGemini() {
+        return gemini;
     }
     
        // getters para las ventanas, para cuando necesitemos llamar a los metodos

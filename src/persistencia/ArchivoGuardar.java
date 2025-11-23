@@ -1,3 +1,5 @@
+//TRABAJO REALIZADO POR ESTEBAN NECUSE 227582 Y MARCOS MEDINA 365070
+
 package persistencia;
 
 import java.io.File;
@@ -38,6 +40,7 @@ public class ArchivoGuardar {
         String basePath = System.getProperty("user.dir") + "/persistencia";
         new File(basePath).mkdirs();
         System.out.println(basePath);
+        
         File sistema = new File(basePath + "/Sistema");
 
             try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(sistema))) {
