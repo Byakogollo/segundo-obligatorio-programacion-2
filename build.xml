@@ -70,22 +70,21 @@
     nbproject/build-impl.xml file. 
 
     -->
-    <property name="src.dir" location="src"/>
+   <property name="src.dir" location="src"/> 
     <property name="build.dir" location="build"/>
+    <property name="classes.dir" location="${build.dir}/classes"/>
     <property name="lib.dir" location="lib"/>
     
-     <path id="classpath">
-        <fileset dir="${lib}" includes="*.jar"/>
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="*.jar"/>
     </path>
 
     <target name="compile">
-        <mkdir dir="${build}"/>
-        <javac srcdir="${src}" destdir="${build}" classpathref="classpath"/>
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
     </target>
 
     <target name="run" depends="compile">
-        <java classname="segundo-obligatorio-programacion-2" classpath="${build};${lib}/*" fork="true"/>
+        <java classname="segundo-obligatorio-programacion-2" classpath="${classes.dir};${lib.dir}/*" fork="true"/>
     </target>
-
-   
 </project>

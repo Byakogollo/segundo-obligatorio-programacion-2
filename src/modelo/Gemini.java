@@ -5,8 +5,7 @@ TRABAJO REALIZADO POR ESTEBAN NECUSE 227582 Y MARCOS MEDINA 365070
  */
 package modelo;
 
-import io.github.cdimascio.dotenv.Dotenv;
-import java.io.FileReader;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;

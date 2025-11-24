@@ -87,7 +87,7 @@ public class ArchivoCargar {
     
     public String getApiKey(){
         
-        String basePath = System.getProperty("user.dir")+ "/persistencia";
+        String basePath = System.getProperty("user.dir");
 
         String resultado = "";
 
