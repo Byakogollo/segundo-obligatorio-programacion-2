@@ -118,7 +118,7 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
         imnMovimientoAreas.setText("Realizar Movimiento");
         imnMovimientoAreas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imnReporteMovimientosActionPerformed(evt);
+                imnMovimientoAreasActionPerformed(evt);
             }
         });
         bmnAreas.add(imnMovimientoAreas);
@@ -186,7 +186,7 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
         imnReporteMovimientos.setText("Reporte de Movimientos");
         imnReporteMovimientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imnMovimientoAreasActionPerformed(evt);
+                imnReporteMovimientosActionPerformed(evt);
             }
         });
         bmnReportes.add(imnReporteMovimientos);
@@ -307,20 +307,20 @@ public class VentanaPrincipalSistemaNuevo extends javax.swing.JFrame {
 
     }// GEN-LAST:event_imnAltaEmpleadosActionPerformed
 
-    private void imnMovimientoAreasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imnMovimientoAreasActionPerformed
-        if (!this.modelo.getAreas().isEmpty()) {
-            System.out.println("llego hasta aca");
-            ventanaReporteMovimiento mov = new ventanaReporteMovimiento(this, true, this.modelo);
-            mov.setBounds(0, 0, 600, 800);
-            mov.setLocationRelativeTo(this);
-            mov.setVisible(true);
-
-        } else {
-            JOptionPane.showMessageDialog(null, "No hay areas sin empleados", "Error", JOptionPane.ERROR_MESSAGE);
-
-        }
-
-    }// GEN-LAST:event_imnMovimientoAreasActionPerformed
+    private void imnMovimientoAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnMovimientoAreasActionPerformed
+           if(!this.modelo.getAreas().isEmpty()){
+            
+        
+        VentanaRealizarMovimiento mov = new VentanaRealizarMovimiento(this, true, this.modelo);
+        mov.setBounds(0,0,511,774);
+        mov.setLocationRelativeTo(this);
+        mov.setVisible(true);
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay areas sin empleados","Error",JOptionPane.ERROR_MESSAGE);
+        
+    }
+}// GEN-LAST:event_imnMovimientoAreasActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_formFocusGained
         boolean guardarSistema = new ArchivoGuardar().guardarSistema(this.modelo);

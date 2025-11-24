@@ -67,7 +67,7 @@ public class VentanaBajaArea extends javax.swing.JDialog {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Baja Area");
         getContentPane().add(lblTitulo);
-        lblTitulo.setBounds(300, 30, 158, 48);
+        lblTitulo.setBounds(300, 30, 250, 48);
 
         tblAreas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

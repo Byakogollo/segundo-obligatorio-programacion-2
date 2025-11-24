@@ -111,22 +111,22 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
         lblCurriculum.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCurriculum.setText("Curriculum");
         getContentPane().add(lblCurriculum);
-        lblCurriculum.setBounds(250, 260, 68, 20);
+        lblCurriculum.setBounds(250, 260, 90, 20);
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre.setText("Nombre");
         getContentPane().add(lblNombre);
-        lblNombre.setBounds(250, 170, 50, 20);
+        lblNombre.setBounds(250, 170, 80, 20);
 
         lblCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCedula.setText("Cedula");
         getContentPane().add(lblCedula);
-        lblCedula.setBounds(250, 200, 43, 20);
+        lblCedula.setBounds(250, 200, 70, 20);
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTelefono.setText("Telefono");
         getContentPane().add(lblTelefono);
-        lblTelefono.setBounds(250, 230, 55, 20);
+        lblTelefono.setBounds(250, 230, 90, 20);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,12 +164,12 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
             }
         });
         getContentPane().add(txtNombre);
-        txtNombre.setBounds(440, 170, 150, 22);
+        txtNombre.setBounds(440, 170, 150, 24);
 
         txtTelefono.setEditable(false);
         txtTelefono.setText("Seleccione un empleado");
         getContentPane().add(txtTelefono);
-        txtTelefono.setBounds(440, 230, 150, 22);
+        txtTelefono.setBounds(440, 230, 150, 24);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Empleados");
@@ -194,27 +194,27 @@ public class VentanaAdministrarEmpleados extends javax.swing.JDialog {
             }
         });
         getContentPane().add(txtSalario);
-        txtSalario.setBounds(440, 340, 150, 22);
+        txtSalario.setBounds(440, 340, 150, 24);
 
         txtManager.setEditable(false);
         txtManager.setText("Seleccione un empleado");
         getContentPane().add(txtManager);
-        txtManager.setBounds(440, 370, 150, 22);
+        txtManager.setBounds(440, 370, 150, 24);
 
         lblArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblArea.setText("Area");
         getContentPane().add(lblArea);
-        lblArea.setBounds(250, 400, 29, 20);
+        lblArea.setBounds(250, 400, 80, 20);
 
         txtArea.setEditable(false);
         txtArea.setText("Seleccione un empleado");
         getContentPane().add(txtArea);
-        txtArea.setBounds(440, 400, 150, 22);
+        txtArea.setBounds(440, 400, 150, 24);
 
         txtCedula.setEditable(false);
         txtCedula.setText("Seleccione un empleado");
         getContentPane().add(txtCedula);
-        txtCedula.setBounds(440, 200, 150, 22);
+        txtCedula.setBounds(440, 200, 150, 24);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

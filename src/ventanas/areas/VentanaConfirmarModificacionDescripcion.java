@@ -84,9 +84,9 @@ public class VentanaConfirmarModificacionDescripcion extends javax.swing.JDialog
         lblNuevaDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNuevaDescripcion.setText("Nueva Descripcion");
         getContentPane().add(lblNuevaDescripcion);
-        lblNuevaDescripcion.setBounds(50, 220, 113, 20);
+        lblNuevaDescripcion.setBounds(40, 220, 130, 20);
         getContentPane().add(txtDescripcionNueva);
-        txtDescripcionNueva.setBounds(190, 220, 210, 22);
+        txtDescripcionNueva.setBounds(190, 220, 210, 24);
 
         lblDescripcionActual.setText("a");
         getContentPane().add(lblDescripcionActual);

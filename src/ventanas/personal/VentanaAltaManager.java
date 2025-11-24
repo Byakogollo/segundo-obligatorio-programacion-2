@@ -88,7 +88,7 @@ public class VentanaAltaManager extends javax.swing.JDialog {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Alta Manager");
         getContentPane().add(lblTitulo);
-        lblTitulo.setBounds(120, 20, 227, 80);
+        lblTitulo.setBounds(120, 20, 280, 80);
 
         lblCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCedula.setText("Cedula");
@@ -98,14 +98,14 @@ public class VentanaAltaManager extends javax.swing.JDialog {
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre.setText("Nombre");
         getContentPane().add(lblNombre);
-        lblNombre.setBounds(50, 130, 50, 20);
+        lblNombre.setBounds(50, 130, 80, 20);
 
         lblAntiguedad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblAntiguedad.setText("Antiguedad");
         getContentPane().add(lblAntiguedad);
         lblAntiguedad.setBounds(50, 210, 90, 20);
         getContentPane().add(spnAntiguedad);
-        spnAntiguedad.setBounds(190, 210, 210, 22);
+        spnAntiguedad.setBounds(190, 210, 210, 26);
 
         lblManagers.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblManagers.setText("Managers");
@@ -158,9 +158,9 @@ public class VentanaAltaManager extends javax.swing.JDialog {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(40, 450, 410, 150);
         getContentPane().add(txtNombre);
-        txtNombre.setBounds(190, 130, 210, 22);
+        txtNombre.setBounds(190, 130, 210, 24);
         getContentPane().add(spnCedula);
-        spnCedula.setBounds(190, 170, 210, 22);
+        spnCedula.setBounds(190, 170, 210, 26);
 
         lblCelular.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCelular.setText("Celular");
@@ -169,7 +169,7 @@ public class VentanaAltaManager extends javax.swing.JDialog {
 
         spnCelular.setModel(new javax.swing.SpinnerNumberModel());
         getContentPane().add(spnCelular);
-        spnCelular.setBounds(190, 250, 210, 22);
+        spnCelular.setBounds(190, 250, 210, 26);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

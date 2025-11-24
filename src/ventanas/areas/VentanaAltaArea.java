@@ -90,14 +90,14 @@ public class VentanaAltaArea extends javax.swing.JDialog {
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre.setText("Nombre del Area");
         getContentPane().add(lblNombre);
-        lblNombre.setBounds(50, 150, 104, 20);
+        lblNombre.setBounds(50, 150, 130, 20);
 
         lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblDescripcion.setText("Descripcion");
         getContentPane().add(lblDescripcion);
         lblDescripcion.setBounds(50, 230, 90, 20);
         getContentPane().add(spnPresupuesto);
-        spnPresupuesto.setBounds(190, 190, 210, 22);
+        spnPresupuesto.setBounds(190, 190, 210, 26);
 
         lblAreas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblAreas.setText("Areas");
@@ -122,7 +122,7 @@ public class VentanaAltaArea extends javax.swing.JDialog {
         getContentPane().add(btnAgregarArea);
         btnAgregarArea.setBounds(110, 290, 110, 50);
         getContentPane().add(txtDescripcion);
-        txtDescripcion.setBounds(190, 230, 210, 22);
+        txtDescripcion.setBounds(190, 230, 210, 24);
 
         tblAreas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,7 +152,7 @@ public class VentanaAltaArea extends javax.swing.JDialog {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(40, 380, 410, 110);
         getContentPane().add(txtNombre);
-        txtNombre.setBounds(190, 150, 210, 22);
+        txtNombre.setBounds(190, 150, 210, 24);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

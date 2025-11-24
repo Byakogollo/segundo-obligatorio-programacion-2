@@ -104,22 +104,22 @@ public class VentanaModificarManager extends javax.swing.JDialog {
         lblAntiguedad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblAntiguedad.setText("Antiguedad");
         getContentPane().add(lblAntiguedad);
-        lblAntiguedad.setBounds(330, 260, 71, 20);
+        lblAntiguedad.setBounds(330, 260, 110, 20);
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre.setText("Nombre");
         getContentPane().add(lblNombre);
-        lblNombre.setBounds(330, 140, 50, 20);
+        lblNombre.setBounds(330, 140, 80, 20);
 
         lblCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCedula.setText("Cedula");
         getContentPane().add(lblCedula);
-        lblCedula.setBounds(330, 180, 42, 20);
+        lblCedula.setBounds(330, 180, 70, 20);
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTelefono.setText("Telefono");
         getContentPane().add(lblTelefono);
-        lblTelefono.setBounds(330, 220, 52, 20);
+        lblTelefono.setBounds(330, 220, 80, 20);
 
         tblEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,19 +170,19 @@ public class VentanaModificarManager extends javax.swing.JDialog {
         txtAntiguedad.setEditable(false);
         txtAntiguedad.setText("Seleccione un manager");
         getContentPane().add(txtAntiguedad);
-        txtAntiguedad.setBounds(520, 260, 150, 22);
+        txtAntiguedad.setBounds(520, 260, 150, 24);
 
         txtNombre.setEditable(false);
         txtNombre.setText("Seleccione un manager");
         getContentPane().add(txtNombre);
-        txtNombre.setBounds(520, 140, 150, 22);
+        txtNombre.setBounds(520, 140, 150, 24);
 
         txtCedula.setEditable(false);
         txtCedula.setText("Seleccione un manager");
         getContentPane().add(txtCedula);
-        txtCedula.setBounds(520, 180, 150, 22);
+        txtCedula.setBounds(520, 180, 150, 24);
         getContentPane().add(spnTelefono);
-        spnTelefono.setBounds(520, 220, 150, 22);
+        spnTelefono.setBounds(520, 220, 150, 26);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Managers");

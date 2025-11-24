@@ -101,7 +101,7 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Alta Empleado");
         getContentPane().add(lblTitulo);
-        lblTitulo.setBounds(190, 20, 244, 80);
+        lblTitulo.setBounds(190, 20, 300, 80);
 
         lblCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCedula.setText("Cedula");
@@ -111,7 +111,7 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre.setText("Nombre");
         getContentPane().add(lblNombre);
-        lblNombre.setBounds(250, 160, 50, 20);
+        lblNombre.setBounds(250, 160, 70, 20);
 
         lblManagers.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblManagers.setText("Areas");
@@ -136,7 +136,7 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
         getContentPane().add(btnAgregarEmpleado);
         btnAgregarEmpleado.setBounds(50, 670, 220, 50);
         getContentPane().add(spnCedula);
-        spnCedula.setBounds(400, 200, 210, 22);
+        spnCedula.setBounds(400, 200, 210, 26);
 
         lblCelular.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCelular.setText("Celular");
@@ -145,7 +145,7 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
 
         spnSalario.setModel(new javax.swing.SpinnerNumberModel());
         getContentPane().add(spnSalario);
-        spnSalario.setBounds(400, 390, 210, 22);
+        spnSalario.setBounds(400, 390, 210, 26);
 
         lstManagers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -190,7 +190,7 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
         getContentPane().add(lblManagers1);
         lblManagers1.setBounds(90, 130, 70, 20);
         getContentPane().add(txtNombre);
-        txtNombre.setBounds(400, 160, 210, 22);
+        txtNombre.setBounds(400, 160, 210, 24);
 
         txtCurriculum.setColumns(20);
         txtCurriculum.setRows(5);
@@ -211,7 +211,7 @@ public class VentanaAltaEmpleado extends javax.swing.JDialog {
 
         spnCelular.setModel(new javax.swing.SpinnerNumberModel());
         getContentPane().add(spnCelular);
-        spnCelular.setBounds(400, 240, 210, 22);
+        spnCelular.setBounds(400, 240, 210, 26);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

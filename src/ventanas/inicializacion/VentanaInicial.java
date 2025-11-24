@@ -60,7 +60,7 @@ public class VentanaInicial extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
@@ -68,7 +68,7 @@ public class VentanaInicial extends javax.swing.JFrame {
         btnSistemaNuevo = new javax.swing.JButton();
         btnResumirSistema = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VentanaInicial");
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -80,7 +80,7 @@ public class VentanaInicial extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Inicializacion");
         getContentPane().add(lblTitulo);
-        lblTitulo.setBounds(210, 30, 220, 40);
+        lblTitulo.setBounds(210, 30, 260, 40);
 
         btnDemoSistema.setText("Demo del Sistema");
         btnDemoSistema.addActionListener(new java.awt.event.ActionListener() {
